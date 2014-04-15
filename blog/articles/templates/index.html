@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The simple Blog </title>
+</head>
+<body>
+    <div id="content">
+        {% block content %}
+
+            {% for e in entries %}
+                {{ e.title }}<br/>
+                {{ e.text }}<br/>
+                {{ e.date }}<br/>
+                <hr/>
+            {% endfor %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>
