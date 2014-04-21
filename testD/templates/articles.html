@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %} Articles {% endblock %}
+
+{% block sidebar %}
+	<ul>
+		<li><a href="/articles/all">Articles</a></li>
+		<li><a href="/articles/create">Create Article</a></li>
+	</ul>
+{% endblock %}
+{%block content%}
+<h2> The language is :{{language}} </h2>
+<h2> The session_language is :{{session_language}} </h2>
+{% if articles.count > 0 %}
+<h1> Articles </h1>
+{% for article in articles %}
+<div>
+<h2><a href="/articles/get/{{article.id}}/">{{article.title}}</a></h2>
+<p>{{ article.body|lower|truncatewords:"5" }}</p>
+</div>
+{% endfor %}
+{% else %}
+<h1> No articles </h1>
+{% endif%}
+{% endblock %}
