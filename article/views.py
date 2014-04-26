@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.template import Context
 from django.shortcuts import render_to_response
 from django.views.generic.base import TemplateView
-from article.models import Article
+from article.models import Article, Comment
 from django.core.context_processors import csrf 
 from django.http import HttpResponseRedirect
 from forms import ArticleForm
@@ -37,8 +37,13 @@ def articles(request):
 							 'session_language' : session_language})
 
 def article(request,article_id=1):
+	comments = Comment.objects.filter(article = article_id)#article_id)
+	#actors = Actor.objects.filter(programme = programme_id)
+	#print comments
+	#comments = Comment.objects.filter(article__title = 'khar')	
 	return render_to_response('article.html',
-							{'article' : Article.objects.get(id=article_id)})
+							{'article' : Article.objects.get(id=article_id),
+							'commnets' : comments })
 
 def language(request,language='en-gb'):
 	response = HttpResponse("setting language to %s"% language)

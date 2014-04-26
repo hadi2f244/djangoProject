@@ -5,4 +5,14 @@
 <p> {{article.body}} </p>
 <p>{{article.likes}} poeple liked this article</p>
 <p><a href="/articles/like/{{article.id}}">Like</a></p>
+<hr size =10px >
+{% for commnet in commnets%}
+	
+	<p> writer : {{ commnet.writer }} </p>
+	<p> text : {{ commnet.body }} </p>
+	<p> date : {{ commnet.date }} </p>
+	<hr width = 40%>
+{% endfor %}
+
 {% endblock %}
+
