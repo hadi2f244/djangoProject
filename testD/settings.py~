@@ -118,7 +118,7 @@ WSGI_APPLICATION = 'testD.wsgi.application'
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
 	os.path.join(os.path.dirname(__file__), 'article', 'templates'),
-   	'/home/alireza/Programming/Web_Programming/Django/djangoProject/templates',
+   	'/home/hadi2f244/codes/testD/templates',
 
 	# Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
