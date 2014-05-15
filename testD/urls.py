@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 	url(r'^accounts/register/$','testD.views.register_user'),
 	url(r'^accounts/register_success/$','testD.views.register_success'),
 	#url(r'^markdown/', include( 'django_markdown.urls')),
-    #url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

@@ -1,8 +1,11 @@
 # Django settings for testD project.
-import os.path
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+
+mainPath=os.getcwd()
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -13,7 +16,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/alireza/Programming/Web_Programming/Django/djangoProject/testD.db',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(mainPath, "testD.db"),                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -71,9 +74,8 @@ STATIC_URL = '/static/'
 # Additional locations of static files
 STATICFILES_DIRS = (
 	#('assets',os.path.join(os.path.dirname(__file__), 'static')),
-	#('assets','/home/hadi2f244/codes/testD/static'),
-    #/home/alireza/Programming/Web_Programming/Django/djangoProject 
-    ('assets','/home/alireza/Programming/Web_Programming/Django/djangoProject/static'),
+	('assets',os.path.join(mainPath, "static")),
+    ('tiny_mce',os.path.join(mainPath, "tiny_mce")),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -117,9 +119,7 @@ WSGI_APPLICATION = 'testD.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-	os.path.join(os.path.dirname(__file__), 'article', 'templates'),
-   	'/home/alireza/Programming/Web_Programming/Django/djangoProject/templates',
-
+   	os.path.join(mainPath, "templates"),
 	# Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
@@ -137,7 +137,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 	'article',
 	#'django_markdown',
-	#'tinymce',
+	'tinymce',
 
 )
 
@@ -169,3 +169,18 @@ LOGGING = {
         },
     }
 }
+#tinymce --> a text editor!
+#tinymce configuration
+
+TINYMCE_JS_URL = os.path.join(mainPath, "tiny_mce/tiny_mce.js")
+TINYMCE_JS_ROOT = os.path.join(mainPath, "tiny_mce")
+
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 5,
+}
+TINYMCE_SPELLCHECKER = True
+TINYMCE_COMPRESSOR = True
+

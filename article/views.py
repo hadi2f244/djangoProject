@@ -7,7 +7,8 @@ from django.views.generic.base import TemplateView
 from article.models import Article, Comment
 from django.core.context_processors import csrf 
 from django.http import HttpResponseRedirect
-from forms import ArticleForm
+from forms import ArticleForm,CommentForm
+from django.core.urlresolvers import reverse
 '''
 def hello(request):
 	name='world'
@@ -38,12 +39,19 @@ def articles(request):
 
 def article(request,article_id=1):
 	comments = Comment.objects.filter(article = article_id)#article_id)
+	if request.POST.has_key("body"):
+		create_comment(request,article_id) 
+	args={}
+	args.update(csrf(request))
+	args['comment_form']=CommentForm()
+	article = Article.objects.get(id=article_id)
+	
+	args['article'] =article
+	args['commnets'] = comments
 	#actors = Actor.objects.filter(programme = programme_id)
 	#print comments
 	#comments = Comment.objects.filter(article__title = 'khar')	
-	return render_to_response('article.html',
-							{'article' : Article.objects.get(id=article_id),
-							'commnets' : comments })
+	return render_to_response('article.html',args)
 
 def language(request,language='en-gb'):
 	response = HttpResponse("setting language to %s"% language)
@@ -64,12 +72,43 @@ def create(request):
 	args['form']=form
 	return render_to_response('create_article.html',args)
 
+def create_comment(request,article_id):#this function doesn't use like normal view func but this is used near article func
+	req=request.POST
+	print article_id
+	body=req["body"]
+	writer = "Anonymous"
+	if req["writer"]:
+		writer = req["writer"]
+	article=Article.objects.get(id=article_id)
+	cd =Comment.objects.create(writer=writer,body=body,article=article)
+
+
+'''
+ p = request.POST
+
+    if p.has_key("body") and p["body"]:
+        author = "Anonymous"
+        if p["author"]: author = p["author"]
+
+        comment = Comment(post=Post.objects.get(pk=pk))
+        cf = CommentForm(p, instance=comment)
+
+
+        cf.fields["author"].required = False 
+
+        comment = cf.save(commit=False)
+        comment.author = author
+        comment.save()
+    return HttpResponseRedirect(reverse("dbe.blog.views.post", args=[pk]))
+'''
+
+
 def like_article(request,article_id):
 	if article_id:
-		a=Article.objects.get(id=article_id)
-		count = a.likes
+		article=Article.objects.get(id=article_id)
+		count = article.likes
 		count +=1
-		a.likes = count
+		article.likes = count
 		# i must use csrf for likes,too
-		a.save()
+		article.save()
 	return HttpResponseRedirect('/articles/get/%s'% article_id)

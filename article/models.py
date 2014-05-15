@@ -1,10 +1,11 @@
 from django.db import models
 import datetime
+import tinymce.models as tinymce
 
 # Create your models here.
 class Article(models.Model):
 	title = models.CharField(max_length=200)
-	body = models.TextField()
+	body = tinymce.HTMLField()
 	pub_date = models.DateTimeField('data published',default=datetime.datetime.now)
 	likes = models.IntegerField(default = 0)
 	

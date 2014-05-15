@@ -1,24 +1,27 @@
 {% extends "base.html" %}
 {% block title %}{{article.title}}{% endblock %}
+{% load url from future %}
 {% block content %}
+
 <h1>{{article.title}} </h1>
-<p> {{article.body}} </p>
+<p> {{article.body|safe}} </p>
 <p>{{article.likes}} poeple liked this article</p>
 <p><a href="/articles/like/{{article.id}}">Like</a></p>
 <hr size =10px >
-{% if commnets %}
 {% for commnet in commnets%}
 	
-	<li> writer : {{ commnet.writer }} </li>
-	<li> text : {{ commnet.body }} </li>
-	<li> date : {{ commnet.date }} </li>
+	<p> writer : {{ commnet.writer }} </p>
+	<p> text : {{ commnet.body}} </p>
+	<p> date : {{ commnet.date }} </p>
 	<hr width = 40%>
 {% endfor %}
-{% else %}
 
-    <p>OHHHH shit there is no comment on this fucking post </p>
-    
-{% endif %} 
-
+<form method="POST">{% csrf_token %}
+    <div id="cform">
+            Name: {{ comment_form.writer }}
+            <p>{{ comment_form.body }}</p>
+    </div>
+    <div id="submit"><input type="submit" value="Submit"></div>
+</form>
 {% endblock %}
 

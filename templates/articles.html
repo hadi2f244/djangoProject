@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %} Articles {% endblock %}
-
+{% block toparea %}
+{% endblock %}
 {% block sidebar %}
 	<ul>
 		<li><a href="/articles/all">Articles</a></li>
@@ -15,7 +16,7 @@
 {% for article in articles %}
 <div>
 <h2><a href="/articles/get/{{article.id}}/">{{article.title}}</a></h2>
-<p>{{ article.body|lower|truncatewords:"5" }}</p>
+<p>{{ article.body|removetags:"b strong h1 h2 h3 h4"|truncatewords_html:3|safe }}</p> <!-- safe > for html render , truncatewords_html > convert to summary  -->
 </div>
 {% endfor %}
 {% else %}

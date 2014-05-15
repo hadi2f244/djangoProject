@@ -1,6 +1,10 @@
 {% load static %}
+
+
 <html>
 <head>
+</script>
+
   <title>
     {% block title %}Base template {% endblock %}
   </title>
@@ -10,7 +14,11 @@
 </head>  
 <body>
   <div id="page">
-    <div id="sidebar">
+  <div id="toparea">
+    <!--<img src="{% static "assets/images/test.png" %}" id="logo" >-->
+    {% block toparea%}{% endblock %}
+   </div> 
+    <div id="sidebar"> 
       {% block sidebar%}
       <ul>
         <li><a href="/articles/all">Articles</a></li>
