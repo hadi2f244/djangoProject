@@ -1,12 +1,17 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}{{article.title}}{% endblock %}
-{% load url from future %}
+{% block script %}
+<script src="{% static "static/js/article.js" %}"></script>
+{% endblock %}
 {% block content %}
 
 <h1>{{article.title}} </h1>
 <p> {{article.body|safe}} </p>
-<p>{{article.likes}} poeple liked this article</p>
-<p><a href="/articles/like/{{article.id}}">Like</a></p>
+<p id="likesTag">{{article.likes}} poeple liked this article</p> 
+
+<input type="button" onclick="Dajaxice.article.likeJax(my_callback, {'data1': {{article.id}} } )" value="LIKE!!">
+
 <hr size =10px >
 {% for commnet in commnets%}
 	
@@ -18,10 +23,9 @@
 
 <form method="POST">{% csrf_token %}
     <div id="cform">
-            Name: {{ comment_form.writer }}
-            <p>{{ comment_form.body }}</p>
+            {{comment_form.as_p}}
     </div>
-    <div id="submit"><input type="submit" value="Submit"></div>
+    <div id="submit"><input type="submit" value="Submit" name="commentButton"></div>
 </form>
 {% endblock %}
 

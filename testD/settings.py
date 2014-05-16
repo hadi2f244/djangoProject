@@ -74,7 +74,7 @@ STATIC_URL = '/static/'
 # Additional locations of static files
 STATICFILES_DIRS = (
 	#('assets',os.path.join(os.path.dirname(__file__), 'static')),
-	('assets',os.path.join(mainPath, "static")),
+	('static',os.path.join(mainPath, "static")),
     ('tiny_mce',os.path.join(mainPath, "tiny_mce")),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
@@ -96,7 +96,17 @@ SECRET_KEY = 'h$_h5gr5o8&w_$yt^1um3q-g=f%4!8y4%%j67ri^-i)@rgs^00'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -124,6 +134,12 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'dajaxice.finders.DajaxiceFinder',
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,6 +154,7 @@ INSTALLED_APPS = (
 	'article',
 	#'django_markdown',
 	'tinymce',
+	'dajaxice',
 
 )
 

@@ -14,26 +14,26 @@ body
       
     }
     
-/*#toparea
+#toparea
   {
     margin-left: 250px;
     position: fixed;
 
    
-  }*/    
+  }    
 #sidebar
     {
-    float:left;
-    width:200px;
-    border:5px solid #345;
-    background-color: #FFFFFB;
-    font-family: 'Aclonica', serif;
+      float:left;
+      width:200px;
+      border:5px solid #345;
+      background-color: #FFFFFB;
+      font-family: 'Aclonica', serif;
 		color: #222;
 		text-shadow: 0px 1px 1px #4d4d4d;
 		border-style:outset;
 		box-shadow: 10px 10px 5px #888888;
 		border-radius:25px;
-    margin-top: 100px; /*use to get space for logo*/
+    margin-top: 100px;
     }
     
 #content
@@ -46,5 +46,5 @@ body
       border-style:outset;
       box-shadow: 10px 10px 5px #888888;
       border-radius:25px;
-      margin-top: 100px; /*use to get space for logo*/
+       margin-top: 100px;
     }

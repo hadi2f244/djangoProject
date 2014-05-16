@@ -9,20 +9,8 @@ from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
 from forms import ArticleForm,CommentForm
 from django.core.urlresolvers import reverse
-'''
-def hello(request):
-	name='world'
-	t= get_template('hello.html')
-	html= t.render(Context({'name':name}))
-	return HttpResponse(html)
 
-class helloClass(TemplateView):
-	template_name = 'hello.html'
-	def get_context_data(self,**kwargs):
-		context = super(helloClass,self).get_context_data(**kwargs)
-		context['name']='world'
-		return context
-'''
+##################################################################################################################
 
 def articles(request):
 	language = "en-gb"
@@ -37,21 +25,34 @@ def articles(request):
 							 'language' : language, 
 							 'session_language' : session_language})
 
+##################################################################################################################
 def article(request,article_id=1):
-	comments = Comment.objects.filter(article = article_id)#article_id)
-	if request.POST.has_key("body"):
-		create_comment(request,article_id) 
 	args={}
 	args.update(csrf(request))
-	args['comment_form']=CommentForm()
+
 	article = Article.objects.get(id=article_id)
+	comments = Comment.objects.filter(article = article_id)#article_id)
 	
+	#################################
+	#check commment create:
+	if 'commentButton' in request.POST: #comment(create) button clicked!
+		comment_form =CommentForm(request.POST) #if is valid --> save if not we create a new CommentForm with some error for user(like empty field and ...)
+		if comment_form.is_valid():
+			writer=request.POST['writer']
+			body=request.POST['body']
+			comment = Comment.objects.create(writer=writer,body=body,article=article)
+	else:
+		comment_form=CommentForm() #create a simple CommentForm
+	##################################
+
+	#set template variable:
+	args['comment_form']=comment_form
 	args['article'] =article
 	args['commnets'] = comments
-	#actors = Actor.objects.filter(programme = programme_id)
-	#print comments
-	#comments = Comment.objects.filter(article__title = 'khar')	
+	
 	return render_to_response('article.html',args)
+
+##################################################################################################################
 
 def language(request,language='en-gb'):
 	response = HttpResponse("setting language to %s"% language)
@@ -59,7 +60,9 @@ def language(request,language='en-gb'):
 	request.session['lang'] = language
 	return response
 
-def create(request):
+##################################################################################################################
+
+def create_article(request):
 	if request.POST:
 		form = ArticleForm(request.POST)
 		if form.is_valid():
@@ -72,15 +75,25 @@ def create(request):
 	args['form']=form
 	return render_to_response('create_article.html',args)
 
+
+'''
 def create_comment(request,article_id):#this function doesn't use like normal view func but this is used near article func
-	req=request.POST
-	print article_id
-	body=req["body"]
-	writer = "Anonymous"
-	if req["writer"]:
-		writer = req["writer"]
-	article=Article.objects.get(id=article_id)
-	cd =Comment.objects.create(writer=writer,body=body,article=article)
+	comment_form =CommentForm(request.POST)
+	writer=comment_form.cleaned_data['writer']
+	body=comment_form.cleaned_data['body']
+	#writer = "Anonymous"
+	#if req["writer"]:
+	#	writer = req["writer"]
+	#r=req
+	#req=r.copy() #because querydict is immutable!
+	#req.__setitem__('article',str(article_id))
+	print req
+	if comment_form.is_valid():
+		article = Article.objects.get(id=article_id)
+		comment = Comment.objects.create(writer=writer,body=body,article=article)
+'''
+		
+	
 
 
 '''
@@ -103,7 +116,7 @@ def create_comment(request,article_id):#this function doesn't use like normal vi
 '''
 
 
-def like_article(request,article_id):
+'''def like_article(request,article_id):
 	if article_id:
 		article=Article.objects.get(id=article_id)
 		count = article.likes
@@ -112,3 +125,19 @@ def like_article(request,article_id):
 		# i must use csrf for likes,too
 		article.save()
 	return HttpResponseRedirect('/articles/get/%s'% article_id)
+'''
+
+'''
+def hello(request):
+	name='world'
+	t= get_template('hello.html')
+	html= t.render(Context({'name':name}))
+	return HttpResponse(html)
+
+class helloClass(TemplateView):
+	template_name = 'hello.html'
+	def get_context_data(self,**kwargs):
+		context = super(helloClass,self).get_context_data(**kwargs)
+		context['name']='world'
+		return context
+'''

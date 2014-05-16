@@ -1,0 +1,39 @@
+{% load static %}
+{% load dajaxice_templatetags %}
+
+<html>
+<head>
+</script>
+
+  <title>
+    {% block title %}Base template {% endblock %}
+  </title>
+  <link rel="stylesheet" type="text/css" href="{% static "assets/css/base.css" %}">
+  <script src="{% static "assets/js/base.js" %}"></script>
+  {% dajaxice_js_import %}
+	
+</head>  
+<body>
+  <div id="page">
+  <div id="toparea">
+    <!--<img src="{% static "assets/images/test.png" %}" id="logo" >-->
+    {% block toparea%}<p>just for testing </p>{% endblock %}
+   </div> 
+    <div id="sidebar"> 
+      {% block sidebar%}
+      <ul>
+        <li><a href="/articles/all">Articles</a></li>
+		<li><a href="/accounts/loggedin">Login</a></li>        
+		<li><a href="/admin">Admin</a></li>
+      </ul>
+      {% endblock %}
+    </div>
+    
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+    
+  </div>
+</body>
+</html>
+

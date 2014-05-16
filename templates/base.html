@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load dajaxice_templatetags %}
 
 <html>
 <head>
@@ -8,8 +8,13 @@
   <title>
     {% block title %}Base template {% endblock %}
   </title>
-  <link rel="stylesheet" type="text/css" href="{% static "assets/css/base.css" %}">
-  <script src="{% static "assets/js/base.js" %}"></script>
+
+  <link rel="stylesheet" type="text/css" href="{% static "static/css/base.css" %}">
+  <script src="{% static "static/js/base.js" %}"></script>
+  {% block script %}
+  {% endblock %}
+  
+  {% dajaxice_js_import %}
 	
 </head>  
 <body>

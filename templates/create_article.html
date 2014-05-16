@@ -10,8 +10,7 @@
 {% load static %}
 
 	<script type="text/javascript" src="{% static "tiny_mce/tiny_mce.js" %}"></script>
-	<script type="text/javascript" src="{% url "tinymce-js" "NAME" %}"></script>
-
+	
 <form action="/articles/create/" method="post">{% csrf_token %}
 	<ul>
 		{{form.as_p}}

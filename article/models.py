@@ -2,6 +2,8 @@ from django.db import models
 import datetime
 import tinymce.models as tinymce
 
+############################################################################################
+
 # Create your models here.
 class Article(models.Model):
 	title = models.CharField(max_length=200)
@@ -11,6 +13,8 @@ class Article(models.Model):
 	
 	def __unicode__(self):
 		return self.title
+
+############################################################################################
 
 class Comment(models.Model):
 	writer = models.CharField(max_length = 100)
