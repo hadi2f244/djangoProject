@@ -41,6 +41,7 @@ def article(request,article_id=1):
 			writer=request.POST['writer']
 			body=request.POST['body']
 			comment = Comment.objects.create(writer=writer,body=body,article=article)
+			return HttpResponseRedirect('') #just for reload the page and cleaning the fields
 	else:
 		comment_form=CommentForm() #create a simple CommentForm
 	##################################
