@@ -24,12 +24,13 @@
     {% block toparea%}{% endblock %}
    </div> 
     <div id="sidebar"> 
-      {% block sidebar%}
       <ul>
+      	<li><a href="/home">Home</a></li>
         <li><a href="/articles/all">Articles</a></li>
 		<li><a href="/accounts/loggedin">Login</a></li>        
 		<li><a href="/admin">Admin</a></li>
       </ul>
+      {% block sidebar%}
       {% endblock %}
     </div>
     

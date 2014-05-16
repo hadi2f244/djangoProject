@@ -4,17 +4,18 @@
 {% endblock %}
 {% block sidebar %}
 	<ul>
-		<li><a href="/articles/all">Articles</a></li>
-		<li><a href="/articles/create">Create Article</a></li>
+		<hr width = 75% >
+		<li><a href="/articles/create_article">Create Article</a></li>
 	</ul>
 {% endblock %}
 {%block content%}
 <h2> The language is :{{language}} </h2>
 <h2> The session_language is :{{session_language}} </h2>
 {% if articles.count > 0 %}
-<h1> Articles </h1>
+<h1> Articles : </h1>
 {% for article in articles %}
 <div>
+<hr width = 60% >
 <h2><a href="/articles/get/{{article.id}}/">{{article.title}}</a></h2>
 <p>{{ article.body|removetags:"b strong h1 h2 h3 h4"|truncatewords_html:3|safe }}</p> <!-- safe > for html render , truncatewords_html > convert to summary  -->
 </div>

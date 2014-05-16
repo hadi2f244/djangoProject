@@ -33,6 +33,8 @@ def login(request):
 	else:
 		return HttpResponseRedirect('/accounts/loggedin')
 	
+def home(request):
+	return render_to_response('welcome.html')
 
 def auth_view(request):
 	username=request.POST.get('username','')

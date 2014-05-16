@@ -9,7 +9,8 @@ dajaxice_autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'article.views.articles'),
+    url(r'^$', 'testD.views.home'),
+    url(r'^home/', 'testD.views.home'),
 	url(r'^admin/',include(admin.site.urls)),	
 	url(r'^accounts/login/$','testD.views.login'),
 	url(r'^accounts/auth/$','testD.views.auth_view'),
