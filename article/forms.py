@@ -5,12 +5,11 @@ from django import forms
 
 ############################################################################################
 
-class ArticleForm(ModelForm): # it must convert to forms.Form for better speed
+class ArticleForm(forms.Form): # it must convert to forms.Form for better speed
 	#content = forms.CharField( widget=MarkdownWidget() )	
+	title = forms.CharField(max_length=200)
 	body = forms.CharField(widget=TinyMCE(attrs={'cols': 70, 'rows': 20}))
-	class Meta:
-		model=Article
-		fields= ('title','body','pub_date')
+
 
 ############################################################################################
 

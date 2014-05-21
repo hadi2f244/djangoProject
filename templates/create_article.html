@@ -12,10 +12,10 @@
 
 	<script type="text/javascript" src="{% static "tiny_mce/tiny_mce.js" %}"></script>
 	
-<form action="/articles/create/" method="post">{% csrf_token %}
+<form method="POST">{% csrf_token %}
 	<ul>
 		{{form.as_p}}
 	</ul>
-	<input type="submit" name="submit" value="Create Article">
+	<div id="submit"><input type="submit" value="Create Article" name="createArticle"></div>
 </form>
 {% endblock %}

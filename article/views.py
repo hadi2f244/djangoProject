@@ -40,6 +40,7 @@ def article(request,article_id=1):
 		if comment_form.is_valid():
 			writer=request.POST['writer']
 			body=request.POST['body']
+			Comment.objects.create(writer=writer,body=body,article=article)
 			comment = Comment.objects.create(writer=writer,body=body,article=article)
 			return HttpResponseRedirect('') #just for reload the page and cleaning the fields
 	else:
@@ -64,15 +65,20 @@ def language(request,language='en-gb'):
 ##################################################################################################################
 
 def create_article(request):
-	if request.POST:
-		form = ArticleForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect("/articles/all")
-	else:
-		form = ArticleForm()
 	args={}
 	args.update(csrf(request))
+
+	if 'createArticle' in request.POST: #means you click on submit button named createArticle in create_article.html 
+		form = ArticleForm(request.POST)
+		if form.is_valid():
+			title=request.POST['title']
+			body=request.POST['body']
+			Article.objects.create(title=title,body=body)
+			return HttpResponseRedirect("/articles/all")
+	else:
+		form = ArticleForm()#create a simple ArticleForm
+
+
 	args['form']=form
 	return render_to_response('create_article.html',args)
 
