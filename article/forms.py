@@ -10,6 +10,11 @@ class ArticleForm(forms.Form): # it must convert to forms.Form for better speed
 	title = forms.CharField(max_length=200)
 	body = forms.CharField(widget=TinyMCE(attrs={'cols': 70, 'rows': 20}))
 
+############################################################################################
+class ArticleForm_edit(forms.Form):
+	title = forms.CharField(max_length=200)
+	body = forms.CharField(widget=TinyMCE(attrs={'cols': 70, 'rows': 20}))
+	pub_date = forms.DateTimeField()
 
 ############################################################################################
 

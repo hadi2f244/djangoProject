@@ -7,7 +7,7 @@ from django.views.generic.base import TemplateView
 from article.models import Article, Comment
 from django.core.context_processors import csrf 
 from django.http import HttpResponseRedirect
-from forms import ArticleForm,CommentForm
+from forms import ArticleForm,CommentForm,ArticleForm_edit
 from django.core.urlresolvers import reverse
 
 ##################################################################################################################
@@ -68,7 +68,7 @@ def create_article(request):
 	args={}
 	args.update(csrf(request))
 
-	if 'createArticle' in request.POST: #means you click on submit button named createArticle in create_article.html 
+	if 'submitArticle' in request.POST: #means you click on submit button named createArticle in create_article.html 
 		form = ArticleForm(request.POST)
 		if form.is_valid():
 			title=request.POST['title']
@@ -80,7 +80,36 @@ def create_article(request):
 
 
 	args['form']=form
-	return render_to_response('create_article.html',args)
+	return render_to_response('submit_article.html',args)
+
+##################################################################################################################
+
+def edit_article(request,article_id):
+	if article is None:
+		return HttpResponseRedirect("/articles/all")
+		
+	
+	if 'submitArticle' in request.POST: #make sure that user click save button
+		articleForm = ArticleForm_edit(request.POST)
+		if articleForm.is_valid():
+			lastArticle=Article.objects.get(id=article_id)
+			lastArticle.title = request.POST['title']
+			lastArticle.body = request.POST['body']
+			lastArticle.pub_date = request.POST['pub_date']
+			lastArticle.save()
+
+			return HttpResponseRedirect("/articles/get/"+article_id)	
+	else:
+		lastArticle=Article.objects.get(id=article_id)
+		articleForm=ArticleForm_edit(initial={'title':lastArticle.title,'body':lastArticle.body,'pub_date':lastArticle.pub_date})
+
+
+	args={}
+	args.update(csrf(request))
+	args['form']=articleForm
+	return render_to_response('submit_article.html',args)
+
+
 
 
 '''
