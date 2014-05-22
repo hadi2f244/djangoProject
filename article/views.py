@@ -85,21 +85,21 @@ def create_article(request):
 ##################################################################################################################
 
 def edit_article(request,article_id):
-	if article is None:
+	if article is None: # Is there any article to edit!
 		return HttpResponseRedirect("/articles/all")
 		
 	
 	if 'submitArticle' in request.POST: #make sure that user click save button
-		articleForm = ArticleForm_edit(request.POST)
+		articleForm = ArticleForm_edit(request.POST) 
 		if articleForm.is_valid():
-			lastArticle=Article.objects.get(id=article_id)
+			lastArticle=Article.objects.get(id=article_id) 
 			lastArticle.title = request.POST['title']
 			lastArticle.body = request.POST['body']
 			lastArticle.pub_date = request.POST['pub_date']
 			lastArticle.save()
 
 			return HttpResponseRedirect("/articles/get/"+article_id)	
-	else:
+	else:# if user enter for first time So needed to show article informations
 		lastArticle=Article.objects.get(id=article_id)
 		articleForm=ArticleForm_edit(initial={'title':lastArticle.title,'body':lastArticle.body,'pub_date':lastArticle.pub_date})
 
