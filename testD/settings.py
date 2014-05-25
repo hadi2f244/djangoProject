@@ -151,6 +151,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    # This is for searching
+    'haystack',
+
 	'article',
 	#'django_markdown',
 	'tinymce',
@@ -186,6 +189,13 @@ LOGGING = {
         },
     }
 }
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
+
 #tinymce --> a text editor!
 #tinymce configuration
 

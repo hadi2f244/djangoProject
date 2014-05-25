@@ -1,18 +1,23 @@
 from django.db import models
 import datetime
 import tinymce.models as tinymce
-
+from django.core.urlresolvers import reverse
+        
 ############################################################################################
 
 # Create your models here.
 class Article(models.Model):
-	title = models.CharField(max_length=200)
-	body = tinymce.HTMLField()
-	pub_date = models.DateTimeField('data published',default=datetime.datetime.now)
-	likes = models.IntegerField(default = 0)
-	
-	def __unicode__(self):
-		return self.title
+    title = models.CharField(max_length=200)
+    body = tinymce.HTMLField()
+    pub_date = models.DateTimeField('data published',default=datetime.datetime.now)
+    likes = models.IntegerField(default = 0)
+
+    def __unicode__(self):
+        return self.title
+				
+    def get_absolute_url(self):
+        return reverse('article.views.article', args=[str(self.id)])
+
 
 ############################################################################################
 

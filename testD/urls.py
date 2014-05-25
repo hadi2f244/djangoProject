@@ -23,6 +23,7 @@ urlpatterns = patterns('',
 	#url(r'^markdown/', include( 'django_markdown.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
+    url(r'^search/', include('haystack.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
