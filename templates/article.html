@@ -28,11 +28,15 @@
 	<hr width = 40%>
 {% endfor %}
 
+{% if comment_form %}
 <form method="POST">{% csrf_token %}
-    <div id="cform">
-            {{comment_form.as_p}}
+	<div id="cform">
+        {{comment_form.as_p}}
     </div>
     <div id="submit"><input type="submit" value="Submit" name="commentButton"></div>
 </form>
+{% else %}
+   	<a href="/accounts/login?next=/articles/get/{{article.id}}/">Please login first to leave a comment!</a>
+{% endif %}
 {% endblock %}
 
