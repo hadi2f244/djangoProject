@@ -1,4 +1,4 @@
-# Django settings for testD project.
+# Django settings for djangoBlog project.
 import os
 
 DEBUG = True
@@ -16,7 +16,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(mainPath, "testD.db"),                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(mainPath, "djangoBlog.db"),                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -101,6 +101,7 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
+   # 'django.core.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
@@ -120,17 +121,17 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'testD.urls'
+ROOT_URLCONF = 'djangoBlog.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'testD.wsgi.application'
+WSGI_APPLICATION = 'djangoBlog.wsgi.application'
 
 
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
    	os.path.join(mainPath, "templates"),
-	# Always use forward slashes, even on Windows.
+    # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
 

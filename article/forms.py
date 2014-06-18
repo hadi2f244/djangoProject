@@ -20,5 +20,5 @@ class ArticleForm_edit(forms.Form):
 
 class CommentForm(forms.Form):
 	#body = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
-	writer = forms.CharField(max_length = 100)
+	#writer = forms.CharField(max_length = 100)
 	body = forms.CharField(widget=forms.Textarea)

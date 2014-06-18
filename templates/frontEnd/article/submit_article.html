@@ -1,9 +1,12 @@
-{% extends "base.html" %}
-
+{% extends "frontEnd/base.html" %}
 {% block sidebar %}
 <ul>
 	<hr width = 75%>
-	<li><a href="/articles/all">Cancel</a></li>
+	{% if method == 'create_article' %}
+		<li><a href="/articles/all">Cancel</a></li>
+	{% elif method == 'edit_article' %}
+		<li><a href="/articles/get/{{article_id}}/">Cancel</a></li>
+	{% endif %}
 </ul>
 {% endblock %}
 

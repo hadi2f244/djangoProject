@@ -18,10 +18,10 @@
 	
 </head>  
 <body>
-  {% if request.user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+  {% if userAuthenticated %}
+    <p>Welcome, {{ user.username }}.</p>
   {% else %}
-    <p>Welcome, new user. Please log in.</p>
+    <p>Welcome, guest. Please log in !</p>
   {% endif %}
   <div id="page">
   <div id="toparea">
@@ -32,7 +32,12 @@
       <ul>
       	<li><a href="/home">Home</a></li>
         <li><a href="/articles/all">Articles</a></li>
-		<li><a href="/accounts/login">Login</a></li>        
+    {% if userAuthenticated %}
+		  <li><a href="/accounts/logout">Logout</a></li> 
+    {% else %} 
+      <li><a href="/accounts/login">Login</a></li> 
+    {% endif %}
+
 		<li><a href="/admin">Admin</a></li>
 		<li><a href="/search">Search</a></li>
       </ul>
