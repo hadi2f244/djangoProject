@@ -9,6 +9,7 @@ dajaxice_autodiscover()
 
 urlpatterns = patterns('',
     url(r'^articles/',include('article.urls')),
+    url(r'^categories/',include('category.urls')),
     url(r'^$', 'djangoBlog.views.home'),
     url(r'^home/', 'djangoBlog.views.home'),
     url(r'^admin/',include(admin.site.urls)),   
@@ -20,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^tinymce/', include('tinymce.urls')),
     url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     url(r'^search/', include('haystack.urls')),
+    url(r'^administrator/',include('backEnd.urls')),
     )
 
 urlpatterns += staticfiles_urlpatterns()

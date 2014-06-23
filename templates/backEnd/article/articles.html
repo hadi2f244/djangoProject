@@ -1,0 +1,30 @@
+{% extends "backEnd/base.html" %}
+{% block title %} Articles {% endblock %}
+{% block toparea %}
+{% endblock %}
+
+{% block sidebar %}
+	<ul>
+		<li><a href="/administrator/articles/articleCreate">Create new Article</a></li>
+	</ul>
+{% endblock %}
+
+{%block content%}
+    {% if articles.count > 0 %}
+        <h1> Articles : </h1>
+
+	<div id="cform">
+        {{comment_form.as_p}}
+    </div>
+        <form method="POST">{% csrf_token %}
+            {% for article in articles %}
+                <div>
+                    <h2><a href="/administrator/articles/get/{{article.id}}/">{{article.title}}</a></h2><input type="checkbox" name="articleIdCheckes" value="{{ article.id }}"/>
+                </div>
+            {% endfor %}
+           <div id="submit"><input type="submit" value="Delete checked" name="deleteButton"></div>
+        </form>
+    {% else %}
+        <h1> No articles </h1>
+    {% endif%}
+{% endblock %}

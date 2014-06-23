@@ -1,0 +1,23 @@
+{% extends "frontEnd/base.html" %}
+{% block title %} Categories {% endblock %}
+
+{% block toparea %}
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{%block content%}
+    {% if categories.count > 0 %}
+        <h1> Categories : </h1>
+        {% for category in categories %}
+            <div>
+                <hr width = 60% >
+                <h2><a href="/categories/get/{{category.id}}/">{{category.title}}</a></h2>
+                {% comment %}must count article that is in this category{% endcomment %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1> No categories </h1>
+    {% endif%}
+{% endblock %}

@@ -181,7 +181,7 @@ def login(request,context):
 		else : #if invalid username and pass entered we recreate a csrf num 
 			error ="invalid"
 			context['error']=error	
-			return render_to_response('login.html',context)
+			return render_to_response('frontEnd/djangoBlog/login.html',context)
 
 ##################################################################################
 '''

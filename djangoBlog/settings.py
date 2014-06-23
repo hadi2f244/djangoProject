@@ -156,10 +156,13 @@ INSTALLED_APPS = (
     # This is for searching
     'haystack',
 
-	'article',
-	#'django_markdown',
-	'tinymce',
-	'dajaxice',
+    'article',
+    'category',
+    'backEnd',
+    #'django_markdown',
+    'tinymce',
+    'dajaxice',
+    'south',
 
 )
 

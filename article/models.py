@@ -1,8 +1,8 @@
 from django.db import models
 import datetime
 import tinymce.models as tinymce
-from django.core.urlresolvers import reverse
-        
+#from django.core.urlresolvers import reverse
+from category.models import Category
 ############################################################################################
 
 # Create your models here.
@@ -11,12 +11,15 @@ class Article(models.Model):
     body = tinymce.HTMLField()
     pub_date = models.DateTimeField('data published',default=datetime.datetime.now)
     likes = models.IntegerField(default = 0)
+    category = models.ManyToManyField(Category)
 
     def __unicode__(self):
         return self.title
-				
-    def get_absolute_url(self):
-        return reverse('article.views.article', args=[str(self.id)])
+
+    def get_category(self):
+        return self.category
+    #def get_absolute_url(self):
+    #    return reverse('article.views.article', args=[str(self.id)])
 
 
 ############################################################################################

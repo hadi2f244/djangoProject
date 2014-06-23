@@ -6,8 +6,8 @@ from django.shortcuts import render_to_response
 from article.models import Article, Comment
 from django.core.context_processors import csrf 
 from django.http import HttpResponseRedirect
-from forms import ArticleForm,CommentForm,ArticleForm_edit
-from djangoBlog.views import frontEnd # frontEnd is decorator!
+from forms import ArticleForm,CommentForm#,ArticleForm_edit
+from djangoBlog.views import frontEnd # frontEnd is frontEnd decorator!
 
 ##################################################################################
 '''
@@ -106,10 +106,11 @@ class article(frontEnd1):
 '''		
 @frontEnd
 def article(request,context,article_id=1):
+    #if article with this article_id doesn't exist ####
 	context.update(csrf(request))
 
-	article = Article.objects.get(id=article_id)
-	comments = Comment.objects.filter(article = article_id)#article_id)
+	context['article'] = Article.objects.get(id=article_id)
+	context['commnets'] = Comment.objects.filter(article = article_id)#article_id)
 	
 	if context['userAuthenticated']:#see frontEnd decorator
 		
@@ -131,9 +132,6 @@ def article(request,context,article_id=1):
 
 	#set template variable:
 	context['comment_form']=comment_form
-	context['article'] =article
-	context['commnets'] = comments
-	
 	return render_to_response('frontEnd/article/article.html',context)
 
 ##################################################################################################################
@@ -173,23 +171,6 @@ class create_article(frontEnd1):
 		return self.render_to_response(context)
 
 '''
-@frontEnd
-def create_article(request,context):
-	context.update(csrf(request))
-
-	if 'submitArticle' in request.POST: #means you click on submit button named createArticle in create_article.html 
-		form = ArticleForm(request.POST)
-		if form.is_valid():
-			title=request.POST['title']
-			body=request.POST['body']
-			Article.objects.create(title=title,body=body)
-			return HttpResponseRedirect("/articles/all")
-	else:
-		form = ArticleForm()#create a simple ArticleForm
-
-	context['method']='create_article'
-	context['form']=form
-	return render_to_response('frontEnd/article/submit_article.html',context)
 
 ##################################################################################################################
 '''
@@ -237,35 +218,6 @@ class edit_article(frontEnd1):
 		return self.render_to_response(context)
 
 '''
-@frontEnd
-def edit_article(request,context,article_id):
-	context.update(csrf(request))
-	
-	if article is None: # Is there any article to edit!
-		return HttpResponseRedirect("/articles/all")
-		
-	
-	if 'submitArticle' in request.POST: #make sure that user click save button
-		articleForm = ArticleForm_edit(request.POST) 
-		if articleForm.is_valid():
-			lastArticle=Article.objects.get(id=article_id) 
-			lastArticle.title = request.POST['title']
-			lastArticle.body = request.POST['body']
-			lastArticle.pub_date = request.POST['pub_date']
-			lastArticle.save()
-
-			return HttpResponseRedirect("/articles/get/"+article_id)	
-	else:# if user enter for first time So needed to show article informations
-		lastArticle=Article.objects.get(id=article_id)
-		articleForm=ArticleForm_edit(initial={'title':lastArticle.title,'body':lastArticle.body,'pub_date':lastArticle.pub_date})
-
-
-	context['method']='edit_article'
-	context['article_id']=article_id
-	context['form']=articleForm
-	return render_to_response('frontEnd/article/submit_article.html',context)
-
-
 
 
 '''
