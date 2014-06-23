@@ -26,3 +26,4 @@ urlpatterns = patterns('',
 
 urlpatterns += staticfiles_urlpatterns()
 
+###### must check urls without capatalized ! with or without last slash and ...

@@ -111,8 +111,7 @@ def article(request,context,article_id=1):
 
 	context['article'] = Article.objects.get(id=article_id)
 	context['commnets'] = Comment.objects.filter(article = article_id)#article_id)
-	
-	if context['userAuthenticated']:#see frontEnd decorator
+	if True :#context['userAuthenticated']:#see frontEnd decorator
 		
 		#################################
 		#check commment create:
