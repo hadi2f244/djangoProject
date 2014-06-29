@@ -14,13 +14,16 @@
 {%block content%}
     {% if categories.count > 0 %}
         <h1> Categories : </h1>
-        {% for category in categories %}
-            <div>
-                <hr width = 60% >
-                <h2><a href="/categories/get/{{category.id}}/">{{category.title}}</a></h2>
-                {% comment %}must count article that is in this category{% endcomment %}
-            </div>
-        {% endfor %}
+        <form method="POST">{% csrf_token %}
+            {% for category in categories %}
+                <div>
+                    <hr width = 60% >
+                    <h2><a href="/administrator/categories/get/{{category.id}}/">{{category.title}}</a></h2><input type="checkbox" name="categoryIdCheckes" value="{{ category.id }}"/>
+                    {% comment %}must count article that is in this category{% endcomment %}
+                </div>
+            {% endfor %}
+            <div id="submit"><input type="submit" value="Delete checked" name="deleteButton"></div>
+        </form>
     {% else %}
         <h1> No categories </h1>
     {% endif%}

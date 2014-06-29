@@ -27,8 +27,8 @@ def frontEnd(view):
 	@wraps(view)
 	def wrapper(request,*args,**kwargs):
 	 	context={}#context is data that will be replace with template variable
-	 	#context['userAuthenticated']=request.user.is_authenticated()
-		#context['user']=request.user
+	 	context['userAuthenticated']=request.user.is_authenticated()
+		context['user']=request.user
 		return view(request,context,*args,**kwargs)
 	return wrapper
 

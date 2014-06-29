@@ -25,15 +25,16 @@ class Article(models.Model):
 ############################################################################################
 
 class Comment(models.Model):
-	writer = models.CharField(max_length = 100)
-	body = models.TextField()
-	date = models.DateTimeField('commented date',default=datetime.datetime.now)
-	article = models.ForeignKey(Article)
+    writer = models.CharField(max_length = 100)
+    body = models.TextField()
+    date = models.DateTimeField('commented date',default=datetime.datetime.now)
+    article = models.ForeignKey(Article)
+    seen = models.BooleanField(default=False)
 
-	def __unicode__(self):              # __unicode__ on Python 2
-		return self.writer
+    def __unicode__(self):              # __unicode__ on Python 2
+        return self.writer
 
-	class Meta:
-		ordering = ('date',)
+    class Meta:
+        ordering = ('date',)
 
 

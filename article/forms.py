@@ -12,6 +12,11 @@ class ArticleForm(forms.ModelForm):
         model= Article
         fields=['title','body','pub_date','category']
    # def save(self,lastArticle,list):
+###########################################################################################
+class CommentFormEdit(forms.ModelForm):
+    class Meta:
+        model=Comment
+
 
 '''
 class ArticleForm(forms.Form): # it must convert to forms.Form for better speed

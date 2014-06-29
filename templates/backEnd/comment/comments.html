@@ -1,0 +1,31 @@
+{% extends "backEnd/base.html" %}
+{% block title %} Comments {% endblock %}
+{% block toparea %}
+{% endblock %}
+
+{% block sidebar %}
+	<ul>
+		<li><a href="/administrator/comments/articles/all">Comments in articles</a></li>
+        <li><a href="/administrator/comments/all">All of comments</a></li>
+	</ul>
+{% endblock %}
+
+{%block content%}
+        <h1> Comments : </h1>
+        <form method="POST">{% csrf_token %}
+            {% for c_a in com_art %}
+                <div>
+                    <h5>article: <a href="/administrator/comments/articles/get/{{c_a.1.id}}/">{{c_a.1.title}}</a></h5><input type="checkbox" name="commentIdCheckes" value="{{ c_a.0.id }}"/>
+                    <h5>writer: {{c_a.0.writer}}</h5>
+                    <p>text: <a href="/administrator/comments/get/{{c_a.0.id}}/"> {{c_a.0.body}}</a></p>
+                    {% if c_a.0.seen %}
+                        <h6>It's seen</h6>
+                    {% else %}
+                        <input type="button" value="see">
+                    {% endif %}
+                </div>
+                <hr width="60%">
+            {% endfor %}
+            <div id="submit"><input type="submit" value="Delete checked" name="deleteButton"></div>
+        </form>
+{% endblock %}
