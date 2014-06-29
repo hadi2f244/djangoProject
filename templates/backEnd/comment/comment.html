@@ -16,5 +16,10 @@
     <h5> Published date: {{comment.date}} </h5>
     <h5>Writer: {{comment.writer}}</h5>
     <h5>Article: {{articleName}}</h5>
+    {% if comment.seen %}
+        <h5>This comment was seen. </h5>
+    {% else %}
+        <h5><a href="">see</a></h5>
+    {% endif %}
 {% endblock %}
 

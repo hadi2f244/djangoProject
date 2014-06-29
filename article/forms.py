@@ -8,6 +8,7 @@ from django import forms
 
 class ArticleForm(forms.ModelForm):
     category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(),widget=forms.CheckboxSelectMultiple,required=False)
+    body = forms.CharField(widget=TinyMCE())
     class Meta:
         model= Article
         fields=['title','body','pub_date','category']
