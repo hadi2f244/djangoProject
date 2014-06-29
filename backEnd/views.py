@@ -232,7 +232,7 @@ def cArticle(request,context,article_id):
     return render_to_response('backEnd/comment/cArticle.html',context)
 
 ###################################################################################################
-
+#coment: #### create a see method for comments
 @backEnd
 def comment(request,context,comment_id):#we show the comment details
     context['comment']=Comment.objects.get(id=comment_id)
@@ -255,7 +255,7 @@ def commentEdit(request,context,comment_id):
         cmtForm=CommentFormEdit(request.POST,instance=lastCmt)
         if cmtForm.is_valid():
             cmtForm.save()
-            return HttpResponseRedirect("/administrator/categories/get/"+comment_id)
+            return HttpResponseRedirect("/administrator/comments/get/"+comment_id)
     else:
         cmtForm=CommentFormEdit(instance=lastCmt)
 
