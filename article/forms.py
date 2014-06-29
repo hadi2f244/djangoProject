@@ -3,14 +3,20 @@ from models import Article,Comment
 from tinymce.widgets import TinyMCE
 from category.models import Category
 from django import forms
+from ckeditor.widgets import CKEditorWidget
+
 
 ############################################################################################
 
 class ArticleForm(forms.ModelForm):
     category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(),widget=forms.CheckboxSelectMultiple,required=False)
+    title = forms.CharField(max_length=200)
+    body = forms.CharField(widget=CKEditorWidget())
+    pub_date = forms.DateTimeField()
+
     class Meta:
         model= Article
-        fields=['title','body','pub_date','category']
+
    # def save(self,lastArticle,list):
 ###########################################################################################
 class CommentFormEdit(forms.ModelForm):

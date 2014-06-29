@@ -55,12 +55,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(mainPath, "media")
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -159,8 +159,9 @@ INSTALLED_APPS = (
     'article',
     'category',
     'backEnd',
+    'ckeditor',
     #'django_markdown',
-    'tinymce',
+    #'tinymce',
     'dajaxice',
     'south',
 
@@ -201,10 +202,21 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, "uploads")
+
 #tinymce --> a text editor!
 #tinymce configuration
 
-TINYMCE_JS_URL = os.path.join(mainPath, "tiny_mce/tiny_mce.js")
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+        'height': 300,
+        'width': 500,
+    },
+}
+
+
+'''TINYMCE_JS_URL = os.path.join(mainPath, "tiny_mce/tiny_mce.js")
 TINYMCE_JS_ROOT = os.path.join(mainPath, "tiny_mce")
 
 TINYMCE_DEFAULT_CONFIG = {
@@ -216,3 +228,4 @@ TINYMCE_DEFAULT_CONFIG = {
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = True
 
+'''
