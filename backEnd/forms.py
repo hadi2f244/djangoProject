@@ -3,16 +3,17 @@ from django import forms
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-class profileForm(UserChangeForm):
-    username = forms.RegexField(
+class profileForm(PasswordChangeForm):
+    pass
+'''    username = forms.RegexField(
         label=_("Username"), max_length=30, regex=r"^[\w.@+-]+$",
         help_text=_("Required. 30 characters or fewer. Letters, digits and "
                       "@/./+/-/_ only."),
         error_messages={
             'invalid': _("This value may contain only letters, numbers and "
                          "@/./+/-/_ characters.")})
-   # email=EmailField()
-    '''def save(self, commit=True):
+   # email=EmailField()'''
+'''def save(self, commit=True):
         self.user.username=self.cleaned_data['username']
         #self.user.email=self.cleaned_data['email']
         self.user.set_password(self.cleaned_data['new_password1'])
