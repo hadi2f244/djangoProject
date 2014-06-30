@@ -12,8 +12,8 @@ In this project python version is 2.7 and also django version is 1.5.5 we choose
 Content
 
 * Blog
-..1. Installation
-..2. Optional
+- Installation
+- Optional
 
 
 
