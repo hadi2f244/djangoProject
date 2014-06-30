@@ -9,9 +9,25 @@ We are working on three  part :
 
 In this project python version is 2.7 and also django version is 1.5.5 we choose this version cause the changes between 1.6 and 1.5 please take look at change logs in [django webpage]( https://www.djangoproject.com/ ) . Upto now Blog part in approximately at the end of developing and it will be finished soon .
 
+Content
 
-.. contents:: Contents
-    :depth: 5
+* Blog
+..* Required
+..* Optional
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Installation
 ------------
