@@ -24,12 +24,12 @@ Blog
 
 * Required
 
-Download djangoProject to your computer<br /> 
-```git clone https://github.com/hadi2f244/djangoProject.git```<br />
-go to directory<br />
-```cd djangoProject```<br />
-Install or add django-ckeditor, django-haystack , django-dajaxice, django-dajax to your python path.<br />
-``` pip install django=1.5.5 django-ckeditor django-haystack django-dajaxice django-dajax ```<br />
+1. Download djangoProject to your computer
+  -```git clone https://github.com/hadi2f244/djangoProject.git```
+2. go to directory
+  -```cd djangoProject```
+3. Install or add django-ckeditor, django-haystack , django-dajaxice, django-dajax to your python path.
+  -``` pip install django=1.5.5 django-ckeditor django-haystack django-dajaxice django-dajax ```
 
 
 
