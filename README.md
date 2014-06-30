@@ -20,7 +20,12 @@ Content
 Blog
 ================
 
-#Installation
+###Installation
+
+* Required
+
+Clone djangoProject in appropriate directory in you computer 
+#. git clone https://github.com/hadi2f244/djangoProject.git
 
 
 
