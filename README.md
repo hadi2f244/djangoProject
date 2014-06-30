@@ -43,11 +43,3 @@ Install or add django-ckeditor, django-haystack , django-dajaxice, django-dajax 
 
 
 
-Installation
-------------
-
-Required
-~~~~~~~~
-#. Install or add django-ckeditor, django-haystack , django-dajaxice, django-dajax to your python path.
-
-#. Run the ``collectstatic`` management command: ``$ /manage.py collectstatic``. This'll copy static package require media resources into the directory given by the ``STATIC_ROOT`` setting. See `Django's documentation on managing static files <https://docs.djangoproject.com/en/dev/howto/static-files>`_ for more info.
