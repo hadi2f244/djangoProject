@@ -46,6 +46,7 @@ def articles(request,context):
     if 'lang' in request.session:
         session_language = request.session['lang']
     context['articles'] = Article.objects.all()
+    #context['articles'] = Article.objects.get(hide=True)
     context['language'] = language
     context['session_language'] = session_language
     return render_to_response('frontEnd/article/articles.html',context)
@@ -114,7 +115,7 @@ def article(request,context,article_id):
         #################################
         #check commment create:
         if 'commentButton' in request.POST: #comment(create) button clicked!
-            comment_form =CommentForm(request.POST) #if is valid --> save if not we create a new CommentForm with some error for user(like empty field and ...)
+            comment_form = CommentForm(request.POST) #if is valid --> save if not we create a new CommentForm with some error for user(like empty field and ...)
             if comment_form.is_valid():
                 writer=context['user'] #see frontEnd decorator
                 body=request.POST['body']

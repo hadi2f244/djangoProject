@@ -11,9 +11,12 @@
 <h1> Articles : </h1>
 {% for article in articles %}
 <div>
-<hr width = 60% >
-<h2><a href="/articles/get/{{article.id}}/">{{article.title}}</a></h2>
-<p>{{ article.body|removetags:"b strong h1 h2 h3 h4"|truncatewords_html:3|safe }}</p> <!-- safe > for html render , truncatewords_html > convert to summary  -->
+   {% if not article.hide %}
+    <hr width = 60% >
+    <h2><a href="/articles/get/{{article.id}}/">{{article.title}}</a></h2>
+    <p>{{ article.body|removetags:"b strong h1 h2 h3 h4"|truncatewords_html:3|safe }}</p> <!-- safe > for html render , truncatewords_html > convert to summary  -->
+   {% endif %}
+
 </div>
 {% endfor %}
 {% else %}

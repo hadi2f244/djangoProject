@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from models import Article,Comment
 from tinymce.widgets import TinyMCE
 from category.models import Category
+from datetime import datetime
 from django import forms
 from ckeditor.widgets import CKEditorWidget
 
@@ -12,11 +13,13 @@ class ArticleForm(forms.ModelForm):
     category = forms.ModelMultipleChoiceField(queryset=Category.objects.all(),widget=forms.CheckboxSelectMultiple,required=False)
     title = forms.CharField(max_length=200)
     body = forms.CharField(widget=CKEditorWidget())
-    pub_date = forms.DateTimeField()
+    pub_date = forms.DateTimeField(initial = datetime.now())
+    hide = forms.BooleanField(initial= False, required=False)
 
 
     class Meta:
         model= Article
+        fields = ['category','title','body', 'hide' ]
 
 
    # def save(self,lastArticle,list):

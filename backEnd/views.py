@@ -6,6 +6,7 @@ from article.forms import ArticleForm,CommentForm,CommentFormEdit #,ArticleForm_
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
+
 from functools import wraps
 #from django.contrib.auth.forms import PasswordChangeForm
 from backEnd.forms import  profileForm
@@ -66,6 +67,15 @@ def articles(request,context):
             return HttpResponseRedirect("")
         for articleID in checked:
             Article.objects.get(id=articleID).delete() #we must check the delete process correction ####
+    elif 'HideButton' in request.POST: #Delete button clicked!
+        checked=request.POST.getlist("articleIdCheckes")
+        if not len(checked):
+            return HttpResponseRedirect("")
+        for articleID in checked:
+            ob = Article.objects.get(id=articleID)
+            ob.hide = True
+            ob.save()
+
     context['articles'] = Article.objects.all()
     return render_to_response("backEnd/article/articles.html",context)
 

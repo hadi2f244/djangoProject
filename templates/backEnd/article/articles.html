@@ -21,8 +21,10 @@
                 <div>
                     <h2><a href="/administrator/articles/get/{{article.id}}/">{{article.title}}</a></h2><input type="checkbox" name="articleIdCheckes" value="{{ article.id }}"/>
                 </div>
+
             {% endfor %}
            <div id="submit"><input type="submit" value="Delete checked" name="deleteButton"></div>
+           <div id="submit"><input type="submit" value="Hide checked" name="HideButton"></div>
         </form>
     {% else %}
         <h3> No articles </h3>

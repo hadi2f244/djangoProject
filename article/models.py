@@ -9,11 +9,12 @@ from ckeditor.fields import RichTextField
 # Create your models here.
 class Article(models.Model):
     title = models.CharField(max_length=200)
-    #body = tinymce.HTMLField()
     body = RichTextField()
     pub_date = models.DateTimeField('data published',default=datetime.datetime.now)
     likes = models.IntegerField(default = 0)
+    hide = models.BooleanField()
     category = models.ManyToManyField(Category)
+
 
     def __unicode__(self):
         return self.title
