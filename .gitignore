@@ -5,5 +5,3 @@ local_settings.py
 .trash/*
 dajaxice/*
 ckeditor/*
-media/*
-
