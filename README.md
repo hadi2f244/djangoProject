@@ -20,7 +20,7 @@ Content
 Blog
 ================
 
-##Intallation
+#Installation
 
 
 
