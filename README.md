@@ -23,10 +23,16 @@ Blog
 Installation
 ------------
 
-Required
-~~~~~~~~
-Clone djangoProject in appropriate directory in you computer :
-#. git clone https://github.com/hadi2f244/djangoProject.git
+* Required
+
+Download djangoProject to your computer 
+
+```git clone https://github.com/hadi2f244/djangoProject.git```
+go to directory
+```cd djangoProject```
+Install or add django-ckeditor, django-haystack , django-dajaxice, django-dajax to your python path.
+``` pip install django=1.5.5 django-ckeditor django-haystack django-dajaxice django-dajax ```
+
 
 
 
