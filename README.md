@@ -1,7 +1,9 @@
 djangoProject
 =============
 
-A django project !
+We are working on three  part :
+*Blog
 
+*Ecommerce
 
-we are working on a blog part
+*Courseware
