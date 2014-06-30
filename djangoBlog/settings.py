@@ -202,7 +202,8 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, "uploads")
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, "uploads")  #don't touch it is for uploading
+CKEDITOR_RESTRICT_BY_USER = True
 
 #tinymce --> a text editor!
 #tinymce configuration
@@ -213,6 +214,12 @@ CKEDITOR_CONFIGS = {
         'height': 300,
         'width': 500,
     },
+    'simple': {
+        'toolbar': 'Basic',
+        'height': 300,
+        'width': 500,
+},
+
 }
 
 

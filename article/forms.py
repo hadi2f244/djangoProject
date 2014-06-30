@@ -14,12 +14,15 @@ class ArticleForm(forms.ModelForm):
     body = forms.CharField(widget=CKEditorWidget())
     pub_date = forms.DateTimeField()
 
+
     class Meta:
         model= Article
+
 
    # def save(self,lastArticle,list):
 ###########################################################################################
 class CommentFormEdit(forms.ModelForm):
+
     class Meta:
         model=Comment
 

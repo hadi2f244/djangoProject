@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 import tinymce.models as tinymce
-#from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse
 from category.models import Category
 from ckeditor.fields import RichTextField
 ############################################################################################
@@ -20,8 +20,9 @@ class Article(models.Model):
 
     def get_category(self):
         return self.category
-    #def get_absolute_url(self):
-    #    return reverse('article.views.article', args=[str(self.id)])
+
+    def get_absolute_url(self):
+        return reverse('article.views.article', args=[str(self.id)])
 
 
 ############################################################################################
