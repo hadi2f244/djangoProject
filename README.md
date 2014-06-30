@@ -13,6 +13,7 @@ Content
 
 * Blog
  - Installation
+   - Required
  - Optional
 
 
