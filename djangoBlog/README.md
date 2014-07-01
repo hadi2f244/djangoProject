@@ -1,1 +1,2 @@
+#DjangoBlog App
 Main application of project is here setting is in __setting.py__ and route is in __url.py__ 
