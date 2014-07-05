@@ -18,6 +18,7 @@ def backEnd(view):
         context['userAuthenticated']=request.user.is_authenticated() and request.user.is_superuser
         if not context['userAuthenticated']:
             return HttpResponseRedirect("/administrator")
+        context['log']="domainName: "+request.blog.domain
         context['user']=request.user
         return view(request,context,*args,**kwargs)
     return wrapper

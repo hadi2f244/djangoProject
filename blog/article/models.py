@@ -3,6 +3,7 @@ import datetime
 import tinymce.models as tinymce
 from django.core.urlresolvers import reverse
 from blog.category.models import Category
+from blog.models import Blog
 from ckeditor.fields import RichTextField
 ############################################################################################
 
@@ -14,7 +15,7 @@ class Article(models.Model):
     likes = models.IntegerField(default = 0)
     hide = models.BooleanField()
     category = models.ManyToManyField(Category)
-
+    blog=models.ForeignKey(Blog)
 
     def __unicode__(self):
         return self.title
@@ -34,6 +35,7 @@ class Comment(models.Model):
     date = models.DateTimeField('commented date',default=datetime.datetime.now)
     article = models.ForeignKey(Article)
     seen = models.BooleanField(default=False)
+    blog=models.ForeignKey(Blog)
 
     def __unicode__(self):              # __unicode__ on Python 2
         return self.writer

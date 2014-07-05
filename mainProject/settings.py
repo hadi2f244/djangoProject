@@ -113,6 +113,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'mainProject.middleware.SubdomainSet',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -123,7 +124,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'mainProject.urls'
+ROOT_URLCONF ={
+    'mainProject':'mainProject.urls',
+    'blog':'blog.urls',
+}
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'mainProject.wsgi.application'
@@ -133,6 +137,7 @@ WSGI_APPLICATION = 'mainProject.wsgi.application'
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     os.path.join(mainPath,'blog', "templates"),
+    os.path.join(mainPath, "templates"),
 
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

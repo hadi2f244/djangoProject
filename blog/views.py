@@ -7,7 +7,7 @@ from django.core.context_processors import csrf
 from forms import MyRegistrationForm
 from django.views.generic.base import TemplateView
 from functools import wraps
-
+from blog.models import Blog
 #account registeration
 
 #http://ccbv.co.uk/projects/Django/1.6/django.views.generic.base/TemplateView/
@@ -28,7 +28,9 @@ def frontEnd(view):
 	def wrapper(request,*args,**kwargs):
 	 	context={}#context is data that will be replace with template variable
 	 	context['userAuthenticated']=request.user.is_authenticated()
+	 	context['log']="domainName: "+request.blog.domain
 		context['user']=request.user
+        #context['blog']=blog.objects.get()
 		return view(request,context,*args,**kwargs)
 	return wrapper
 
@@ -39,7 +41,7 @@ class home(frontEnd):
 '''
 @frontEnd
 def home(request,context):
-	return render_to_response("frontEnd/djangoBlog/welcome.html",context)
+    return render_to_response("frontEnd/djangoBlog/welcome.html",context)
 ##################################################################################
 @frontEnd
 def register_user(request,context):
@@ -56,7 +58,7 @@ def register_user(request,context):
 
 class register_user(frontEnd):
 	template_name='register.html'
-	#In get func we create new form and send it to the page 
+	#In get func we create new form and send it to the page
 	#In post func first we check the form validation if the form is not valid resend the new form to page
 	def get(self, request, *args, **kwargs):
 		context = self.get_context_data(**kwargs)
@@ -76,7 +78,7 @@ class register_user(frontEnd):
 '''
 '''
 def register_user(request):
-	if request.method =="POST":	
+	if request.method =="POST":
 		form = MyRegistrationForm(request.POST)
 		if form.is_valid():
 			form.save()
@@ -106,12 +108,12 @@ def login(request,context):
 	context.update(csrf(request))
 	if context['userAuthenticated'] : # if the user was activated we redirect the url to loggedin page (see frontEnd decorator)
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER','/'))#redirect to last page
-	elif ('username' in request.POST) and ('password' in request.POST):#user send the user and pass to login 
+	elif ('username' in request.POST) and ('password' in request.POST):#user send the user and pass to login
 			user=auth.authenticate(username=request.POST.get('username',''),password=request.POST.get('password',''))
 			print "ohhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
-			if user is not None: #if the user is ok 
+			if user is not None: #if the user is ok
 				auth.login(request,user)
-				if request.GET.__contains__('next'): #if the next variable(last page addr) we reverse to that page 
+				if request.GET.__contains__('next'): #if the next variable(last page addr) we reverse to that page
 					return HttpResponseRedirect(request.GET['next'])
 				else :
 					return HttpResponseRedirect('/home')#render_to_response('loggedin.html',{'full_name':user.username})#now we render the loggedin.html with username the response that (notice : the url now is /accounts/login)
@@ -129,11 +131,11 @@ class login(frontEnd1):
 		if request.user.is_active : # if the user was activated we redirect the url to loggedin page
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER','/'))#redirect to last page
 
-		elif ('username' in request.POST) and ('password' in request.POST):#user send the user and pass to login 
+		elif ('username' in request.POST) and ('password' in request.POST):#user send the user and pass to login
 			user=auth.authenticate(username=request.POST.get('username',''),password=request.POST.get('password',''))
-			if user is not None: #if the user is ok 
+			if user is not None: #if the user is ok
 				auth.login(request,user)
-				if request.GET.__contains__('next'): #if the next variable(last page addr) we reverse to that page 
+				if request.GET.__contains__('next'): #if the next variable(last page addr) we reverse to that page
 					return HttpResponseRedirect(request.GET['next'])
 				else :
 					return HttpResponseRedirect('/home')#render_to_response('loggedin.html',{'full_name':user.username})#now we render the loggedin.html with username the response that (notice : the url now is /accounts/login)
@@ -141,14 +143,14 @@ class login(frontEnd1):
 				error ="invalid"
 				context['error']=error
 
-		#If invalid username or pass entered OR It's first time the page is loading (while the use not loggedin) --> we regenerate/generate a csrf num 
-		context.update(csrf(request))	
+		#If invalid username or pass entered OR It's first time the page is loading (while the use not loggedin) --> we regenerate/generate a csrf num
+		context.update(csrf(request))
 		return self.render_to_response(context)
 	def get(self, request, *args, **kwargs):
 		context = self.get_context_data(**kwargs)
 		if request.user.is_active : # if the user was activated we redirect the url to loggedin page
 			return HttpResponseRedirect(request.META.get('HTTP_REFERER','/'))#redirect to last page
-		context.update(csrf(request))	
+		context.update(csrf(request))
 		return self.render_to_response(context)
 
 '''
@@ -213,13 +215,13 @@ def logout(request,context):
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.contrib import auth
-from django.core.context_processors import csrf 
+from django.core.context_processors import csrf
 #from django.contrib.auth.forms import UserCreationForm
 from forms import MyRegistrationForm
 #account registeration
 
 def register_user(request):
-	if request.method =="POST":	
+	if request.method =="POST":
 		form = MyRegistrationForm(request.POST)
 		if form.is_valid():
 			form.save()
@@ -251,7 +253,7 @@ def home(request):
 def auth_view(request):
 	username=request.POST.get('username','')
 	password=request.POST.get('password','')
-	user=auth.authenticate(username=username,password=password) 
+	user=auth.authenticate(username=username,password=password)
 
 	if user is not None:
 		auth.login(request,user)
