@@ -8,7 +8,6 @@ from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
 from forms import ArticleForm,CommentForm#,ArticleForm_edit
 from blog.views import frontEnd # frontEnd is frontEnd decorator!
-
 ##################################################################################
 '''
 class frontEnd1(TemplateView):
@@ -45,7 +44,7 @@ def articles(request,context):
         language = request.COOKIES['lang']
     if 'lang' in request.session:
         session_language = request.session['lang']
-    context['articles'] = Article.objects.all()
+    context['articles'] = Article.objects.filter(blog_id=request.blog.id)
     #context['articles'] = Article.objects.get(hide=True)
     context['language'] = language
     context['session_language'] = session_language
@@ -109,8 +108,8 @@ class article(frontEnd1):
 @frontEnd
 def article(request,context,article_id):
     context.update(csrf(request))
-    context['article'] = Article.objects.get(id=article_id)
-    context['commnets'] = Comment.objects.filter(article = article_id)#article_id)
+    context['article'] = Article.objects.get(id=article_id,blog_id=request.blog.id)
+    context['commnets'] = Comment.objects.filter(article = article_id,blog_id=request.blog.id)#article_id)
     if True :#context['userAuthenticated']:#see frontEnd decorator
         #################################
         #check commment create:
@@ -119,7 +118,7 @@ def article(request,context,article_id):
             if comment_form.is_valid():
                 writer=context['user'] #see frontEnd decorator
                 body=request.POST['body']
-                Comment.objects.create(writer=writer,body=body,article=context['article'])
+                Comment.objects.create(writer=writer,body=body,article=context['article'],blog_id=request.blog.id)
                 #comment = Comment.objects.create(writer=writer,body=body,article=article)
                 return HttpResponseRedirect('') #just for reload the page and cleaning the fields
         else:

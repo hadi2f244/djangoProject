@@ -14,7 +14,7 @@ class Article(models.Model):
     pub_date = models.DateTimeField('data published',default=datetime.datetime.now)
     likes = models.IntegerField(default = 0)
     hide = models.BooleanField()
-    category = models.ManyToManyField(Category)
+    category = models.ManyToManyField(Category,blank=True)
     blog=models.ForeignKey(Blog)
 
     def __unicode__(self):

@@ -13,23 +13,23 @@ class SubdomainSet(object):
         domain=pieces[0]
         if pieces[1]=="com:8000" and pieces[0]=="test1" :
             request.urlconf=settings.ROOT_URLCONF['mainProject']
-            return
+            return None
         else:
             try:
                 if request.blog and request.blog.domain==domain:
                     request.urlconf=settings.ROOT_URLCONF['blog']
-                    return
+                    return None
                 else:
                     blog = Blog.objects.get(domain=domain)
                     request.blog=blog
                     request.urlconf=settings.ROOT_URLCONF['blog']
-                    return
+                    return None
             except AttributeError:#if we have no request.blog
                 try:
                     blog = Blog.objects.get(domain=domain)
                     request.blog=blog
                     request.urlconf=settings.ROOT_URLCONF['blog']
-                    return
+                    return None
                 except ObjectDoesNotExist:
                     request.urlconf=settings.ROOT_URLCONF['mainProject']
                     return http.HttpResponseRedirect("http://test1.com:8000")

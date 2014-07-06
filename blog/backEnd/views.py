@@ -11,6 +11,14 @@ from functools import wraps
 #from django.contrib.auth.forms import PasswordChangeForm
 from blog.backEnd.forms import  profileForm
 
+
+'''
+1.In this views file every view func work with blog so notice that all of query that create here contains (blog_id=request.blog.id)
+2.we use blog_id instead of blog becuase of blog_id is just an Int but blog is model!And models (like blog ) that are
+ForeingKey field in other models can work with id instead of a model ,too.
+'''
+
+
 def backEnd(view):
     @wraps(view)
     def wrapper(request,*args,**kwargs):
@@ -67,17 +75,17 @@ def articles(request,context):
         if not len(checked):
             return HttpResponseRedirect("")
         for articleID in checked:
-            Article.objects.get(id=articleID).delete() #we must check the delete process correction ####
+            Article.objects.get(id=articleID,blog_id=request.blog.id).delete() #we must check the delete process correction ####
     elif 'HideButton' in request.POST: #Delete button clicked!
         checked=request.POST.getlist("articleIdCheckes")
         if not len(checked):
             return HttpResponseRedirect("")
         for articleID in checked:
-            ob = Article.objects.get(id=articleID)
+            ob = Article.objects.get(id=articleID,blog_id=request.blog.id)
             ob.hide = True
             ob.save()
 
-    context['articles'] = Article.objects.all()
+    context['articles'] = Article.objects.filter(blog_id=request.blog.id)
     return render_to_response("backEnd/article/articles.html",context)
 
 #################################################################################################
@@ -85,15 +93,15 @@ def articles(request,context):
 def article(request,context,article_id):#just show the article
     #if article with this article_id doesn't exist ####
     #context.update(csrf(request))
-    context['article'] = Article.objects.get(id=article_id)
-    context['categories'] = context['article'].category.all()
+    context['article'] = Article.objects.get(id=article_id,blog_id=request.blog.id)
+    context['categories'] = context['article'].category.filter(blog_id=request.blog.id)
 
     return render_to_response("backEnd/article/article.html",context)
 #################################################################################################
 @backEnd
 def articleDel(request,context,article_id):
     #if article with this article_id doesn't exist ####
-    Article.objects.get(id=article_id).delete() #we must check the delete process correction ####
+    Article.objects.get(id=article_id,blog_id=request.blog.id).delete() #we must check the delete process correction ####
     # after deletation a box must show that ####
     return HttpResponseRedirect("/administrator/articles/all")
 ################################################################################################
@@ -102,17 +110,17 @@ def articleDel(request,context,article_id):
 def articleEdit(request,context,article_id):
     #if article with this article_id doesn't exist ####
     context.update(csrf(request))
-    lastArticle=Article.objects.get(id=article_id)
+    lastArticle=Article.objects.get(id=article_id,blog_id=request.blog.id)#So we dont need to send blog.id to ArticleForm that did in articleCreate views
     if lastArticle is None: # Is there any article to edit!
         return HttpResponseRedirect("/administrator/articles/all")
 
     if 'submitArticle' in request.POST: #make sure that user click save button
-        articleForm = ArticleForm(request.POST,instance=lastArticle) #to edit we set instance otherwise this create new article
+        articleForm = ArticleForm(blog_id=request.blog.id,instance=lastArticle) #to edit we set instance otherwise this create new article
         if articleForm.is_valid():
             articleForm.save()
             return HttpResponseRedirect("/administrator/articles/get/"+article_id)
     else:# if user enter for first time So needed to show article informations
-        articleForm=ArticleForm(instance=lastArticle)
+        articleForm=ArticleForm(blog_id=request.blog.id,instance=lastArticle)
     context['method']='articleEdit'
     context['article_id']=article_id
     context['form']=articleForm
@@ -142,11 +150,14 @@ def articleCreate(request,context):
 def articleCreate(request,context):
     context.update(csrf(request))
     if 'submitArticle' in request.POST: #means you click on submit button named createArticle in submit_article.html
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.blog.id,request.POST)
         if form.is_valid():
-            return HttpResponseRedirect("/administrator/articles/get/"+str((form.save()).id))
+            article=form.save(commit=False)
+            article.blog_id=request.blog.id
+            article.save()
+            return HttpResponseRedirect("/administrator/articles/get/"+str(article.id))
     else:
-        form = ArticleForm()#create a simple ArticleForm
+        form = ArticleForm(request.blog.id)#create a simple ArticleForm
     context['method']='articleCreate'
     context['form']=form
     return render_to_response('backEnd/article/submit_article.html',context)
@@ -159,8 +170,8 @@ def categories(request,context):
         if not len(checked):
             return HttpResponseRedirect("")
         for categoryID in checked:
-            Category.objects.get(id=categoryID).delete() #we must check the delete process correction ####
-    context['categories'] = Category.objects.all()
+            Category.objects.get(id=categoryID,blog_id=request.blog.id).delete() #we must check the delete process correction ####
+    context['categories'] = Category.objects.filter(blog_id=request.blog.id)
     return render_to_response("backEnd/category/categories.html",context)
 
 ##################################################################################################
@@ -168,7 +179,7 @@ def categories(request,context):
 def categoryCreate(request,context):
     context.update(csrf(request))
     if 'submitCategory' in request.POST:#means you click on submit button named createCategory in submit_category.html
-        ctg=Category.objects.create(title=request.POST['categoryName'])
+        ctg=Category.objects.create(title=request.POST['categoryName'],blog_id=request.blog.id)
         return HttpResponseRedirect("/administrator/categories/get/"+str(ctg.id))
     context['method']='categoryCreate'
     return render_to_response('backEnd/category/submit_category.html',context)
@@ -176,19 +187,19 @@ def categoryCreate(request,context):
 
 @backEnd
 def category(request,context,category_id):
-    context['category']=Category.objects.get(id=category_id)
-    context['articles']=Article.objects.filter(category__id=category_id).distinct()
+    context['category']=Category.objects.get(id=category_id,blog_id=request.blog.id)
+    context['articles']=Article.objects.filter(category__id=category_id,blog_id=request.blog.id).distinct()
     return render_to_response("backEnd/category/category.html",context)
 ###################################################################################################
 @backEnd
 def categoryDel(request,context,category_id):
-    Category.objects.get(id=category_id).delete() #we must check the delete process correction ####
+    Category.objects.get(id=category_id,blog_id=request.blog.id).delete() #we must check the delete process correction ####
     return HttpResponseRedirect("/administrator/categories/all")
 ###################################################################################################
 @backEnd
 def categoryEdit(request,context,category_id):
     context.update(csrf(request))
-    lastCtg=Category.objects.get(id=category_id)
+    lastCtg=Category.objects.get(id=category_id,blog_id=request.blog.id)
     if lastCtg is None:
         return HttpResponseRedirect("/administrator/categories/all")
     if 'submitCategory' in request.POST: #make sure that user click save button
@@ -211,13 +222,13 @@ def comments(request,context): #we want to show to all of comments ordering to d
         if not len(checked):
             return HttpResponseRedirect("")
         for commentID in checked:
-            Comment.objects.get(id=commentID).delete() #we must check the delete process correction ####
+            Comment.objects.get(id=commentID,blog_id=request.blog.id).delete() #we must check the delete process correction ####
 
 
-    comments=Comment.objects.all()
+    comments=Comment.objects.filter(blog_id=request.blog.id)
     com_art=[] # commment & article together
     for comment in comments:
-        com_art.append((comment,Article.objects.get(id=comment.article_id)))
+        com_art.append((comment,Article.objects.get(id=comment.article_id,blog_id=request.blog.id)))
     context['com_art']=com_art
     return render_to_response('backEnd/comment/comments.html',context)
 #must create a field named seen in comment model(default=False) that shows that admin saw that. migrate the comments
@@ -225,18 +236,18 @@ def comments(request,context): #we want to show to all of comments ordering to d
 ###################################################################################################
 @backEnd
 def cArticles(request,context):
-    articles=Article.objects.all()
+    articles=Article.objects.filter(blog_id=request.blog.id)
     art_lComs=[]#article and length of comment set together
     for article in articles:
-        art_lComs.append((article,len(article.comment_set.all())))
+        art_lComs.append((article,len(article.comment_set.filter(blog_id=request.blog.id))))
     context['art_lComs']=art_lComs
     return render_to_response("backEnd/comment/cArticles.html",context)
 ###################################################################################################
 
 @backEnd
 def cArticle(request,context,article_id):
-    context['article'] = Article.objects.get(id=article_id)
-    context['commnets'] = Comment.objects.filter(article = article_id)#article_id)
+    context['article'] = Article.objects.get(id=article_id,blog_id=request.blog.id)
+    context['commnets'] = Comment.objects.filter(article = article_id,blog_id=request.blog.id)#article_id)
     for cmt in context['commnets']:
         cmt.seen=True
         cmt.save()
@@ -246,20 +257,20 @@ def cArticle(request,context,article_id):
 #coment: #### create a see method for comments
 @backEnd
 def comment(request,context,comment_id):#we show the comment details
-    context['comment']=Comment.objects.get(id=comment_id)
-    context['articleName']=Article.objects.get(id=context['comment'].article_id).title
+    context['comment']=Comment.objects.get(id=comment_id,blog_id=request.blog.id)
+    context['articleName']=Article.objects.get(id=context['comment'].article_id,blog_id=request.blog.id).title
     return render_to_response("backEnd/comment/comment.html",context)
 
 ###################################################################################################
 @backEnd
 def commentDel(request,context,comment_id):
-    Comment.objects.get(id=comment_id).delete()#we must check the delete process correction ####
+    Comment.objects.get(id=comment_id,blog_id=request.blog.id).delete()#we must check the delete process correction ####
     return  HttpResponseRedirect("/administrator/comments/all")
 ###################################################################################################
 @backEnd
 def commentEdit(request,context,comment_id):
     context.update(csrf(request))
-    lastCmt=Comment.objects.get(id=comment_id)
+    lastCmt=Comment.objects.get(id=comment_id,blog_id=request.blog.id)
     if lastCmt is None:
         return HttpResponseRedirect("/administrator/comments/all")
     if 'submitComment' in request.POST: #make sure that user click save button

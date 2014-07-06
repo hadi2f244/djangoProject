@@ -1,11 +1,10 @@
 from django.forms import ModelForm
 from models import Article,Comment
-from tinymce.widgets import TinyMCE
+from blog.models import Blog
 from blog.category.models import Category
 from datetime import datetime
 from django import forms
 from ckeditor.widgets import CKEditorWidget
-
 
 ############################################################################################
 
@@ -19,6 +18,20 @@ class ArticleForm(forms.ModelForm):
     class Meta:
         model= Article
         fields = ['title','body', 'hide','pub_date','category' ]
+        exclude=['blog']
+
+    def __init__(self,blog_id=None, *args, **kwargs):
+        #we overrided the initializing to set category fields choices according to the blog
+        super(ArticleForm, self).__init__(*args, **kwargs)
+
+        if blog_id:
+            self.fields['category'] = forms.ModelMultipleChoiceField(queryset=Category.objects.filter(blog_id=blog_id),widget=forms.CheckboxSelectMultiple,required=False)
+            #self.fields['blog_id']=blog,id
+
+
+        #for key, in self.initial_fields:
+         #   if hasattr(self.person, key):
+          #      self.fields[k].initial = getattr(self.person, key)
 
 
    # def save(self,lastArticle,list):

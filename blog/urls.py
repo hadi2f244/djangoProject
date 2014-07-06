@@ -5,9 +5,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
 
+####dajaxice must be in main urls.py file!
 admin.autodiscover()
 dajaxice_autodiscover()
-
 
 urlpatterns = patterns('',
     url(r'^articles/',include('blog.article.urls')),
@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^administrator/',include('blog.backEnd.urls')),
     url(r'^ckeditor/', include('ckeditor.urls')),
     )
+
 
 urlpatterns += staticfiles_urlpatterns()
 
