@@ -67,6 +67,9 @@ def dashBoard(request,context):
     return render_to_response('backEnd/djangoBlog/dashBoard.html',context)
 
 #################################################################################################
+#################################################################################################
+#Articles:
+
 @backEnd
 def articles(request,context):
     context.update(csrf(request))
@@ -105,7 +108,7 @@ def articleDel(request,context,article_id):
     # after deletation a box must show that ####
     return HttpResponseRedirect("/administrator/articles/all")
 ################################################################################################
-
+####w
 @backEnd
 def articleEdit(request,context,article_id):
     #if article with this article_id doesn't exist ####
@@ -115,7 +118,7 @@ def articleEdit(request,context,article_id):
         return HttpResponseRedirect("/administrator/articles/all")
 
     if 'submitArticle' in request.POST: #make sure that user click save button
-        articleForm = ArticleForm(blog_id=request.blog.id,instance=lastArticle) #to edit we set instance otherwise this create new article
+        articleForm = ArticleForm(request.blog.id,request.POST,instance=lastArticle) #to edit we set instance otherwise this create new article
         if articleForm.is_valid():
             articleForm.save()
             return HttpResponseRedirect("/administrator/articles/get/"+article_id)
@@ -127,41 +130,26 @@ def articleEdit(request,context,article_id):
     return render_to_response('backEnd/article/submit_article.html',context)
 
 ################################################################################################
-'''
-@backEnd
-def articleCreate(request,context):
-    context.update(csrf(request))
-    if 'submitArticle' in request.POST: #means you click on submit button named createArticle in create_article.html
-        form = ArticleForm(request.POST)
-        if form.is_valid():
-            title=request.POST['title']
-            body=request.POST['body']
-            article=Article.objects.create(title=title,body=body)
-            # use created article's id to redirect to /get/article.id
-            return HttpResponseRedirect("/administrator/articles/get/"+str(article.id))
-    else:
-        form = ArticleForm()#create a simple ArticleForm
-
-    context['method']='articleCreate'
-    context['form']=form
-    return render_to_response('backEnd/article/submit_article.html',context)
-'''
 @backEnd
 def articleCreate(request,context):
     context.update(csrf(request))
     if 'submitArticle' in request.POST: #means you click on submit button named createArticle in submit_article.html
-        form = ArticleForm(request.blog.id,request.POST)
-        if form.is_valid():
-            article=form.save(commit=False)
+        articleForm = ArticleForm(request.blog.id,request.POST)
+        if articleForm.is_valid():
+            article=articleForm.save(commit=False)
             article.blog_id=request.blog.id
             article.save()
+            #print article.body
             return HttpResponseRedirect("/administrator/articles/get/"+str(article.id))
     else:
-        form = ArticleForm(request.blog.id)#create a simple ArticleForm
+        articleForm = ArticleForm(request.blog.id)#create a simple ArticleForm
     context['method']='articleCreate'
-    context['form']=form
+    context['form']=articleForm
     return render_to_response('backEnd/article/submit_article.html',context)
 #################################################################################################
+#################################################################################################
+#Category:
+
 @backEnd
 def categories(request,context):
     context.update(csrf(request))
@@ -184,7 +172,6 @@ def categoryCreate(request,context):
     context['method']='categoryCreate'
     return render_to_response('backEnd/category/submit_category.html',context)
 ##################################################################################################
-
 @backEnd
 def category(request,context,category_id):
     context['category']=Category.objects.get(id=category_id,blog_id=request.blog.id)
@@ -212,7 +199,9 @@ def categoryEdit(request,context,category_id):
     context['category_title']=lastCtg.title
     return render_to_response('backEnd/category/submit_category.html',context)
 
-###################################################################################################
+#################################################################################################
+#################################################################################################
+#Comment:
 
 @backEnd
 def comments(request,context): #we want to show to all of comments ordering to date_created
@@ -287,6 +276,9 @@ def commentEdit(request,context,comment_id):
     context['form']=cmtForm
     return render_to_response('backEnd/comment/submit_comment.html',context)
 ###################################################################################################
+###################################################################################################
+#profile views:
+
 @backEnd
 def profile(request,context):
     context.update(csrf(request))

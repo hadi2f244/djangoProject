@@ -18,7 +18,7 @@ class ArticleForm(forms.ModelForm):
     class Meta:
         model= Article
         fields = ['title','body', 'hide','pub_date','category' ]
-        exclude=['blog']
+        #exclude=['blog']
 
     def __init__(self,blog_id=None, *args, **kwargs):
         #we overrided the initializing to set category fields choices according to the blog
