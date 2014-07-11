@@ -124,10 +124,13 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF ={
+ROOT_URLCONF='mainProject.urls'
+
+ROOT_URLCONFDICT ={
     'mainProject':'mainProject.urls',
     'blog':'blog.urls',
 }
+
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'mainProject.wsgi.application'
