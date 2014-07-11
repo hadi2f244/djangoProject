@@ -124,7 +124,7 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF='mainProject.urls'
+ROOT_URLCONF='mainProject.urls' #this is just for error solving ! but we set this in subdomainset middleware from ROOT_URLCONFDICT
 
 ROOT_URLCONFDICT ={
     'mainProject':'mainProject.urls',
