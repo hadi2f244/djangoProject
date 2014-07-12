@@ -161,6 +161,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     # This is for searching
+    #'registration',
+    'Users',
     'haystack',
     'blog',
     'blog.article',
@@ -173,8 +175,10 @@ INSTALLED_APPS = (
     'south',
 
 )
+ACCOUNT_ACTIVATION_DAYS = 7
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
