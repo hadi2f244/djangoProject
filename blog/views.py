@@ -41,6 +41,7 @@ class home(frontEnd):
 '''
 @frontEnd
 def home(request,context):
+    print "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
     return render_to_response("frontEnd/djangoBlog/welcome.html",context)
 ##################################################################################
 @frontEnd

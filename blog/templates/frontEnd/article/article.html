@@ -2,19 +2,21 @@
 {% load static %}
 {% block title %}{{article.title}}{% endblock %}
 {% block script %}
+{% comment %}
 <script src="{% static "static/js/article.js" %}"></script>
+{% endcomment %}
 {% endblock %}
 {% block sidebar %}
 {% endblock %}
 {% block content %}
 
 <h1>{{article.title}} </h1>
-<p> {{article.body|safe}} </p>
+<p> {{article.body}} </p>
 <h5> Published date: {{article.pub_date}} </h5>
 <p id="likesTag">{{article.likes}} poeple liked this article</p> 
-
+{% comment %}
 <input type="button" onclick="Dajaxice.article.likeJax(my_callback, {'data1': {{article.id}} } )" value="LIKE!!">
-
+{% endcomment %}
 <hr size =10px >
 {% for commnet in commnets%}
 	

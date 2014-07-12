@@ -1,5 +1,5 @@
 {% load static %}
-{% load dajaxice_templatetags %}
+{% comment %}{% load dajaxice_templatetags %}{% endcomment %}
 
 <html>
 <head>
@@ -9,11 +9,11 @@
   </title>
 
   <link rel="stylesheet" type="text/css" href="{% static "blogStatic/css/frontEnd/base.css" %}">
-  <script src="{% static "blogStatic/js/base.js" %}"></script>
+  <script src="{% static "blogStatic/js/frontEnd/base.js" %}"></script>
   {% block script %}
   {% endblock %}
   
-  {% dajaxice_js_import %}
+ {% comment %} {% dajaxice_js_import %}{% endcomment %}
 	
 </head>  
 <body>
