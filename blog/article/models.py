@@ -1,15 +1,15 @@
 from django.db import models
 import datetime
+import tinymce.models as tinymce
 from django.core.urlresolvers import reverse
 from blog.category.models import Category
 from blog.models import Blog
-from ckeditor.fields import RichTextField
 ############################################################################################
 
 # Create your models here.
 class Article(models.Model):
     title = models.CharField(max_length=200)
-    body = RichTextField()
+    body = models.TextField()
     pub_date = models.DateTimeField('data published',default=datetime.datetime.now)
     likes = models.IntegerField(default = 0)
     hide = models.BooleanField()

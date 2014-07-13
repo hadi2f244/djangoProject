@@ -1,11 +1,11 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from dajaxice.core import dajaxice_autodiscover, dajaxice_config
+#from dajaxice.core import dajaxice_autodiscover, dajaxice_config
 
 
 ####dajaxice must be in main urls.py file!
 admin.autodiscover()
-dajaxice_autodiscover()
+#dajaxice_autodiscover()
 
 urlpatterns = patterns('',
     url(r'^articles/',include('blog.article.urls')),
@@ -19,10 +19,10 @@ urlpatterns = patterns('',
     #url(r'^accounts/logout/$','blog.views.logout'),
     #url(r'^accounts/register/$','blog.views.register_user'),
     #url(r'^markdown/', include( 'django_markdown.urls')),
-    url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
+    #url(dajaxice_config.dajaxice_url, include('dajaxice.urls')),
     url(r'^search/', include('haystack.urls')),
     url(r'^administrator/',include('blog.backEnd.urls')),
-
+    url(r'^ckeditor/', include('ckeditor.urls')),
 )
 
 
