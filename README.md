@@ -31,7 +31,7 @@ Blog
 2. go to directory .
   - ```cd djangoProject```
 3. Install or add django-ckeditor, django-haystack , django-dajaxice, django-dajax to your python path.
-  - ``` pip install django=1.5.5 django-ckeditor django-haystack django-dajaxice django-dajax ```
+  - ``` pip install django==1.5.5 django-ckeditor django-haystack django-dajaxice django-dajax ```
 4. Collecting statics files in STATIC_ROOT .
   - ``` python manage.py collectstatic ```
 
