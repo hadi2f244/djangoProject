@@ -1,0 +1,53 @@
+{% load static %}
+{% comment %}
+{% load dajaxice_templatetags %}
+{% endcomment %}
+<html>
+    <head>
+        <title>
+            {% block title %}Base template {% endblock %}
+        </title>
+
+        <link rel="stylesheet" type="text/css" href="{% static "mainStatic/css/backEnd/base.css" %}">
+        <script src="{% static "mainStatic/js/base.js" %}"></script>
+        {% block script %}
+        {% endblock %}
+  {% comment %}
+        {% dajaxice_js_import %}
+  {% endcomment %}
+    </head>
+    <body>
+        <p>Hi, {{ user.username }}.</p>
+        <p><a href="/administrator/logout">Logout</a></p>
+        <div id="page">
+            <div id="toparea">
+                <!--<img src="{% static "assets/images/test.png" %}" id="logo" >-->
+                {% block toparea%}{% endblock %}
+            </div>
+
+            <div id="mainSidebar">
+                <ul>
+
+                    <li><a href="/administrator/blogs/all">Blogs</a></li>
+                    <li><a href="/administrator/users">User</a></li>
+		            <li><a href="/administrator/search">Search</a></li>
+                    <li><a href="/">frontEnd</a></li>
+                </ul>
+                {% block mainSidebar%}
+                {% endblock %}
+            </div>
+
+            <div id="content">
+                <h1>{{ log }}</h1>
+                {% block content %}{% endblock %}
+            </div>
+
+            <div id="sidebar">
+                {% block sidebar%}
+                {% endblock %}
+            </div>
+
+        </div>
+    </body>
+</html>
+

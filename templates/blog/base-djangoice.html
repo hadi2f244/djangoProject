@@ -1,0 +1,40 @@
+{% load static %}
+{% load dajaxice_templatetags %}
+
+<html>
+<head>
+{% dajaxice_js_import %}
+<script type="text/javascript">
+  function my_js_callback(data){
+    alert(data.message);
+  }
+</script>
+
+  <title>
+    {% block title %}Base template {% endblock %}
+  </title>
+  <link rel="stylesheet" type="text/css" href="{% static "assets/css/base.css" %}">
+  <script src="{% static "assets/js/base.js" %}"></script>
+	
+</head>  
+<body>
+<button onclick="Dajaxice.article.sayhello(my_js_callback);">The time is?</button>
+  <div id="page">
+    <div id="sidebar">
+      {% block sidebar%}
+      <ul>
+        <li><a href="/articles/all">Articles</a></li>
+		<li><a href="/accounts/loggedin">Login</a></li>        
+		<li><a href="/admin">Admin</a></li>
+      </ul>
+      {% endblock %}
+    </div>
+    
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+    
+  </div>
+</body>
+</html>
+

@@ -1,0 +1,18 @@
+{% extends "main/backEnd/base.html" %}
+{% load static %}
+{% block title %}{{article.title}}{% endblock %}
+
+{% block sidebar %}
+    <ul>
+	    <hr width = 75%>
+	    <li><a href="/administrator/blogs/edit/{{blog.user_id}}">Edit</a></li>
+        <li><a href="/administrator/blogs/del/{{blog.user_id}}">Delete</a></li> {% comment %}maybe this process have security bug must be ajax {% endcomment %}
+    </ul>
+{% endblock %}
+{% block content %}
+    <h2>domain: {{blog.domain}} </h2>
+    <p>name: {{blog.name}} </p>
+    <a href={{ blogAdminUrl }}>Blog admin page</a>
+    {% comment %}<h5> User: {{blog.user}} </h5>{% endcomment %}
+{% endblock %}
+

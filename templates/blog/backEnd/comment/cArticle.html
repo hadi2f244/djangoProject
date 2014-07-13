@@ -1,0 +1,30 @@
+{% extends "blog/backEnd/base.html" %}
+{% load static %}
+{% block title %}{{article.title}}{% endblock %}
+
+
+{% block sidebar %}
+	<ul>
+		<li><a href="/administrator/comments/articles/all">Comments in articles</a></li>
+        <li><a href="/administrator/comments/all">All of comments</a></li>
+	</ul>
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{article.title}} </h1>
+    <p> {{article.body|safe}} </p>
+    <h5> Published date: {{article.pub_date}} </h5>
+    <p id="likesTag">{{article.likes}} poeple liked this article</p>
+
+
+    <hr size =10px >
+    {% for commnet in commnets%}
+	
+	    <p> writer : {{ commnet.writer }} </p>
+	    <p> text : {{ commnet.body}} </p>
+	    <p> date : {{ commnet.date }} </p>
+	    <hr width = 40%>
+    {% endfor %}
+{% endblock %}
+

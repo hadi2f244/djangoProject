@@ -1,0 +1,11 @@
+{% extends "blog/backEnd/base.html" %}
+{% block title %} {{ user.username }}'s profile {% endblock %}
+
+{% block content %}
+<h1>passChnage:</h1>
+    {{ notifications }}
+    <form method="post">{% csrf_token %}
+        {{ passForm.as_p }}
+    <input type="submit" value="submit" name="submitButton">
+    </form>
+{% endblock %}

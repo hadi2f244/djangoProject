@@ -1,0 +1,29 @@
+{% extends "blog/backEnd/base.html" %}
+{% comment %}like articles.html in frontEnd{% endcomment %}
+{% block title %} Articles {% endblock %}
+
+{% block toparea %}
+{% endblock %}
+
+{% block sidebar %}
+	<ul>
+		<li><a href="/administrator/comments/articles/all">Comments in articles</a></li>
+        <li><a href="/administrator/comments/all">All of comments</a></li>
+	</ul>
+{% endblock %}
+
+{%block content%}
+    {% if art_lComs.count > 0 %}
+        <h2> Select the article to see the article and its comments : </h2>
+        {% for a_lCs in art_lComs %}
+            <div>
+            <h2><a href="/administrator/comments/articles/get/{{a_lCs.0.id}}/">{{a_lCs.0.title}}</a></h2>
+            <p>{{ a_lCs.0.body|removetags:"b strong h1 h2 h3 h4"|truncatewords_html:3|safe }}</p> <!-- safe > for html render , truncatewords_html > convert to summary  -->
+            <h5>This article has {{a_lCs.1}} comments.</h5>
+            <hr width = 60% >
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1> No articles </h1>
+    {% endif%}
+{% endblock %}

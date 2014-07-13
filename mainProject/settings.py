@@ -8,6 +8,8 @@ TEMPLATE_DEBUG = DEBUG
 
 mainPath=os.getcwd()
 
+SITE_NAME="test1.com:8000" #we use this in subdomainMiddleware
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -76,8 +78,8 @@ STATIC_URL = '/static/'
 # Additional locations of static files
 STATICFILES_DIRS = (
     #('assets',os.path.join(os.path.dirname(__file__), 'static')),
-    ('blogStatic',os.path.join(mainPath, "blog/static/assets")),
-    ('mainStatic',os.path.join(mainPath, "static")),
+    ('blogStatic',os.path.join(mainPath, "static/blog/assets")),
+    ('mainStatic',os.path.join(mainPath, "static/main/assets")),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -139,7 +141,7 @@ WSGI_APPLICATION = 'mainProject.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    os.path.join(mainPath,'blog', "templates"),
+    #os.path.join(mainPath,'blog', "templates"),
     os.path.join(mainPath, "templates"),
 
     # Always use forward slashes, even on Windows.
@@ -167,6 +169,7 @@ INSTALLED_APPS = (
     #'registration',
     'Users',
     'haystack',
+    'backEnd',
     'blog',
     'blog.article',
     'blog.category',

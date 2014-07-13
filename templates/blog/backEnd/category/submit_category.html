@@ -1,0 +1,21 @@
+{% extends "blog/backEnd/base.html" %}
+{% comment %} This html file contains create and edit an article {% endcomment %}
+{% block sidebar %}
+<ul>
+	<hr width = 75%>
+	{% if method == 'categoryCreate' %}
+		<li><a href="/administrator/categories/all">Cancel</a></li>
+	{% elif method == 'categoryEdit' %}
+		<li><a href="/administrator/categories/get/{{category_id}}/">Cancel</a></li>
+	{% endif %}
+</ul>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<form method="POST">{% csrf_token %}
+	Title: <input type="text" name="categoryName" value="{{ category_title }}" />
+	<div id="submit"><input type="submit" value="Submit" name="submitCategory"></div>
+</form>
+{% endblock %}

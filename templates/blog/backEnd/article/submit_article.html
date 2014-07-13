@@ -1,0 +1,25 @@
+{% extends "blog/backEnd/base.html" %}
+{% comment %} This html file contains create and edit an article {% endcomment %}
+{% block sidebar %}
+<ul>
+	<hr width = 75%>
+	{% if method == 'articleCreate' %}
+		<li><a href="/administrator/articles/all">Cancel</a></li>
+	{% elif method == 'articleEdit' %}
+		<li><a href="/administrator/articles/get/{{article_id}}/">Cancel</a></li>
+	{% endif %}
+</ul>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+	<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+	
+<form method="POST">{% csrf_token %}
+	<ul>
+		{{form.as_p}}
+	</ul>
+	<div id="submit"><input type="submit" value="Submit" name="submitArticle"></div>
+</form>
+{% endblock %}

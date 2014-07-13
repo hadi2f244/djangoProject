@@ -41,8 +41,7 @@ class home(frontEnd):
 '''
 @frontEnd
 def home(request,context):
-    print "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
-    return render_to_response("frontEnd/djangoBlog/welcome.html",context)
+    return render_to_response("blog/frontEnd/djangoBlog/welcome.html",context)
 ##################################################################################
 @frontEnd
 def register_user(request,context):
@@ -51,9 +50,9 @@ def register_user(request,context):
 		form = MyRegistrationForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return render_to_response('frontEnd/djangoBlog/register_success.html',context) #no need to create a new url like register_success just render that html is enough (url is /accounts/register)
+			return render_to_response('blog/frontEnd/djangoBlog/register_success.html',context) #no need to create a new url like register_success just render that html is enough (url is /accounts/register)
 	context['form'] = MyRegistrationForm()
-	return render_to_response('frontEnd/djangoBlog/register.html',context)
+	return render_to_response('blog/frontEnd/djangoBlog/register.html',context)
 
 '''
 
@@ -184,7 +183,7 @@ def login(request,context):
 		else : #if invalid username and pass entered we recreate a csrf num 
 			error ="invalid"
 			context['error']=error	
-			return render_to_response('frontEnd/djangoBlog/login.html',context)
+			return render_to_response('blog/frontEnd/djangoBlog/login.html',context)
 
 ##################################################################################
 '''
@@ -199,7 +198,7 @@ class logout(frontEnd1):
 def logout(request,context):
 	auth.logout(request)
 	context['userAuthenticated']=False #set userAuthenticated to False because we want to render the new page from here
-	return render_to_response('frontEnd/djangoBlog/logout.html',context)
+	return render_to_response('blog/frontEnd/djangoBlog/logout.html',context)
 
 
 
