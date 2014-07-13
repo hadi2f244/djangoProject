@@ -1,6 +1,5 @@
 from django.db import models
 import datetime
-import tinymce.models as tinymce
 from django.core.urlresolvers import reverse
 from blog.category.models import Category
 from blog.models import Blog

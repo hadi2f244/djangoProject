@@ -176,7 +176,6 @@ INSTALLED_APPS = (
     'blog.backEnd',
     'ckeditor',
     #'django_markdown',
-    #'tinymce',
     'dajaxice',
     'south',
 
@@ -223,9 +222,6 @@ HAYSTACK_CONNECTIONS = {
 
 CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, "blog/uploads")  #don't touch it is for uploading
 CKEDITOR_RESTRICT_BY_USER = True
-
-#tinymce --> a text editor!
-#tinymce configuration
 
 CKEDITOR_CONFIGS = {
     'default': {
