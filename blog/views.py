@@ -3,25 +3,15 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib import auth
 from django.core.context_processors import csrf 
-#from django.contrib.auth.forms import UserCreationForm
-from forms import MyRegistrationForm
+
 from functools import wraps
-from blog.models import Blog
 #account registeration
 
 #http://ccbv.co.uk/projects/Django/1.6/django.views.generic.base/TemplateView/
 #https://docs.djangoproject.com/en/dev/topics/class-based-views/intro/
 
 ##################################################################################
-'''
-class frontEnd1(TemplateView):
-	#template_name =
-	def get_context_data(self, **kwargs):
-		context = super(frontEnd1, self).get_context_data(**kwargs)
-		context['userAuthenticated']=self.request.user.is_authenticated
-		context['user']=self.request.user
-		return context
-'''
+
 def frontEnd(view):
 	@wraps(view)
 	def wrapper(request,*args,**kwargs):

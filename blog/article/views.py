@@ -8,34 +8,7 @@ from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
 from forms import ArticleForm,CommentForm#,ArticleForm_edit
 from blog.views import frontEnd # frontEnd is frontEnd decorator!
-##################################################################################
-'''
-class frontEnd1(TemplateView):
-	#template_name =
-	def get_context_data(self, **kwargs):
-		context = super(frontEnd1, self).get_context_data(**kwargs)
-		context['userAuthenticated']=self.request.user.is_authenticated
-		context['user']=self.request.user
-		return context
-'''
-
 ##################################################################################################################
-'''
-class articles(frontEnd1):
-	template_name='articles.html'
-	def get(self, request, *args, **kwargs):
-		context = self.get_context_data(**kwargs)
-		language = "en-gb"
-		session_language = "en-gb"
-		if 'lang' in request.COOKIES :
-			language = request.COOKIES['lang']
-		if 'lang' in request.session:
-			session_language = request.session['lang']
-		context['articles'] = Article.objects.all()
-		context['language'] = language
-		context['session_language'] = session_language
-		return self.render_to_response(context)
-'''
 @frontEnd
 def articles(request,context):
     language = "en-gb"
@@ -51,59 +24,6 @@ def articles(request,context):
     return render_to_response('blog/frontEnd/article/articles.html',context)
 
 ##################################################################################################################
-'''
-class article(frontEnd1):
-	template_name="article.html"
-	def get(self,request,*args,**kwargs):
-		context = self.get_context_data(**kwargs)
-		article_id=self.kwargs['article_id']
-
-
-		context.update(csrf(request))
-		article = Article.objects.get(id=article_id)
-		comments = Comment.objects.filter(article = article_id)
-		if request.user.is_authenticated():
-			comment_form=CommentForm()
-		else:-
-
-			comment_form=None
-
-		#set template variable:
-		context['comment_form']=comment_form
-		context['article'] =article
-		context['commnets'] = comments
-		return self.render_to_response(context)
-
-	def post(self,request,*args,**kwargs):
-		context = self.get_context_data(**kwargs)
-		article_id=self.kwargs['article_id']
-		
-		context.update(csrf(request))
-		article = Article.objects.get(id=article_id)
-		comments = Comment.objects.filter(article = article_id)
-		if request.user.is_authenticated():
-		
-		#################################
-		#check commment create:
-			if 'commentButton' in request.POST: #comment(create) button clicked!
-				comment_form =CommentForm(request.POST) #if is valid --> save if not we create a new CommentForm with some error for user(like empty field and ...)
-				if comment_form.is_valid():
-					writer=request.POST['writer']
-					body=request.POST['body']
-					Comment.objects.create(writer=writer,body=body,article=article)
-					comment = Comment.objects.create(writer=writer,body=body,article=article)
-					return HttpResponseRedirect('') #just for reload the page and cleaning the fields
-			else:
-				comment_form=CommentForm() #create a simple CommentForm
-		##################################
-		else :
-			comment_form=None
-		#set template variable:
-		context['comment_form']=comment_form
-		context['article'] =article
-		context['commnets'] = comments
-		return self.render_to_response(context)
-'''		
 
 @frontEnd
 def article(request,context,article_id):
