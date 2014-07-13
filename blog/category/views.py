@@ -1,8 +1,7 @@
 from django.shortcuts import render_to_response
 from blog.category.models import Category
 from blog.article.models import Article
-from django.core.context_processors import csrf 
-from django.http import HttpResponseRedirect
+from django.core.context_processors import csrf
 from blog.views import frontEnd # frontEnd is frontEnd decorator!
 
 @frontEnd

@@ -43,4 +43,5 @@ class CommentFormEdit(forms.ModelForm):
 
 ############################################################################################
 class CommentForm(forms.Form):
+    writer = forms.CharField(max_length = 100)
     body = forms.CharField(widget=forms.Textarea)

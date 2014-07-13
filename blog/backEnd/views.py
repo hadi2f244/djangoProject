@@ -1,14 +1,11 @@
-
 from django.shortcuts import render_to_response
 from blog.article.models import Article, Comment
 from blog.category.models import Category
-from blog.article.forms import ArticleForm,CommentForm,CommentFormEdit #,ArticleForm_edit
+from blog.article.forms import ArticleForm,CommentFormEdit
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
-
 from functools import wraps
-#from django.contrib.auth.forms import PasswordChangeForm
 from blog.backEnd.forms import  profileForm
 
 
@@ -23,7 +20,7 @@ def backEnd(view):
     @wraps(view)
     def wrapper(request,*args,**kwargs):
         context= {} #context is data that will be replace with template variable
-        context['userAuthenticated']=request.user.is_authenticated() and request.user.is_superuser
+        context['userAuthenticated']=request.user.is_authenticated() and (request.user==request.blog.user or request.user.is_superuser) #and request.user.is_superuser
         if not context['userAuthenticated']:
             return HttpResponseRedirect("/administrator")
         context['log']="domainName: "+request.blog.domain
@@ -35,7 +32,7 @@ def backEnd(view):
 #account login views
 def login(request):
     context={}
-    userAuthenticated = request.user.is_authenticated() and request.user.is_superuser
+    userAuthenticated = request.user.is_authenticated() and (request.user==request.blog.user or request.user.is_superuser)
     context.update(csrf(request))
     if userAuthenticated : # if the user was activated
         return HttpResponseRedirect('/administrator/dashBoard')
@@ -47,7 +44,7 @@ def login(request):
         username=request.POST.get('username','')
         password=request.POST.get('password','')
         user=auth.authenticate(username=username,password=password)
-        if user is not None:
+        if user and (request.blog.user==user or user.is_superuser):
             auth.login(request,user)
             return HttpResponseRedirect('/administrator/dashBoard')
 
@@ -57,7 +54,7 @@ def login(request):
 
 #################################################################################################
 def logout(request):
-    userAuthenticated = request.user.is_authenticated() and request.user.is_superuser
+    userAuthenticated = request.user.is_authenticated() and (request.user==request.blog.user or request.user.is_superuser)
     if userAuthenticated:
         auth.logout(request)
     return HttpResponseRedirect("/administrator")
