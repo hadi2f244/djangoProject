@@ -1,7 +1,10 @@
-1-repair autoscaping match for CKEditor and html tag
+1-add comfortable item to  BLEACH_ALLOWED_TAGS  and ... in setting.py
 2-Don't use /logout url to logout use form and post & then please check CSRF middleware work well in all of cases
 3-what is response compressing (middlewareClass : GZipMiddleware)
 4-read chapter14 in djangoBook completely for session and coockie security imporoving
 5-use https where is needed!
 6-reading files without proper escaping is vulnerable
 7-read chapter 12 of djangoBook when you want to pulish your site
+
+
+
