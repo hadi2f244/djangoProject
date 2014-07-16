@@ -1,4 +1,4 @@
-1-add comfortable item to  BLEACH_ALLOWED_TAGS  and ... in setting.py
+1-imporove ckeditor , add comfortable item to  BLEACH_ALLOWED_TAGS  and ... in setting.py
 2-Don't use /logout url to logout use form and post & then please check CSRF middleware work well in all of cases
 3-what is response compressing (middlewareClass : GZipMiddleware)
 4-read chapter14 in djangoBook completely for session and coockie security imporoving
