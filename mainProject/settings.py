@@ -240,15 +240,17 @@ CKEDITOR_CONFIGS = {
 }
 
 # Which HTML tags are allowed
-BLEACH_ALLOWED_TAGS = ['p', 'b', 'i', 'u', 'em', 'strong', 'a']
+BLEACH_ALLOWED_TAGS = ['h1','h2','h3','h4','h5','h6','pre','p', 'b', 'i', 'u', 'em', 'strong','big', 'a','strike', 'ul', 'li', 'ol', 'br',
+                     'span', 'blockquote', 'hr', 'img','table','tbody','td','tr','div','span','small','tt']
+
 
 # Which HTML attributes are allowed
-BLEACH_ALLOWED_ATTRIBUTES = ['href', 'title', 'style']
+BLEACH_ALLOWED_ATTRIBUTES = ['href', 'title', 'style','src', 'alt','align','border','cellpadding','cellspacing',"dir"]
 
 # Which CSS properties are allowed in 'style' attributes (assuming style is
 # an allowed attribute)
 BLEACH_ALLOWED_STYLES = [
-    'font-family', 'font-weight', 'text-decoration', 'font-variant']
+    'font-family', 'font-weight', 'text-decoration', 'font-variant','color', 'cursor', 'float', 'margin','width','height','background','padding','background-color']
 
 # Strip unknown tags if True, replace with HTML escaped characters if False
 BLEACH_STRIP_TAGS = True
