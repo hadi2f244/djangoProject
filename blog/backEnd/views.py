@@ -44,7 +44,7 @@ def login(request):
         username=request.POST.get('username','')
         password=request.POST.get('password','')
         user=auth.authenticate(username=username,password=password)
-        if user and (request.blog.user==user or user.is_superuser):
+        if user and (request.blog.user==user or user.is_superuser ):
             auth.login(request,user)
             return HttpResponseRedirect('/administrator/dashBoard')
 

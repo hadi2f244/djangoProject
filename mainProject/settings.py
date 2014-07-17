@@ -182,10 +182,10 @@ INSTALLED_APPS = (
 
 
 )
-ACCOUNT_ACTIVATION_DAYS = 7
+
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
-
+#AUTH_USER_MODEL= 'Users.MyUser'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
