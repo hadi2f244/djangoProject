@@ -106,3 +106,15 @@ class MyUser(User):
         verbose_name="about me",
         max_length=255,
     )
+
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+import logging
+
+
+
+@receiver(pre_save, sender=MyUser)
+def mymodel_save_handler(sender, **kwargs):
+    #mymodel_save_handler.request.user.is_active = False
+    user = kwargs['instance']
+    user.is_active = False
