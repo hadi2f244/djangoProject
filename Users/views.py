@@ -3,10 +3,14 @@
 
 from django import forms
 from Users.forms import registerForm, RegBlog
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from blog.models import Blog
-from django.contrib.auth.models import User as MyUser
+#from django.contrib.auth.models import User as MyUser
+from Users.models import MyUser #as overuser
+import hashlib, random
+from django.core.mail import send_mail
+
 #from Users.models import MyUser
 
 def register(request):
@@ -14,9 +18,11 @@ def register(request):
         form = registerForm(request.POST)
         if form.is_valid():
             new_user = form.save()
-            #user_trasfering = new_user
-            #return HttpResponseRedirect("/accounts/register_complete/")
-            return HttpResponseRedirect("/accounts/register_blog/" + form.cleaned_data["username"])
+            username = form.cleaned_data["username"]
+            #send_mail('Subject here', 'Here is the message.', 'from@example.com',
+    #[form.cleaned_data["email"]], fail_silently=False)
+
+            return HttpResponseRedirect("/accounts/register_blog/" + username)
         #if form.is_valid and form.blog_need == True:
         #    return HttpResponseRedirect("/accounts/register_blog/")
     else:
@@ -43,6 +49,20 @@ def registerBlog(request, username):
     return render(request, "registration/registration_Blog.html", {
         'form': form,
     })
+
+def activition_complete(request, uidb36, token):
+    myuser = MyUser.objects.get(username = token)
+    #secuser = overuser.objects.all().filter(username=token)
+    if myuser.activation_key == uidb36 :
+        myuser.is_active = True
+        myuser.save()
+
+        return render(request, "registration/activation_complete.html")
+    else :
+        return HttpResponse("information is invalid please register correctlly")
+
+
+
 
 '''def register(request):
     if request.method == 'POST':

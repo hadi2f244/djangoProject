@@ -1,4 +1,7 @@
 from django.db import models
+import hashlib
+import random
+from django.template.loader import render_to_string
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
@@ -101,15 +104,44 @@ class MyUser(AbstractBaseUser):
 #correct
 #######################################################################################################################
 
+def gen():
+    salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
+    return hashlib.sha1(salt).hexdigest()
+
+
 class MyUser(User):
     aboutme = models.CharField(
         verbose_name="about me",
         max_length=255,
     )
+    activation_key = models.CharField(
+        verbose_name= 'activation key',
+        max_length=40,
+        #default = self.activation_key_generator()
+        default= gen()
+    )
 
-from django.db.models.signals import pre_save
+    '''def activation_key_generator(self):
+        salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
+        username = self.username
+        if isinstance(username, unicode):
+            username = username.encode('utf-8')
+        activation_key = hashlib.sha1(salt+username).hexdigest()
+        self.activation_key = activation_key
+        print "alireza"
+        return True
+    '''
+
+
+
+
+
+
+
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
-import logging
+from django.conf import settings
+
 
 
 
@@ -118,3 +150,23 @@ def mymodel_save_handler(sender, **kwargs):
     #mymodel_save_handler.request.user.is_active = False
     user = kwargs['instance']
     user.is_active = False
+
+
+@receiver(post_save, sender=MyUser)
+def mymodel_post_save_handler(sender, **kwargs):
+    #mymodel_save_handler.request.user.is_active = False
+    user = kwargs['instance']
+    ctx_dict = {'activation_key': user.activation_key,
+                    'expiration_days': 7,#settings.ACCOUNT_ACTIVATION_DAYS,
+                    'site': "mysite.com",
+                    'username': user.username }
+
+    subject = render_to_string('registration/activation_email_subject.txt',
+                                   ctx_dict)
+    # Email subject *must not* contain newlines
+    subject = ''.join(subject.splitlines())
+
+    message = render_to_string('registration/activation_email.txt',
+                            ctx_dict)
+
+    user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)

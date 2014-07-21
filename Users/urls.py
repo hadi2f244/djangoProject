@@ -10,6 +10,7 @@ urlpatterns = patterns('',
                        url(r'^register/$', 'Users.views.register'),
                        url(r'^register_complete/$', TemplateView.as_view(template_name='registration/registration_complete.html')),
                        url(r'^register_blog/(?P<username>\w{0,50})/$', 'Users.views.registerBlog'),
+                       url(r'^(?P<uidb36>\b[0-9a-f]{5,40}\b)-(?P<token>\w{0,50})/activating/$', 'Users.views.activition_complete'),
 )
 
 '''urlpatterns = patterns('',
