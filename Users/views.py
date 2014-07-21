@@ -6,7 +6,7 @@ from Users.forms import registerForm, RegBlog
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from blog.models import Blog
-#from django.contrib.auth.models import User as MyUser
+from django.contrib.auth.models import User
 from Users.models import MyUser #as overuser
 import hashlib, random
 from django.core.mail import send_mail
@@ -54,8 +54,9 @@ def activition_complete(request, uidb36, token):
     myuser = MyUser.objects.get(username = token)
     #secuser = overuser.objects.all().filter(username=token)
     if myuser.activation_key == uidb36 :
-        myuser.is_active = True
-        myuser.save()
+        mainuser = User.objects.get(username = token)
+        mainuser.is_active = True
+        mainuser.save()
 
         return render(request, "registration/activation_complete.html")
     else :
