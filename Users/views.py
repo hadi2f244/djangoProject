@@ -6,13 +6,14 @@ from Users.forms import registerForm, RegBlog
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from blog.models import Blog
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from Users.models import MyUser #as overuser
 import hashlib, random
 from django.core.mail import send_mail
 
 #from Users.models import MyUser
 
+'''
 def register(request):
     if request.method == 'POST':
         form = registerForm(request.POST)
@@ -28,11 +29,37 @@ def register(request):
     else:
         form = registerForm()
     return render(request, "registration/registration_form.html", {
-        'form': form,
+        'form': form
     })
+'''
+def register(request):
+    if request.method == 'POST':
+        form = registerForm(request.POST)
+        form1 = RegBlog(request.POST)
+        if form.is_valid() and form1.is_valid():
+            new_user = form.save()
+            username = form.cleaned_data["username"]
+            #send_mail('Subject here', 'Here is the message.', 'from@example.com',
+    #[form.cleaned_data["email"]], fail_silently=False)
+            myuser = MyUser.objects.get(username = username)
+            myuser.is_active = False
+            myuser.save()
+            test = form1.cleaned_data
+            myblog = Blog.objects.create(user = myuser , domain = test["domain"] , name = test["name"])
+            myblog.save()
+            return HttpResponseRedirect("/accounts/register_complete/")
 
+            #return HttpResponseRedirect("/accounts/register_blog/" + username)
+        #if form.is_valid and form.blog_need == True:
+        #    return HttpResponseRedirect("/accounts/register_blog/")
+    else:
+        form = registerForm()
+        form1 = RegBlog()
+    return render(request, "main/frontEnd/users/registration_form.html", {
+        'form': form, 'form1' : form1
+    })
 #commit=False
-def registerBlog(request, username):
+'''def registerBlog(request, username):
     if request.method == 'POST':
         form = RegBlog(request.POST)
         if form.is_valid():
@@ -41,7 +68,7 @@ def registerBlog(request, username):
             #return HttpResponseRedirect("/accounts/Blog_registered/")
             myuser = MyUser.objects.get(username = username)
             test = form.cleaned_data
-            myblog = Blog(user = myuser , domain = test["domain"] , name = test["name"])
+            myblog = Blog.objects.create(user = myuser , domain = test["domain"] , name = test["name"])
             myblog.save()
             return HttpResponseRedirect("/accounts/register_complete/")
     else :
@@ -49,16 +76,20 @@ def registerBlog(request, username):
     return render(request, "registration/registration_Blog.html", {
         'form': form,
     })
-
+'''
 def activition_complete(request, uidb36, token):
     myuser = MyUser.objects.get(username = token)
     #secuser = overuser.objects.all().filter(username=token)
     if myuser.activation_key == uidb36 :
+        '''
         mainuser = User.objects.get(username = token)
         mainuser.is_active = True
         mainuser.save()
+        '''
+        myuser.is_active = True
+        myuser.save()
 
-        return render(request, "registration/activation_complete.html")
+        return render(request, "main/frontEnd/users/activation_complete.html")
     else :
         return HttpResponse("information is invalid please register correctlly")
 

@@ -137,7 +137,7 @@ ROOT_URLCONFDICT ={
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'mainProject.wsgi.application'
 
-
+SITE_ID = 1
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -185,7 +185,7 @@ INSTALLED_APPS = (
 
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
-#AUTH_USER_MODEL= 'Users.MyUser'
+AUTH_USER_MODEL= 'Users.MyUser'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -264,5 +264,6 @@ BLEACH_DEFAULT_WIDGET = 'ckeditor.widgets.CKEditorWidget'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'Enter your Email'
-EMAIL_HOST_PASSWORD = 'Enter your Email password'
+EMAIL_HOST_USER = 'YOUR EMAIL'
+EMAIL_HOST_PASSWORD = 'YOUR PASSWORD'
+ACCOUNT_ACTIVATION_DAYS = 7

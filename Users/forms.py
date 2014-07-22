@@ -43,7 +43,9 @@ class registerForm(ModelForm):#forms.Form):
      class Meta:
          model = MyUser
          #fields = ['username', 'email' ,'password']        THIS IS FOR CUSTOMIZING
-         fields = ['username', 'email' ,'password', 'aboutme']#, 'email', 'first_name', 'last_name']
+         #fields = ['username', 'email' ,'password', 'aboutme']#, 'email', 'first_name', 'last_name']
+         fields = ['username', 'email' , 'password', 'aboutme']#, 'email', 'first_name', 'last_name']
+
      '''def save(self, *args, **kwargs):
       """
       Update the primary email address on the related User object as well.

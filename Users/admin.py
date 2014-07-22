@@ -1,15 +1,6 @@
-from django import forms
-from django.contrib import admin
-from django.contrib.auth.models import Group
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.contrib.auth.models import User
-
-from Users.models import MyUser
-
 ###############################################################################################################
 #correct
-'''
+
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.models import Group
@@ -55,7 +46,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = MyUser
-        fields = ('username', 'password', 'email', 'is_active', 'is_admin')
+        fields = ('username', 'password', 'email', 'is_active', 'is_admin', 'aboutme', 'activation_key')
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -72,12 +63,12 @@ class MyUserAdmin(UserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('username', 'email', 'is_admin')
+    list_display = ('username', 'email', 'is_admin', 'is_active', 'aboutme', 'activation_key')
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('Personal info', {'fields': ('email',)}),
-        ('Permissions', {'fields': ('is_admin',)}),
+        ('Personal info', {'fields': ('email', 'aboutme', 'activation_key')}),
+        ('Permissions', {'fields': ('is_admin', 'is_active')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -93,14 +84,14 @@ class MyUserAdmin(UserAdmin):
 
 # Now register the new UserAdmin...
 admin.site.register(MyUser, MyUserAdmin)
-# ... and, since we're not using Django's built-in permissions,
+# ... and, since we're not using Django's builtin permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)
-'''
+
 
 # Define an inline admin descriptor for Employee model
 # which acts a bit like a singleton
-class MyUserInline(admin.StackedInline):
+'''class MyUserInline(admin.StackedInline):
     model = MyUser
     can_delete = False
     verbose_name_plural = 'myuser'
@@ -114,3 +105,4 @@ class UserAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+'''

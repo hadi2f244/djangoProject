@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User as MyUser
+from Users.models import MyUser
 #from Users.models import MyUser
 #from blog.article.models import Article,Comment
 #from blog.category.models import Category

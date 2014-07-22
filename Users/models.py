@@ -7,9 +7,9 @@ from django.contrib.auth.models import (
 )
 
 from django.contrib.auth.models import User
+import datetime
 
-
-'''class MyUserManager(BaseUserManager):
+class MyUserManager(BaseUserManager):
     def create_user(self, username, email, password=None):
         """
         Creates and saves a User with the given email, date of
@@ -38,11 +38,15 @@ from django.contrib.auth.models import User
         user = self.create_user(username,
             email=email,
             password=password,
+
         )
         user.is_admin = True
         user.save(using=self._db)
         return user
 
+def gen():
+    salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
+    return hashlib.sha1(salt).hexdigest()
 
 class MyUser(AbstractBaseUser):
 
@@ -58,6 +62,18 @@ class MyUser(AbstractBaseUser):
         max_length=255,
     )
 
+    aboutme = models.CharField(
+        verbose_name="about me",
+        max_length=255,
+    )
+
+    activation_key = models.CharField(
+        verbose_name= 'activation key',
+        max_length=40,
+        #default = self.activation_key_generator()
+        default= gen()
+    )
+
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -65,7 +81,7 @@ class MyUser(AbstractBaseUser):
     objects = MyUserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = ['email']#'aboutme', 'activation_key']
 
     def get_full_name(self):
         # The user is identified by their email address
@@ -100,10 +116,11 @@ class MyUser(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
-'''
+
 #correct
 #######################################################################################################################
 
+'''
 def gen():
     salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
     return hashlib.sha1(salt).hexdigest()
@@ -121,7 +138,14 @@ class MyUser(User):
         default= gen()
     )
 
-    '''def activation_key_generator(self):
+
+    def del_expired_users(self):
+        if self.date_joined - datetime.now() > 7 :
+            self.delete(self)
+            self.objects.all()
+
+
+    def activation_key_generator(self):
         salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
         username = self.username
         if isinstance(username, unicode):
@@ -130,26 +154,29 @@ class MyUser(User):
         self.activation_key = activation_key
         print "alireza"
         return True
-    '''
 
 
 
 
-
-
+'''
 
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.conf import settings
 
 
-
-
-@receiver(pre_save, sender=MyUser)
+'''@receiver(pre_save, sender=MyUser)
 def mymodel_save_handler(sender, **kwargs):
     #mymodel_save_handler.request.user.is_active = False
     user = kwargs['instance']
-    user.is_active = False
+    if not user.is_staff :
+        user.is_active = False
+'''
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
+from django.conf import settings
+from django.core.mail import send_mail
+
 
 
 @receiver(post_save, sender=MyUser)
@@ -161,12 +188,14 @@ def mymodel_post_save_handler(sender, **kwargs):
                     'site': "mysite.com",
                     'username': user.username }
 
-    subject = render_to_string('registration/activation_email_subject.txt',
+    subject = render_to_string('main/frontEnd/users/activation_email_subject.txt',
                                    ctx_dict)
     # Email subject *must not* contain newlines
     subject = ''.join(subject.splitlines())
 
-    message = render_to_string('registration/activation_email.txt',
+    message = render_to_string('main/frontEnd/users/activation_email.txt',
                             ctx_dict)
 
-    user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
+    #ser.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
+    send_mail(subject, message, 'YOUR EMAIL',
+        [user.email], fail_silently=False)
