@@ -5,9 +5,10 @@ from django.template.loader import render_to_string
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
+from django.core.mail import send_mail
 
-from django.contrib.auth.models import User
-import datetime
 
 class MyUserManager(BaseUserManager):
     def create_user(self, username, email, password=None):
@@ -117,9 +118,6 @@ class MyUser(AbstractBaseUser):
         return self.is_admin
 
 
-#correct
-#######################################################################################################################
-
 '''
 def gen():
     salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
@@ -160,10 +158,6 @@ class MyUser(User):
 
 '''
 
-from django.db.models.signals import pre_save, post_save
-from django.dispatch import receiver
-from django.conf import settings
-
 
 '''@receiver(pre_save, sender=MyUser)
 def mymodel_save_handler(sender, **kwargs):
@@ -172,12 +166,6 @@ def mymodel_save_handler(sender, **kwargs):
     if not user.is_staff :
         user.is_active = False
 '''
-from django.db.models.signals import pre_save, post_save
-from django.dispatch import receiver
-from django.conf import settings
-from django.core.mail import send_mail
-
-
 
 @receiver(post_save, sender=MyUser)
 def mymodel_post_save_handler(sender, **kwargs):
