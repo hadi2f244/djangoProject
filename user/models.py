@@ -167,7 +167,7 @@ def mymodel_save_handler(sender, **kwargs):
         user.is_active = False
 '''
 
-@receiver(post_save, sender=MyUser)
+'''@receiver(post_save, sender=MyUser)
 def mymodel_post_save_handler(sender, **kwargs):
     #mymodel_save_handler.request.user.is_active = False
     user = kwargs['instance']
@@ -187,3 +187,4 @@ def mymodel_post_save_handler(sender, **kwargs):
     #ser.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
     send_mail(subject, message, 'YOUR EMAIL',
         [user.email], fail_silently=False)
+'''
