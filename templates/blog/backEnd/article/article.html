@@ -15,7 +15,9 @@
     <h1>{{article.title}} </h1>
     <p> {{article.body|safe}} </p>
     <h5> Published date: {{article.pub_date}} </h5>
+    {% comment %}
     <p id="likesTag">{{article.likes}} poeple liked this article</p>
+    {% endcomment %}
     <hr width = 75%>
     <div>
         {% if categories.count > 0 %}

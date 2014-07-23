@@ -41,8 +41,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'fa-IR'
-
+LANGUAGE_CODE = 'fa'
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -52,6 +51,16 @@ USE_I18N = True
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
 USE_L10N = True
+
+#LOCALE_PATHS =  ("/home/hadi2f244/codes/djangoMain2/locale",)
+_ = lambda s: s
+LANGUAGES = (
+  ('fa', _('Persian')),
+  ('en', _('English')),
+)
+
+LOCALE_PATHS=('/home/hadi2f244/codes/djangoMain2/locale',)
+
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
@@ -116,15 +125,18 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 MIDDLEWARE_CLASSES = (
     'mainProject.middleware.SubdomainSet',
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
     # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+X_FRAME_OPTIONS='DENY' #config of clickjacking middleware
+
 
 ROOT_URLCONF='mainProject.urls' #this is just for error solving ! but we set this in subdomainset middleware from ROOT_URLCONFDICT
 
@@ -137,7 +149,7 @@ ROOT_URLCONFDICT ={
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'mainProject.wsgi.application'
 
-SITE_ID = 1
+
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -167,7 +179,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     # This is for searching
     #'registration',
-    'Users',
+    'user',
     'haystack',
     'backEnd',
     'blog',
@@ -179,13 +191,15 @@ INSTALLED_APPS = (
     'dajaxice',
     'south',
     'django_bleach',
-
+    'news',
 
 )
-
+ACCOUNT_ACTIVATION_DAYS = 7
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
-AUTH_USER_MODEL= 'Users.MyUser'
+AUTH_USER_MODEL= 'user.MyUser'
+
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -264,6 +278,6 @@ BLEACH_DEFAULT_WIDGET = 'ckeditor.widgets.CKEditorWidget'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'YOUR EMAIL'
-EMAIL_HOST_PASSWORD = 'YOUR PASSWORD'
+EMAIL_HOST_USER = 'hadi2f2@gmail.com'
+EMAIL_HOST_PASSWORD = 'ihnd2f2gmail'
 ACCOUNT_ACTIVATION_DAYS = 7

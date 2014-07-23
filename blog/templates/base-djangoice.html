@@ -1,9 +1,10 @@
 {% load static %}
+{% comment %}
 {% load dajaxice_templatetags %}
-
+{% endcomment %}
 <html>
-<head>
-{% dajaxice_js_import %}
+<head>{% comment %}
+{% dajaxice_js_import %}{% endcomment %}
 <script type="text/javascript">
   function my_js_callback(data){
     alert(data.message);
@@ -17,8 +18,8 @@
   <script src="{% static "assets/js/base.js" %}"></script>
 	
 </head>  
-<body>
-<button onclick="Dajaxice.article.sayhello(my_js_callback);">The time is?</button>
+<body>{% comment %}
+<button onclick="Dajaxice.article.sayhello(my_js_callback);">The time is?</button>{% endcomment %}
   <div id="page">
     <div id="sidebar">
       {% block sidebar%}

@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from blog.article.models import Article, Comment
 from django.core.context_processors import csrf 
 from django.http import HttpResponseRedirect
@@ -18,13 +18,13 @@ def articles(request,context):
     #context['articles'] = Article.objects.get(hide=True)
     context['language'] = language
     context['session_language'] = session_language
-    return render_to_response('blog/frontEnd/article/articles.html',context)
+    return render(request,'blog/frontEnd/article/articles.html',context)
 
 ##################################################################################################################
 
 @frontEnd
 def article(request,context,article_id):
-    context.update(csrf(request))
+
     context['article'] = Article.objects.get(id=article_id,blog_id=request.blog.user_id)
     context['commnets'] = Comment.objects.filter(article = article_id,blog_id=request.blog.user_id)#article_id)
     if True :#context['userAuthenticated']:#see frontEnd decorator
@@ -44,7 +44,7 @@ def article(request,context,article_id):
         comment_form=None
     #set template variable:
     context['comment_form']=comment_form
-    return render_to_response('blog/frontEnd/article/article.html',context)
+    return render(request,'blog/frontEnd/article/article.html',context)
 
 ##################################################################################################################
 

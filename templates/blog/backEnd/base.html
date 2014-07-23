@@ -1,6 +1,8 @@
+{% load i18n %}
 {% load static %}
 
 <html>
+{% language 'fa' %}
     <head>
         <title>
             {% block title %}Base template {% endblock %}
@@ -48,5 +50,6 @@
 
         </div>
     </body>
+{% endlanguage %}
 </html>
 

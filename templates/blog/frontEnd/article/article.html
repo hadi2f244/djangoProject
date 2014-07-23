@@ -13,8 +13,8 @@
 <h1>{{article.title}} </h1>
 <p> {{article.body|safe}} </p>
 <h5> Published date: {{article.pub_date}} </h5>
-<p id="likesTag">{{article.likes}} poeple liked this article</p> 
 {% comment %}
+<p id="likesTag">{{article.likes}} poeple liked this article</p>
 <input type="button" onclick="Dajaxice.article.likeJax(my_callback, {'data1': {{article.id}} } )" value="LIKE!!">
 {% endcomment %}
 <hr size =10px >

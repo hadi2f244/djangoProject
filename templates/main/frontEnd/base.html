@@ -1,0 +1,47 @@
+{% load i18n %}
+{% load static %}
+{% comment %}{% load dajaxice_templatetags %}{% endcomment %}
+
+<html>
+{% language 'fa' %}
+<head>
+
+  <title>
+    {% block title %}Base template !{% endblock %}
+  </title>
+
+  <link rel="stylesheet" type="text/css" href="{% static "blogStatic/css/frontEnd/base.css" %}">
+  <script src="{% static "blogStatic/js/frontEnd/base.js" %}"></script>
+  {% block script %}
+  {% endblock %}
+  
+ {% comment %} {% dajaxice_js_import %}{% endcomment %}
+	
+</head>
+<body>
+  <div id="page">
+  <div id="toparea">
+    <!--<img src="{% static "assets/images/test.png" %}" id="logo" >-->
+    {% block toparea%}{% endblock %}
+   </div> 
+    <div id="sidebar"> 
+      <ul>
+      	<li><a href="/newses/all">Newses</a></li>
+        <li><a href="/user/register">Login</a></li>
+        <li><a href="/user/register">Register</a></li>
+		<li><a href="/search">Search</a></li>
+      </ul>
+      {% block sidebar%}
+      {% endblock %}
+    </div>
+    
+    <div id="content">
+      <h1>{{ log }}</h1>
+      {% block content %}{% endblock %}
+    </div>
+    
+  </div>
+</body>
+{% endlanguage %}
+</html>
+

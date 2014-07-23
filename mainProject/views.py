@@ -1,4 +1,12 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
+from functools import wraps
 def home(request):
-    return render_to_response("test.html")
+    return render(request,"test.html")
 
+
+def frontEnd(view):
+	@wraps(view)
+	def wrapper(request,*args,**kwargs):
+	 	context={}#context is data that will be replace with template variable
+		return view(request,context,*args,**kwargs)
+	return wrapper

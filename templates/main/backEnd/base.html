@@ -1,8 +1,10 @@
+{% load i18n %}
 {% load static %}
 {% comment %}
 {% load dajaxice_templatetags %}
 {% endcomment %}
 <html>
+{% language 'fa' %}
     <head>
         <title>
             {% block title %}Base template {% endblock %}
@@ -27,7 +29,7 @@
 
             <div id="mainSidebar">
                 <ul>
-
+                    <li><a href="/administrator/newses/all">Newses</a></li>
                     <li><a href="/administrator/blogs/all">Blogs</a></li>
                     <li><a href="/administrator/users">User</a></li>
 		            <li><a href="/administrator/search">Search</a></li>
@@ -49,5 +51,6 @@
 
         </div>
     </body>
+{% endlanguage %}
 </html>
 

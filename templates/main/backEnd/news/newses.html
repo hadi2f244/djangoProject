@@ -1,0 +1,29 @@
+{% extends "main/backEnd/base.html" %}
+{% block title %} Newses {% endblock %}
+{% block toparea %}
+{% endblock %}
+
+{% block sidebar %}
+	<ul>
+		<li><a href="/administrator/newses/newsCreate">Create new news</a></li>
+	</ul>
+{% endblock %}
+
+{%block content%}
+    {% if newses.count > 0 %}
+        <h1> Newses : </h1>
+
+        <form method="POST">{% csrf_token %}
+            {% for news in newses %}
+                <div>
+                    <h2><a href="/administrator/newses/get/{{news.id}}/">{{news.title}}</a></h2><input type="checkbox" name="newsIdCheckes" value="{{ news.id }}"/>
+                </div>
+
+            {% endfor %}
+           <div id="submit"><input type="submit" value="Delete checked" name="deleteButton"></div>
+           <div id="submit"><input type="submit" value="Hide checked" name="HideButton"></div>
+        </form>
+    {% else %}
+        <h3> No newses </h3>
+    {% endif%}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "main/frontEnd/base.html" %}
+{% load static %}
+{% block title %}{{news.title}}{% endblock %}
+{% block script %}
+{% comment %}
+<script src="{% static "static/js/article.js" %}"></script>
+{% endcomment %}
+{% endblock %}
+{% block sidebar %}
+{% endblock %}
+{% block content %}
+
+<h1>{{news.title}} </h1>
+<p> {{news.body|safe}} </p>
+<h5> Published date: {{news.pub_date}} </h5>
+{% endblock %}
+
