@@ -1,8 +1,8 @@
 from django.shortcuts import render,render
 from blog.models import Blog
 from blog.forms import BlogForm
-from news.models import News
-from news.forms import NewsForm
+from new.models import New
+from new.forms import NewForm
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
@@ -110,74 +110,74 @@ def blogCreate(request,context):
     return render(request,'main/backEnd/blog/submit_blog.html',context)
 ################################################################################################
 ################################################################################################
-#newses:
+#news:
 
 @backEnd
-def newses(request,context):
+def news(request,context):
 
     if 'deleteButton' in request.POST: #Delete button clicked!
-        checked=request.POST.getlist("newsIdCheckes")
+        checked=request.POST.getlist("newIdCheckes")
         if not len(checked):
             return HttpResponseRedirect("")
-        for newsID in checked:
-            News.objects.get(id=newsID).delete() #we must check the delete process correction ####
+        for newID in checked:
+            New.objects.get(id=newID).delete() #we must check the delete process correction ####
     elif 'HideButton' in request.POST: #Delete button clicked!
-        checked=request.POST.getlist("newsIdCheckes")
+        checked=request.POST.getlist("newIdCheckes")
         if not len(checked):
             return HttpResponseRedirect("")
-        for newsID in checked:
-            ob = News.objects.get(id=newsID)
+        for newID in checked:
+            ob = New.objects.get(id=newID)
             ob.hide = True
             ob.save()
 
-    context['newses'] = News.objects.all()
-    return render(request,"main/backEnd/news/newses.html",context)
+    context['news'] = New.objects.all()
+    return render(request,"main/backEnd/new/news.html",context)
 
 #################################################################################################
 @backEnd
-def news(request,context,news_id):#just show the news
-    context['news'] = News.objects.get(id=news_id)
-    return render(request,"main/backEnd/news/news.html",context)
+def new(request,context,new_id):#just show the new
+    context['new'] = New.objects.get(id=new_id)
+    return render(request,"main/backEnd/new/new.html",context)
 #################################################################################################
 @backEnd
-def newsDel(request,context,news_id):
+def newDel(request,context,new_id):
     #if article with this news_id doesn't exist ####
-    News.objects.get(id=news_id).delete() #we must check the delete process correction ####
+    New.objects.get(id=new_id).delete() #we must check the delete process correction ####
     # after deletation a box must show that ####
-    return HttpResponseRedirect("/administrator/newses/all")
+    return HttpResponseRedirect("/administrator/news/all")
 ################################################################################################
 ####w
 @backEnd
-def newsEdit(request,context,news_id):
-    #if news with this news_id doesn't exist ####
+def newEdit(request,context,new_id):
+    #if new with this new_id doesn't exist ####
     #
-    lastNews=News.objects.get(id=news_id)#So we dont need to send blog.id to NewsForm that did in newsCreate views
-    if lastNews is None: # Is there any article to edit!
-        return HttpResponseRedirect("/administrator/newses/all")
+    lastNew=New.objects.get(id=new_id)#So we dont need to send blog.id to NewForm that did in newCreate views
+    if lastNew is None: # Is there any article to edit!
+        return HttpResponseRedirect("/administrator/news/all")
 
-    if 'submitNews' in request.POST: #make sure that user click save button
-        newsForm = NewsForm(request.POST,instance=lastNews) #to edit we set instance otherwise this create new news
-        if newsForm.is_valid():
-            newsForm.save()
-            return HttpResponseRedirect("/administrator/newses/get/"+news_id)
+    if 'submitNew' in request.POST: #make sure that user click save button
+        newForm = NewForm(request.POST,instance=lastNew) #to edit we set instance otherwise this create new news
+        if newForm.is_valid():
+            newForm.save()
+            return HttpResponseRedirect("/administrator/news/get/"+new_id)
     else:# if user enter for first time So needed to show article informations
-        newsForm=NewsForm(instance=lastNews)
-    context['method']='newsEdit'
-    context['news_id']=news_id
-    context['form']=newsForm
-    return render(request,'main/backEnd/news/submit_news.html',context)
+        newForm=NewForm(instance=lastNew)
+    context['method']='newEdit'
+    context['new_id']=new_id
+    context['form']=newForm
+    return render(request,'main/backEnd/new/submit_new.html',context)
 
 ################################################################################################
 @backEnd
-def newsCreate(request,context):
+def newCreate(request,context):
 
-    if 'submitNews' in request.POST: #means you click on submit button named createNews in submit_news.html
-        newsForm = NewsForm(request.POST)
-        if newsForm.is_valid():
-            return HttpResponseRedirect("/administrator/newses/get/"+str(newsForm.save().id))
+    if 'submitNew' in request.POST: #means you click on submit button named createNew in submit_new.html
+        newForm = NewForm(request.POST)
+        if newForm.is_valid():
+            return HttpResponseRedirect("/administrator/news/get/"+str(newForm.save().id))
     else:
-        newsForm = NewsForm()#create a simple NewsForm
-    context['method']='newsCreate'
-    context['form']=NewsForm
-    return render(request,'main/backEnd/news/submit_news.html',context)
+        newForm = NewForm()#create a simple NewForm
+    context['method']='newCreate'
+    context['form']=NewForm
+    return render(request,'main/backEnd/new/submit_new.html',context)
 #################################################################################################

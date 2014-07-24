@@ -1,0 +1,21 @@
+{% extends "main/frontEnd/base.html" %}
+{% block title %} News {% endblock %}
+{% block toparea %}
+{% endblock %}
+{% block sidebar %}
+{% endblock %}
+{%block content%}
+{% if news.count > 0 %}
+{% for new in news %}
+<div>
+   {% if not new.hide %}
+    <hr width = 60% >
+    <h2><a href="/news/get/{{new.id}}/">{{new.title}}</a></h2>
+    <p>{{ new.body|removetags:"b strong h1 h2 h3 h4"|truncatewords_html:3|safe }}</p> <!-- safe > for html render , truncatewords_html > convert to summary  -->
+   {% endif %}
+</div>
+{% endfor %}
+{% else %}
+<h1> No new </h1>
+{% endif%}
+{% endblock %}

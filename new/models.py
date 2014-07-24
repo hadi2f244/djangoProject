@@ -4,7 +4,7 @@ from ckeditor.fields import RichTextField
 ############################################################################################
 
 # Create your models here.
-class News(models.Model):
+class New(models.Model):
     title = models.CharField(max_length=200)
     body = RichTextField()
     pub_date = models.DateTimeField('data published',default=datetime.datetime.now)

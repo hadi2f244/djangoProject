@@ -8,8 +8,8 @@ from django.conf.urls.static import static
 admin.autodiscover()
 urlpatterns = patterns('',
 	#url(r'blog$',include('blog.urls')),
-    url(r'^$', include('news.urls')),
-    url(r'^newses/', include('news.urls')),
+    url(r'^$', include('new.urls')),
+    url(r'^news/', include('new.urls')),
     url(r'^accounts/', include('user.urls')),
     url(r'^administrator/', include('backEnd.urls')),
     # Examples:

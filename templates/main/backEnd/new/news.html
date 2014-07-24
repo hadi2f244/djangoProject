@@ -1,22 +1,22 @@
 {% extends "main/backEnd/base.html" %}
-{% block title %} Newses {% endblock %}
+{% block title %} News {% endblock %}
 {% block toparea %}
 {% endblock %}
 
 {% block sidebar %}
 	<ul>
-		<li><a href="/administrator/newses/newsCreate">Create new news</a></li>
+		<li><a href="/administrator/news/newCreate">Create new new</a></li>
 	</ul>
 {% endblock %}
 
 {%block content%}
-    {% if newses.count > 0 %}
-        <h1> Newses : </h1>
+    {% if news.count > 0 %}
+        <h1> News : </h1>
 
         <form method="POST">{% csrf_token %}
-            {% for news in newses %}
+            {% for new in news %}
                 <div>
-                    <h2><a href="/administrator/newses/get/{{news.id}}/">{{news.title}}</a></h2><input type="checkbox" name="newsIdCheckes" value="{{ news.id }}"/>
+                    <h2><a href="/administrator/news/get/{{new.id}}/">{{new.title}}</a></h2><input type="checkbox" name="newIdCheckes" value="{{ new.id }}"/>
                 </div>
 
             {% endfor %}
@@ -24,6 +24,6 @@
            <div id="submit"><input type="submit" value="Hide checked" name="HideButton"></div>
         </form>
     {% else %}
-        <h3> No newses </h3>
+        <h3> No news </h3>
     {% endif%}
 {% endblock %}

@@ -3,10 +3,10 @@
 {% block sidebar %}
 <ul>
 	<hr width = 75%>
-	{% if method == 'newsCreate' %}
-		<li><a href="/administrator/newses/all">Cancel</a></li>
-	{% elif method == 'newsEdit' %}
-		<li><a href="/administrator/newses/get/{{news_id}}/">Cancel</a></li>
+	{% if method == 'newCreate' %}
+		<li><a href="/administrator/news/all">Cancel</a></li>
+	{% elif method == 'newEdit' %}
+		<li><a href="/administrator/news/get/{{new_id}}/">Cancel</a></li>
 	{% endif %}
 </ul>
 {% endblock %}
@@ -20,6 +20,6 @@
 	<ul>
 		{{form.as_p}}
 	</ul>
-	<div id="submit"><input type="submit" value="Submit" name="submitNews"></div>
+	<div id="submit"><input type="submit" value="Submit" name="submitNew"></div>
 </form>
 {% endblock %}

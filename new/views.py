@@ -1,17 +1,17 @@
 from django.shortcuts import render
-from news.models import News
+from new.models import New
 from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
 from mainProject.views import frontEnd
 from django.utils.translation import ugettext_lazy as _
 ##################################################################################################################
 @frontEnd
-def newses(request,context):
-    context['newses'] = News.objects.all()
-    return render(request,'main/frontEnd/news/newses.html',context)
+def news(request,context):
+    context['new'] = New.objects.all()
+    return render(request,'main/frontEnd/new/news.html',context)
 ##################################################################################################################
 
 @frontEnd
-def news(request,context,news_id):
-    context['news'] = News.objects.get(id=news_id)
-    return render(request,'main/frontEnd/news/news.html',context)
+def new(request,context,new_id):
+    context['new'] = New.objects.get(id=new_id)
+    return render(request,'main/frontEnd/new/new.html',context)
