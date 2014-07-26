@@ -1,5 +1,6 @@
 *.pyc
 *.swp
+*.db
 .idea/*
 local_settings.py
 .trash/*
