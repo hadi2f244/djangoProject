@@ -1,12 +1,3 @@
-from user.forms import registerForm, RegBlog
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from blog.models import Blog
-from user.models import MyUser
-from mainProject.views import frontEnd
-
-
-
 @frontEnd
 def register(request,context):
     if request.method == 'POST':

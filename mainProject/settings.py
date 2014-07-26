@@ -52,8 +52,6 @@ USE_I18N = True
 # calendars according to the current locale.
 USE_L10N = True
 
-ADMIN_LANGUAGE_CODE = 'fa-IR'
-
 #LOCALE_PATHS =  ("/home/hadi2f244/codes/djangoMain2/locale",)
 _ = lambda s: s
 LANGUAGES = (
@@ -61,7 +59,9 @@ LANGUAGES = (
   ('en', _('English')),
 )
 
-LOCALE_PATHS=(os.path.join(mainPath, "locale"),)
+ADMIN_LANGUAGE_CODE = 'fa-IR'
+
+LOCALE_PATHS=('/home/hadi2f244/codes/djangoMain2/locale',)
 
 
 # If you set this to False, Django will not use timezone-aware datetimes.
@@ -101,7 +101,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+#   'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -116,7 +116,7 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
-   # 'django.core.context_processors.auth',
+    #'django.core.context_processors.auth',
     'django.core.context_processors.debug',
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
@@ -130,11 +130,15 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
+    #Uncomment the next line for simple clickjacking protection:
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'mainProject.adminLocalMiddleware.AdminLocaleMiddleware',
+
+
+
 )
 
 X_FRAME_OPTIONS='DENY' #config of clickjacking middleware
