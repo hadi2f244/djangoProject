@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-26 17:31+0430\n"
+"POT-Creation-Date: 2014-07-26 17:35+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,15 +30,13 @@ msgstr "دامنه"
 msgid "name"
 msgstr "نام"
 
-#: blog/models.py:12
-#, fuzzy
-msgid "Blog"
-msgstr "بلاگ ها"
+#: blog/models.py:12 blog/article/models.py:17 blog/article/models.py:39
+#: blog/category/models.py:7
+msgid "blog"
+msgstr "بلاگ"
 
-#: blog/models.py:13 templates/main/backEnd/base.html:34
-#: templates/main/backEnd/blog/blogs.html:3
-#: templates/main/backEnd/blog/blogs.html:15
-msgid "Blogs"
+#: blog/models.py:13
+msgid "blogs"
 msgstr "بلاگ ها"
 
 #: blog/article/forms.py:16 blog/article/forms.py:28 blog/article/models.py:16
@@ -67,12 +65,6 @@ msgstr "تاریخ انتشار"
 #: blog/article/models.py:15
 msgid "hide"
 msgstr "پنهان کردن"
-
-#: blog/article/models.py:17 blog/article/models.py:39
-#: blog/category/models.py:7
-#, fuzzy
-msgid "blog"
-msgstr "هیچ بلاگی موجود نیست!"
 
 #: blog/article/models.py:28 blog/article/models.py:37
 #: templates/blog/backEnd/comment/comment.html:20
@@ -332,6 +324,12 @@ msgstr "صفحه ادمین"
 msgid "Please login first to leave a comment!"
 msgstr "برای نوشتن نظر ابتدا وارد شوید!"
 
+#: templates/main/backEnd/base.html:34
+#: templates/main/backEnd/blog/blogs.html:3
+#: templates/main/backEnd/blog/blogs.html:15
+msgid "Blogs"
+msgstr "بلاگ ها"
+
 #: templates/main/backEnd/base.html:35
 msgid "users"
 msgstr "کاربران"
@@ -436,3 +434,6 @@ msgstr ""
 #: templates/main/frontEnd/user/registration_complete.html:5
 msgid "You are now registered. Activation email sent."
 msgstr ""
+
+#~ msgid "Blog"
+#~ msgstr "بلاگ"

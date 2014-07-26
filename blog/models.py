@@ -9,5 +9,5 @@ class Blog(models.Model):
     def __unicode__(self):              # __unicode__ on Python 2
         return self.domain
     class Meta:
-        verbose_name=_('Blog')
-        verbose_name_plural=_('Blogs')
+        verbose_name=_('blog')
+        verbose_name_plural=_('blogs')
