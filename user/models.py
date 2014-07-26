@@ -8,7 +8,7 @@ from django.contrib.auth.models import (
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
-
+from django.utils.translation import ugettext_lazy as _
 
 class MyUserManager(BaseUserManager):
     def create_user(self, username, email, password=None):
@@ -17,10 +17,10 @@ class MyUserManager(BaseUserManager):
         birth and password.
         """
         if not email :
-            raise ValueError('user must have an email address')
+            raise ValueError(_('user must have an email address'))
 
         if not username :
-            raise ValueError("user must have an username address")
+            raise ValueError(_("user must have an username"))
 
         user = self.model(
             email=self.normalize_email(email),
@@ -50,34 +50,36 @@ def gen():
     return hashlib.sha1(salt).hexdigest()
 
 class MyUser(AbstractBaseUser):
+    class Meta:
+        verbose_name=_('MyUser')
+        verbose_name_plural=_('MyUsers')
 
     username = models.CharField(
-        verbose_name="Username",
+        verbose_name=_("Username"),
         max_length=255,
         unique=True,
     )
 
-
     email = models.EmailField(
-        verbose_name='Email Address',
+        verbose_name=_('Email Address'),
         max_length=255,
     )
 
     aboutme = models.CharField(
-        verbose_name="about me",
+        verbose_name=_("about me"),
         max_length=255,
     )
 
     activation_key = models.CharField(
-        verbose_name= 'activation key',
+        verbose_name= _('activation key'),
         max_length=40,
         #default = self.activation_key_generator()
         default= gen()
     )
 
 
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField(verbose_name=_('is_active'),default=True)
+    is_admin = models.BooleanField(verbose_name=_('is_admin'),default=False)
 
     objects = MyUserManager()
 

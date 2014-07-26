@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-26 17:35+0430\n"
+"POT-Creation-Date: 2014-07-26 18:45+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -304,7 +304,7 @@ msgid "Invalid username or password"
 msgstr "نام کاربری یا کلمه عبور اشتباه!"
 
 #: templates/blog/backEnd/djangoBlog/login.html:6
-#: templates/main/backEnd/main/login.html:6
+#: templates/main/backEnd/main/login.html:6 user/models.py:58
 msgid "Username"
 msgstr "نام کاربری"
 
@@ -435,5 +435,39 @@ msgstr ""
 msgid "You are now registered. Activation email sent."
 msgstr ""
 
-#~ msgid "Blog"
-#~ msgstr "بلاگ"
+#: user/models.py:20
+msgid "user must have an email address"
+msgstr "کاربر باید یک ایمیل داشته باشد"
+
+#: user/models.py:23
+#, fuzzy
+msgid "user must have an username"
+msgstr "کاربر باید نام کاربری داشته باشد"
+
+#: user/models.py:54
+msgid "MyUser"
+msgstr "کاربر"
+
+#: user/models.py:55
+msgid "MyUsers"
+msgstr "کاربرها"
+
+#: user/models.py:65
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+#: user/models.py:70
+msgid "about me"
+msgstr "درباره من"
+
+#: user/models.py:75
+msgid "activation key"
+msgstr "کد فعالسازی"
+
+#: user/models.py:82
+msgid "is_active"
+msgstr "فعال"
+
+#: user/models.py:83
+msgid "is_admin"
+msgstr "ادمین"
