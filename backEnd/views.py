@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings #we need SITE_NAME
 from functools import wraps
+from django.utils.translation import ugettext as _
 #from django.contrib.auth.forms import PasswordChangeForm
 from blog.backEnd.forms import  profileForm
 
@@ -87,8 +88,11 @@ def blogEdit(request,context,blog_id):
     if 'submitBlog' in request.POST: #make sure that user click save button
         blogForm = BlogForm(request.POST,instance=lastBlog) #to edit we set instance otherwise this create new blog
         if blogForm.is_valid():
-            blogForm.save()
-            return HttpResponseRedirect("/administrator/blogs/get/"+blog_id)
+            lastBlog.delete()
+            new_blog=blogForm.save()
+            print "ohhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+            print new_blog
+            return HttpResponseRedirect("/administrator/blogs/get/"+new_blog.user_id)
     else:# if user enter for first time So needed to show blog informations
         blogForm=BlogForm(instance=lastBlog)
     context['method']='blogEdit'

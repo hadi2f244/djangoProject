@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-23 16:53+0430\n"
+"POT-Creation-Date: 2014-07-26 15:02+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,100 +18,414 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: blog/forms.py:10 blog/models.py:6
+msgid "user"
+msgstr "کاربر"
+
+#: blog/models.py:7 templates/main/backEnd/blog/blog.html:15
+msgid "domain"
+msgstr "دامنه"
+
+#: blog/models.py:8 templates/main/backEnd/blog/blog.html:16
+msgid "name"
+msgstr "نام"
+
+#: blog/article/forms.py:16 blog/article/forms.py:28 blog/article/models.py:16
+msgid "Category"
+msgstr "دسته ها"
+
+#: blog/article/models.py:11 blog/category/models.py:6
+msgid "title"
+msgstr "عنوان"
+
+#: blog/article/models.py:12 blog/article/models.py:33
+msgid "body"
+msgstr "متن"
+
+#: blog/article/models.py:13 new/models.py:11
+#: templates/blog/backEnd/article/article.html:19
+#: templates/blog/backEnd/comment/cArticle.html:18
+#: templates/blog/backEnd/comment/comment.html:18
+#: templates/blog/frontEnd/article/article.html:16
+#: templates/main/backEnd/new/new.html:19
+#: templates/main/frontEnd/new/new.html:16
+msgid "Published date"
+msgstr "تاریخ انتشار"
+
+#: blog/article/models.py:15
+msgid "hide"
+msgstr "پنهان کردن"
+
+#: blog/article/models.py:17 blog/article/models.py:37
+#: blog/category/models.py:7
+#, fuzzy
+msgid "blog"
+msgstr "هیچ بلاگی موجود نیست!"
+
+#: blog/article/models.py:32 templates/blog/backEnd/comment/cArticle.html:26
+#: templates/blog/backEnd/comment/comment.html:19
+#: templates/blog/backEnd/comment/comments.html:20
+#: templates/blog/frontEnd/article/article.html:24
+msgid "writer"
+msgstr "نویسنده"
+
+#: blog/article/models.py:34 templates/blog/backEnd/comment/cArticle.html:28
+#: templates/blog/frontEnd/article/article.html:26
+msgid "date"
+msgstr "تاریخ"
+
+#: blog/article/models.py:35 templates/blog/backEnd/comment/comment.html:20
+#: templates/blog/backEnd/comment/comments.html:19
+msgid "Article"
+msgstr "مقاله"
+
+#: blog/article/models.py:36
+#, fuzzy
+msgid "seen"
+msgstr "دیده شده"
+
 #: mainProject/settings.py:58
 msgid "Persian"
-msgstr ""
+msgstr "فارسی"
 
 #: mainProject/settings.py:59
 msgid "English"
-msgstr ""
+msgstr "انگلیسی"
 
-#: news/views.py:11
-msgid "test"
+#: new/models.py:9
+msgid "Title"
+msgstr "عنوان"
+
+#: new/models.py:10
+msgid "Body"
+msgstr "متن"
+
+#: new/models.py:12 templates/blog/backEnd/article/articles.html:25
+#: templates/main/backEnd/new/news.html:25
+msgid "Hide"
+msgstr "پنهان کردن"
+
+#: new/models.py:14
+#, fuzzy
+msgid "New"
+msgstr "اخبار"
+
+#: templates/blog/backEnd/base.html:20
+#: templates/blog/frontEnd/djangoBlog/home.html:6
+#: templates/main/backEnd/base.html:23
+msgid "Hi"
 msgstr "سلام"
 
+#: templates/blog/backEnd/base.html:21 templates/main/backEnd/base.html:24
+msgid "Logout"
+msgstr "خروج"
+
+#: templates/blog/backEnd/base.html:30
+#: templates/blog/backEnd/article/articles.html:3
+#: templates/blog/backEnd/article/articles.html:15
+#: templates/blog/backEnd/category/category.html:20
+#: templates/blog/backEnd/comment/cArticles.html:5
+#: templates/blog/frontEnd/base.html:32
+#: templates/blog/frontEnd/article/articles.html:3
+#: templates/blog/frontEnd/article/articles.html:10
+#: templates/blog/frontEnd/category/category.html:14
+msgid "Articles"
+msgstr "مقاله ها"
+
+#: templates/blog/backEnd/base.html:31
+#: templates/blog/backEnd/comment/comments.html:3
+#: templates/blog/backEnd/comment/comments.html:15
+msgid "Comments"
+msgstr "نظر ها"
+
+#: templates/blog/backEnd/base.html:32
+#: templates/blog/backEnd/article/article.html:27
+#: templates/blog/backEnd/category/categories.html:3
+#: templates/blog/backEnd/category/categories.html:17
+#: templates/blog/frontEnd/base.html:33
+#: templates/blog/frontEnd/category/categories.html:3
+#: templates/blog/frontEnd/category/categories.html:13
+msgid "Categories"
+msgstr "دسته ها"
+
+#: templates/blog/backEnd/base.html:33
+msgid "Profile"
+msgstr "پروفایل"
+
+#: templates/blog/backEnd/base.html:34 templates/blog/frontEnd/base.html:35
+#: templates/main/backEnd/base.html:36 templates/main/frontEnd/base.html:34
+msgid "Search"
+msgstr "جستجو"
+
+#: templates/blog/backEnd/base.html:35 templates/main/backEnd/base.html:37
+msgid "frontEnd"
+msgstr "نمایش سایت"
+
+#: templates/blog/backEnd/article/article.html:11
+#: templates/blog/backEnd/category/category.html:11
+#: templates/blog/backEnd/comment/comment.html:9
+#: templates/main/backEnd/blog/blog.html:9
+#: templates/main/backEnd/new/new.html:11
+msgid "Edit"
+msgstr "تغییر"
+
+#: templates/blog/backEnd/article/article.html:12
+#: templates/blog/backEnd/article/articles.html:24
+#: templates/blog/backEnd/category/categories.html:27
+#: templates/blog/backEnd/category/category.html:12
+#: templates/blog/backEnd/comment/comment.html:10
+#: templates/blog/backEnd/comment/comments.html:30
+#: templates/main/backEnd/blog/blog.html:10
+#: templates/main/backEnd/new/new.html:12
+#: templates/main/backEnd/new/news.html:24
+msgid "Delete"
+msgstr "حذف"
+
+#: templates/blog/backEnd/article/article.html:32
+#: templates/blog/backEnd/category/categories.html:30
+#: templates/blog/frontEnd/category/categories.html:23
+msgid "No categories"
+msgstr "هیچ دسته ای موجود نیست!"
+
+#: templates/blog/backEnd/article/articles.html:9
+msgid "Create new article"
+msgstr "ساخت بلاگ جدید"
+
+#: templates/blog/backEnd/article/articles.html:28
+#: templates/blog/backEnd/category/category.html:27
+#: templates/blog/backEnd/comment/cArticles.html:29
+#: templates/blog/frontEnd/article/articles.html:22
+#: templates/blog/frontEnd/category/category.html:22
+msgid "No articles"
+msgstr "هیچ مقاله ای موجود نیست!"
+
+#: templates/blog/backEnd/article/submit_article.html:9
+#: templates/blog/backEnd/article/submit_article.html:11
+#: templates/blog/backEnd/category/submit_category.html:9
+#: templates/blog/backEnd/category/submit_category.html:11
+#: templates/blog/backEnd/comment/submit_comment.html:9
+#: templates/blog/backEnd/comment/submit_comment.html:11
+#: templates/main/backEnd/blog/submit_blog.html:9
+#: templates/main/backEnd/blog/submit_blog.html:11
+#: templates/main/backEnd/new/submit_new.html:10
+#: templates/main/backEnd/new/submit_new.html:12
+msgid "Cancel"
+msgstr "انصراف"
+
+#: templates/blog/backEnd/article/submit_article.html:25
+#: templates/blog/backEnd/category/submit_category.html:21
+#: templates/blog/backEnd/comment/submit_comment.html:23
+#: templates/blog/backEnd/djangoBlog/login.html:12
+#: templates/blog/frontEnd/article/article.html:35
+#: templates/main/backEnd/blog/submit_blog.html:25
+#: templates/main/backEnd/main/login.html:12
+#: templates/main/backEnd/new/submit_new.html:26
+#: templates/main/frontEnd/user/password_change_form.html:9
+#: templates/main/frontEnd/user/password_reset_confirm.html:12
+#: templates/main/frontEnd/user/password_reset_form.html:9
 #: templates/main/frontEnd/user/registration_Blog.html:9
-#: templates/main/frontEnd/user/registration_form.html:9
-#: templates/registration/password_change_form.html:9
-#: templates/registration/password_reset_confirm.html:12
-#: templates/registration/password_reset_form.html:9
-#: templates/registration/registration_Blog.html:9
-#: templates/registration/registration_form.html:9
+#: templates/main/frontEnd/user/registration_form.html:10
 msgid "Submit"
 msgstr "تایید"
 
-#: templates/main/frontEnd/user/registration_complete.html:5
-#: templates/registration/registration_complete.html:5
-msgid "You are now registered. Activation email sent."
-msgstr ""
+#: templates/blog/backEnd/category/categories.html:11
+msgid "Create new category"
+msgstr "ساخت دسته جدید"
 
-#: templates/registration/activate.html:6
+#: templates/blog/backEnd/comment/cArticle.html:9
+#: templates/blog/backEnd/comment/cArticles.html:12
+#: templates/blog/backEnd/comment/comments.html:9
+msgid "Comments in articles"
+msgstr "نمایش نظر ها با توجه به مقالات"
+
+#: templates/blog/backEnd/comment/cArticle.html:10
+#: templates/blog/backEnd/comment/cArticles.html:13
+#: templates/blog/backEnd/comment/comments.html:10
+msgid "All of comments"
+msgstr "همه ی نظرها"
+
+#: templates/blog/backEnd/comment/cArticle.html:27
+#: templates/blog/backEnd/comment/comments.html:21
+#: templates/blog/frontEnd/article/article.html:25
+msgid "text"
+msgstr "متن"
+
+#: templates/blog/backEnd/comment/cArticles.html:19
+msgid "Select the article to see the article and its comments"
+msgstr "مقاله ای را انتخاب کنید تا آن مقاله و نظرات آن را مشاهده کنید"
+
+#: templates/blog/backEnd/comment/cArticles.html:24
+#, python-format
+msgid "This article has %(commentNum)s comments"
+msgstr "این مقاله %(commentNum)s نظر دارد"
+
+#: templates/blog/backEnd/comment/comment.html:22
+msgid "This comment was seen"
+msgstr "این نظر قبلا دیده شده است"
+
+#: templates/blog/backEnd/comment/comment.html:24
+#: templates/blog/backEnd/comment/comments.html:25
+msgid "see"
+msgstr "دیدن"
+
+#: templates/blog/backEnd/comment/comments.html:23
+msgid "It's seen"
+msgstr "دیده شده"
+
+#: templates/blog/backEnd/djangoBlog/dashBoard.html:3
+#: templates/main/backEnd/blog/blog.html:17
+#: templates/main/backEnd/main/dashBoard.html:3
+msgid "administrator page"
+msgstr "صفحه ادمین"
+
+#: templates/blog/backEnd/djangoBlog/dashBoard.html:6
+#: templates/main/backEnd/main/dashBoard.html:7
+msgid "Dashboard"
+msgstr "داشبورد"
+
+#: templates/blog/backEnd/djangoBlog/login.html:3
+#: templates/main/backEnd/main/login.html:3
+#, fuzzy
+msgid "Invalid username or password"
+msgstr "نام کاربری یا کلمه عبور اشتباه!"
+
+#: templates/blog/backEnd/djangoBlog/login.html:6
+#: templates/main/backEnd/main/login.html:6
+#, fuzzy
+msgid "Username"
+msgstr "نام کاربری"
+
+#: templates/blog/backEnd/djangoBlog/login.html:9
+#, fuzzy
+msgid "Password"
+msgstr "کلمه عبور"
+
+#: templates/blog/frontEnd/base.html:31
+msgid "Home"
+msgstr "صفحه ی اصلی"
+
+#: templates/blog/frontEnd/base.html:34
+msgid "Administrator page"
+msgstr "صفحه ادمین"
+
+#: templates/blog/frontEnd/article/article.html:38
+msgid "Please login first to leave a comment!"
+msgstr "برای نوشتن نظر ابتدا وارد شوید!"
+
+#: templates/main/backEnd/base.html:33 templates/main/backEnd/new/news.html:3
+#: templates/main/backEnd/new/news.html:15
+#: templates/main/frontEnd/base.html:31
+#: templates/main/frontEnd/new/news.html:4
+msgid "News"
+msgstr "اخبار"
+
+#: templates/main/backEnd/base.html:34
+#: templates/main/backEnd/blog/blogs.html:3
+#: templates/main/backEnd/blog/blogs.html:15
+msgid "Blogs"
+msgstr "بلاگ ها"
+
+#: templates/main/backEnd/base.html:35
+msgid "users"
+msgstr "کاربران"
+
+#: templates/main/backEnd/blog/blogs.html:9
+msgid "Create new blog"
+msgstr "ساخت بلاگ جدید"
+
+#: templates/main/backEnd/blog/blogs.html:23
+msgid "No blog"
+msgstr "هیچ بلاگی موجود نیست!"
+
+#: templates/main/backEnd/main/login.html:9
+msgid "password"
+msgstr "کلمه عبور"
+
+#: templates/main/backEnd/new/news.html:9
+msgid "Create new new"
+msgstr "ساخت خبر جدید"
+
+#: templates/main/backEnd/new/news.html:28
+#: templates/main/frontEnd/new/news.html:22
+msgid "No new"
+msgstr "هیچ خبری موجود نیست!"
+
+#: templates/main/frontEnd/base.html:32
+msgid "Login"
+msgstr "ورود"
+
+#: templates/main/frontEnd/base.html:33
+#: templates/main/frontEnd/user/login.html:14
+msgid "Register"
+msgstr "ثبت نام"
+
+#: templates/main/frontEnd/user/activate.html:6
 msgid "Account activation failed"
 msgstr ""
 
-#: templates/registration/activation_complete.html:5
+#: templates/main/frontEnd/user/activation_complete.html:5
 msgid "Your account is now activated."
 msgstr ""
 
-#: templates/registration/activation_email.txt:2
+#: templates/main/frontEnd/user/activation_email.txt:2
 msgid "Activate account at"
 msgstr ""
 
-#: templates/registration/activation_email.txt:6
+#: templates/main/frontEnd/user/activation_email.txt:7
 #, python-format
 msgid "Link is valid for %(expiration_days)s days."
 msgstr ""
 
-#: templates/registration/activation_email_subject.txt:1
+#: templates/main/frontEnd/user/activation_email_subject.txt:1
 msgid "Account activation on"
 msgstr ""
 
-#: templates/registration/login.html:9
-#: templates/registration/password_reset_complete.html:8
+#: templates/main/frontEnd/user/login.html:9
+#: templates/main/frontEnd/user/password_reset_complete.html:8
 msgid "Log in"
-msgstr ""
+msgstr "ورود"
 
-#: templates/registration/login.html:13
+#: templates/main/frontEnd/user/login.html:13
 msgid "Forgot password"
 msgstr ""
 
-#: templates/registration/login.html:13
+#: templates/main/frontEnd/user/login.html:13
 msgid "Reset it"
 msgstr ""
 
-#: templates/registration/login.html:14
+#: templates/main/frontEnd/user/login.html:14
 msgid "Not member"
 msgstr ""
 
-#: templates/registration/login.html:14
-msgid "Register"
-msgstr ""
-
-#: templates/registration/logout.html:5
+#: templates/main/frontEnd/user/logout.html:5
 msgid "Logged out"
 msgstr ""
 
-#: templates/registration/password_change_done.html:5
+#: templates/main/frontEnd/user/password_change_done.html:5
 msgid "Password changed"
 msgstr ""
 
-#: templates/registration/password_reset_complete.html:6
+#: templates/main/frontEnd/user/password_reset_complete.html:6
 msgid "Password reset successfully"
 msgstr ""
 
-#: templates/registration/password_reset_confirm.html:17
+#: templates/main/frontEnd/user/password_reset_confirm.html:17
 msgid "Password reset failed"
 msgstr ""
 
-#: templates/registration/password_reset_done.html:5
+#: templates/main/frontEnd/user/password_reset_done.html:5
 msgid "Email with password reset instructions has been sent."
 msgstr ""
 
-#: templates/registration/password_reset_email.html:2
+#: templates/main/frontEnd/user/password_reset_email.html:2
 #, python-format
 msgid "Reset password at %(site_name)s"
 msgstr ""
 
-#: templates/registration/registration_closed.html:5
+#: templates/main/frontEnd/user/registration_closed.html:5
 msgid "Registration is currently closed."
+msgstr ""
+
+#: templates/main/frontEnd/user/registration_complete.html:5
+msgid "You are now registered. Activation email sent."
 msgstr ""

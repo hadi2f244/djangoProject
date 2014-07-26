@@ -1,25 +1,26 @@
 {% extends "blog/backEnd/base.html" %}
+{% load i18n %}
 {% load static %}
 {% block title %}{{comment.title}}{% endblock %}
 
 {% block sidebar %}
     <ul>
 	    <hr width = 75%>
-	    <li><a href="/administrator/comments/edit/{{comment.id}}">Edit</a></li>
-        <li><a href="/administrator/comments/del/{{comment.id}}">Delete</a></li> {% comment %}maybe this process have security bug must be ajax {% endcomment %}
+	    <li><a href="/administrator/comments/edit/{{comment.id}}">{% trans "Edit" %} </a></li>
+        <li><a href="/administrator/comments/del/{{comment.id}}">{% trans "Delete" %} </a></li> {% comment %}maybe this process have security bug must be ajax {% endcomment %}
     </ul>
 {% endblock %}
 
 {% block content %}
     <h1>{{comment.title}} </h1>
     <p> {{comment.body|safe}} </p>
-    <h5> Published date: {{comment.date}} </h5>
-    <h5>Writer: {{comment.writer}}</h5>
-    <h5>Article: {{articleName}}</h5>
+    <h5> {% trans "Published date" %} : {{comment.date}} </h5>
+    <h5>{% trans "writer" %} : {{comment.writer}}</h5>
+    <h5>{% trans "Article" %} : {{articleName}}</h5>
     {% if comment.seen %}
-        <h5>This comment was seen. </h5>
+        <h5>{% trans "This comment was seen" %}. </h5>
     {% else %}
-        <h5><a href="">see</a></h5>
+        <h5><a href="">{% trans "see" %} </a></h5>
     {% endif %}
 {% endblock %}
 

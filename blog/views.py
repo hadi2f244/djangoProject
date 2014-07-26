@@ -23,7 +23,8 @@ def frontEnd(view):
 ##################################################################################
 @frontEnd
 def home(request,context):
-    return render(request,"blog/frontEnd/djangoBlog/welcome.html",context)
+    context['blog_name']=request.blog.name
+    return render(request,"blog/frontEnd/djangoBlog/home.html",context)
 ##################################################################################
 '''
 @frontEnd

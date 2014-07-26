@@ -19,8 +19,8 @@
   {% endcomment %}
     </head>
     <body>
-        <p>Hi, {{ user.username }}.</p>
-        <p><a href="/administrator/logout">Logout</a></p>
+        <p>{% trans "Hi" %}, {{ user.username }}.</p>
+        <p><a href="/administrator/logout">{% trans "Logout" %}</a></p>
         <div id="page">
             <div id="toparea">
                 <!--<img src="{% static "assets/images/test.png" %}" id="logo" >-->
@@ -29,11 +29,11 @@
 
             <div id="mainSidebar">
                 <ul>
-                    <li><a href="/administrator/news/all">News</a></li>
-                    <li><a href="/administrator/blogs/all">Blogs</a></li>
-                    <li><a href="/administrator/users">User</a></li>
-		            <li><a href="/administrator/search">Search</a></li>
-                    <li><a href="/">frontEnd</a></li>
+                    <li><a href="/administrator/news/all">{% trans "News" %}</a></li>
+                    <li><a href="/administrator/blogs/all">{% trans "Blogs" %}</a></li>
+                    <li><a href="/administrator/users">{% trans "users" %}</a></li>
+		            <li><a href="/administrator/search">{% trans "Search" %}</a></li>
+                    <li><a href="/">{% trans "frontEnd" %}</a></li>
                 </ul>
                 {% block mainSidebar%}
                 {% endblock %}

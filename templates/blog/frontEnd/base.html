@@ -26,12 +26,11 @@
    </div> 
     <div id="sidebar"> 
       <ul>
-      	<li><a href="/home">Home</a></li>
-        <li><a href="/articles/all">Articles</a></li>
-        <li><a href="/categories/all">Categories</a></li>
-		<li><a href="/administrator">Administrator</a></li>
-		<li><a href="/admin">Admin</a></li>
-		<li><a href="/search">Search</a></li>
+      	<li><a href="/home">{% trans "Home" %}</a></li>
+        <li><a href="/articles/all">{% trans "Articles" %}</a></li>
+        <li><a href="/categories/all">{% trans "Categories" %}</a></li>
+		<li><a href="/administrator">{% trans "Administrator page" %}</a></li>
+		<li><a href="/search">{% trans "Search" %}</a></li>
       </ul>
       {% block sidebar%}
       {% endblock %}

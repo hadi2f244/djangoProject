@@ -3,11 +3,11 @@ from new.models import New
 from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
 from mainProject.views import frontEnd
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 ##################################################################################################################
 @frontEnd
 def news(request,context):
-    context['new'] = New.objects.all()
+    context['news'] = New.objects.all()
     return render(request,'main/frontEnd/new/news.html',context)
 ##################################################################################################################
 

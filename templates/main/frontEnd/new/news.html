@@ -1,5 +1,8 @@
 {% extends "main/frontEnd/base.html" %}
-{% block title %} News {% endblock %}
+{% load i18n %}
+{% block title %}
+    {% trans "News" %}
+{% endblock %}
 {% block toparea %}
 {% endblock %}
 {% block sidebar %}
@@ -16,6 +19,6 @@
 </div>
 {% endfor %}
 {% else %}
-<h1> No new </h1>
+    <h1> {% trans "No new" %} </h1>
 {% endif%}
 {% endblock %}

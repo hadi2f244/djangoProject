@@ -1,17 +1,18 @@
 {% extends "main/backEnd/base.html" %}
-{% block title %} News {% endblock %}
+{% load i18n %}
+{% block title %} {% trans "News" %} {% endblock %}
 {% block toparea %}
 {% endblock %}
 
 {% block sidebar %}
 	<ul>
-		<li><a href="/administrator/news/newCreate">Create new new</a></li>
+		<li><a href="/administrator/news/newCreate">{% trans "Create new new" %}</a></li>
 	</ul>
 {% endblock %}
 
 {%block content%}
     {% if news.count > 0 %}
-        <h1> News : </h1>
+        <h1> {% trans "News" %} : </h1>
 
         <form method="POST">{% csrf_token %}
             {% for new in news %}
@@ -20,10 +21,10 @@
                 </div>
 
             {% endfor %}
-           <div id="submit"><input type="submit" value="Delete checked" name="deleteButton"></div>
-           <div id="submit"><input type="submit" value="Hide checked" name="HideButton"></div>
+           <div id="submit"><input type="submit" value={% trans "Delete" %} name="deleteButton"></div>
+           <div id="submit"><input type="submit" value={% trans "Hide" %}name="HideButton"></div>
         </form>
     {% else %}
-        <h3> No news </h3>
+        <h3> {% trans "No new" %} </h3>
     {% endif%}
 {% endblock %}

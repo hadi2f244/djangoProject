@@ -1,12 +1,13 @@
 {% extends "blog/backEnd/base.html" %}
+{% load i18n %}
 {% comment %} This html file contains create and edit an article {% endcomment %}
 {% block sidebar %}
 <ul>
 	<hr width = 75%>
 	{% if method == 'commentCreate' %}
-		<li><a href="/administrator/comments/all">Cancel</a></li>
+		<li><a href="/administrator/comments/all">{% trans "Cancel" %} </a></li>
 	{% elif method == 'commentEdit' %}
-		<li><a href="/administrator/comments/get/{{comment_id}}/">Cancel</a></li>
+		<li><a href="/administrator/comments/get/{{comment_id}}/">{% trans "Cancel" %} </a></li>
 	{% endif %}
 </ul>
 {% endblock %}
@@ -18,6 +19,6 @@
 	<ul>
 		{{form.as_p}}
 	</ul>
-	<div id="submit"><input type="submit" value="Submit" name="submitComment"></div>
+	<div id="submit"><input type="submit" value={% trans "Submit" %}  name="submitComment"></div>
 </form>
 {% endblock %}

@@ -17,8 +17,8 @@
 	
     </head>
     <body>
-        <p>Hi, {{ user.username }}.</p>
-        <p><a href="/administrator/logout">Logout</a></p>
+        <p>{% trans "Hi" %}, {{ user.username }}.</p>
+        <p><a href="/administrator/logout">{% trans "Logout" %}</a></p>
         <div id="page">
             <div id="toparea">
                 <!--<img src="{% static "assets/images/test.png" %}" id="logo" >-->
@@ -27,12 +27,12 @@
 
             <div id="mainSidebar">
                 <ul>
-                    <li><a href="/administrator/articles/all">Articles</a></li>
-                    <li><a href="/administrator/comments/all">Comments</a></li>
-                    <li><a href="/administrator/categories/all">Categories</a></li>
-                    <li><a href="/administrator/profile">Myprofile</a></li>
-		            <li><a href="/administrator/search">Search</a></li>
-                    <li><a href="/">frontEnd</a></li>
+                    <li><a href="/administrator/articles/all">{% trans "Articles" %}</a></li>
+                    <li><a href="/administrator/comments/all">{% trans "Comments" %}</a></li>
+                    <li><a href="/administrator/categories/all">{% trans "Categories" %}</a></li>
+                    <li><a href="/administrator/profile">{% trans "Profile" %}</a></li>
+		            <li><a href="/administrator/search">{% trans "Search" %}</a></li>
+                    <li><a href="/">{% trans "frontEnd" %}</a></li>
                 </ul>
                 {% block mainSidebar%}
                 {% endblock %}

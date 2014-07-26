@@ -1,17 +1,18 @@
 {% extends "main/backEnd/base.html" %}
-{% block title %} Blogs {% endblock %}
+{% load i18n %}
+{% block title %} {% trans "Blogs" %} {% endblock %}
 {% block toparea %}
 {% endblock %}
 
 {% block sidebar %}
 	<ul>
-		<li><a href="/administrator/blogs/blogCreate">Create new Blog</a></li>
+		<li><a href="/administrator/blogs/blogCreate">{% trans "Create new blog" %}</a></li>
 	</ul>
 {% endblock %}
 
 {%block content%}
     {% if blogs.count > 0 %}
-        <h1> Blogs : </h1>
+        <h1> {% trans "Blogs" %} : </h1>
         {% for blog in blogs %}
             <div>
                 <h2><a href="/administrator/blogs/get/{{blog.user_id}}/">{{blog.domain}}</a></h2>
@@ -19,6 +20,6 @@
             <hr width="60%">
         {% endfor %}
     {% else %}
-        <h3> No blogs </h3>
+        <h3> {% trans "No blog" %} </h3>
     {% endif%}
 {% endblock %}

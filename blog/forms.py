@@ -2,11 +2,12 @@ from django import forms
 from blog.models import Blog
 from django.contrib.auth.forms import UserCreationForm
 from user.models import MyUser
+from django.utils.translation import ugettext_lazy as _
 
 class BlogForm(forms.ModelForm):
-    domain=forms.CharField(max_length=200)
-    name=forms.CharField(max_length=200)
-    user=forms.ModelChoiceField(queryset=MyUser.objects.all())
+    #domain=forms.CharField(max_length=200)
+    #name=forms.CharField(max_length=200)
+    user=forms.ModelChoiceField(label=_('user'),queryset=MyUser.objects.all())
     class Meta:
         model= Blog
         fields = ['domain','name', 'user' ]

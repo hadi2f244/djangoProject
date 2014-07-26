@@ -1,12 +1,13 @@
+{% load i18n %}
 {% if invalid %}
-	<h2>Invalid username or password!</h2>
+	<h2>{% trans "Invalid username or password" %}!</h2>
 {% endif %}	
 <form method="POST">{% csrf_token %}
-	<label for="username">Username:</lablel>
+	<label for="username">{% trans "Username" %}:</lablel>
 	<input type="text" name="username" value="" id="username">
 	<br>
-	<label for="password">Password:</lablel>
+	<label for="password">{% trans "password" %}:</lablel>
 	<input type="text" name="password" value="" id="password">	
 	<br>
-	<input type="submit" value="login" />
+	<input type={% trans "Submit" %} value="login" />
 </form>

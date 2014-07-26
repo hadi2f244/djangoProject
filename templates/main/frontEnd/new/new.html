@@ -1,4 +1,5 @@
 {% extends "main/frontEnd/base.html" %}
+{% load i18n %}
 {% load static %}
 {% block title %}{{new.title}}{% endblock %}
 {% block script %}
@@ -12,6 +13,6 @@
 
 <h1>{{new.title}} </h1>
 <p> {{new.body|safe}} </p>
-<h5> Published date: {{new.pub_date}} </h5>
+<h5> {% trans "Published date" %}: {{new.pub_date}} </h5>
 {% endblock %}
 

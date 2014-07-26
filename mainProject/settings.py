@@ -59,7 +59,7 @@ LANGUAGES = (
   ('en', _('English')),
 )
 
-LOCALE_PATHS=('/home/hadi2f244/codes/djangoMain2/locale',)
+LOCALE_PATHS=(os.path.join(mainPath, "locale"),)
 
 
 # If you set this to False, Django will not use timezone-aware datetimes.
