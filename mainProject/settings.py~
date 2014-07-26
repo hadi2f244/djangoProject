@@ -52,8 +52,6 @@ USE_I18N = True
 # calendars according to the current locale.
 USE_L10N = True
 
-ADMIN_LANGUAGE_CODE = 'fa-IR'
-
 #LOCALE_PATHS =  ("/home/hadi2f244/codes/djangoMain2/locale",)
 _ = lambda s: s
 LANGUAGES = (
