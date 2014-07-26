@@ -8,3 +8,6 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.title
+    class Meta:
+        verbose_name=_('Category')
+        verbose_name_plural=_('Categories')

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-26 15:02+0430\n"
+"POT-Creation-Date: 2014-07-26 17:31+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,15 +30,27 @@ msgstr "دامنه"
 msgid "name"
 msgstr "نام"
 
+#: blog/models.py:12
+#, fuzzy
+msgid "Blog"
+msgstr "بلاگ ها"
+
+#: blog/models.py:13 templates/main/backEnd/base.html:34
+#: templates/main/backEnd/blog/blogs.html:3
+#: templates/main/backEnd/blog/blogs.html:15
+msgid "Blogs"
+msgstr "بلاگ ها"
+
 #: blog/article/forms.py:16 blog/article/forms.py:28 blog/article/models.py:16
+#: blog/category/models.py:12
 msgid "Category"
-msgstr "دسته ها"
+msgstr "دسته"
 
 #: blog/article/models.py:11 blog/category/models.py:6
 msgid "title"
 msgstr "عنوان"
 
-#: blog/article/models.py:12 blog/article/models.py:33
+#: blog/article/models.py:12 blog/article/models.py:35
 msgid "body"
 msgstr "متن"
 
@@ -56,33 +68,65 @@ msgstr "تاریخ انتشار"
 msgid "hide"
 msgstr "پنهان کردن"
 
-#: blog/article/models.py:17 blog/article/models.py:37
+#: blog/article/models.py:17 blog/article/models.py:39
 #: blog/category/models.py:7
 #, fuzzy
 msgid "blog"
 msgstr "هیچ بلاگی موجود نیست!"
 
-#: blog/article/models.py:32 templates/blog/backEnd/comment/cArticle.html:26
+#: blog/article/models.py:28 blog/article/models.py:37
+#: templates/blog/backEnd/comment/comment.html:20
+#: templates/blog/backEnd/comment/comments.html:19
+msgid "Article"
+msgstr "مقاله"
+
+#: blog/article/models.py:29 templates/blog/backEnd/base.html:30
+#: templates/blog/backEnd/article/articles.html:3
+#: templates/blog/backEnd/article/articles.html:15
+#: templates/blog/backEnd/category/category.html:20
+#: templates/blog/backEnd/comment/cArticles.html:5
+#: templates/blog/frontEnd/base.html:32
+#: templates/blog/frontEnd/article/articles.html:3
+#: templates/blog/frontEnd/article/articles.html:10
+#: templates/blog/frontEnd/category/category.html:14
+msgid "Articles"
+msgstr "مقاله ها"
+
+#: blog/article/models.py:34 templates/blog/backEnd/comment/cArticle.html:26
 #: templates/blog/backEnd/comment/comment.html:19
 #: templates/blog/backEnd/comment/comments.html:20
 #: templates/blog/frontEnd/article/article.html:24
 msgid "writer"
 msgstr "نویسنده"
 
-#: blog/article/models.py:34 templates/blog/backEnd/comment/cArticle.html:28
+#: blog/article/models.py:36 templates/blog/backEnd/comment/cArticle.html:28
 #: templates/blog/frontEnd/article/article.html:26
 msgid "date"
 msgstr "تاریخ"
 
-#: blog/article/models.py:35 templates/blog/backEnd/comment/comment.html:20
-#: templates/blog/backEnd/comment/comments.html:19
-msgid "Article"
-msgstr "مقاله"
-
-#: blog/article/models.py:36
-#, fuzzy
+#: blog/article/models.py:38
 msgid "seen"
 msgstr "دیده شده"
+
+#: blog/article/models.py:45
+msgid "Comment"
+msgstr "نظر"
+
+#: blog/article/models.py:46 templates/blog/backEnd/base.html:31
+#: templates/blog/backEnd/comment/comments.html:3
+#: templates/blog/backEnd/comment/comments.html:15
+msgid "Comments"
+msgstr "نظر ها"
+
+#: blog/category/models.py:13 templates/blog/backEnd/base.html:32
+#: templates/blog/backEnd/article/article.html:27
+#: templates/blog/backEnd/category/categories.html:3
+#: templates/blog/backEnd/category/categories.html:17
+#: templates/blog/frontEnd/base.html:33
+#: templates/blog/frontEnd/category/categories.html:3
+#: templates/blog/frontEnd/category/categories.html:13
+msgid "Categories"
+msgstr "دسته ها"
 
 #: mainProject/settings.py:58
 msgid "Persian"
@@ -106,8 +150,15 @@ msgid "Hide"
 msgstr "پنهان کردن"
 
 #: new/models.py:14
-#, fuzzy
 msgid "New"
+msgstr "خبر"
+
+#: new/models.py:15 templates/main/backEnd/base.html:33
+#: templates/main/backEnd/new/news.html:3
+#: templates/main/backEnd/new/news.html:15
+#: templates/main/frontEnd/base.html:31
+#: templates/main/frontEnd/new/news.html:4
+msgid "News"
 msgstr "اخبار"
 
 #: templates/blog/backEnd/base.html:20
@@ -119,34 +170,6 @@ msgstr "سلام"
 #: templates/blog/backEnd/base.html:21 templates/main/backEnd/base.html:24
 msgid "Logout"
 msgstr "خروج"
-
-#: templates/blog/backEnd/base.html:30
-#: templates/blog/backEnd/article/articles.html:3
-#: templates/blog/backEnd/article/articles.html:15
-#: templates/blog/backEnd/category/category.html:20
-#: templates/blog/backEnd/comment/cArticles.html:5
-#: templates/blog/frontEnd/base.html:32
-#: templates/blog/frontEnd/article/articles.html:3
-#: templates/blog/frontEnd/article/articles.html:10
-#: templates/blog/frontEnd/category/category.html:14
-msgid "Articles"
-msgstr "مقاله ها"
-
-#: templates/blog/backEnd/base.html:31
-#: templates/blog/backEnd/comment/comments.html:3
-#: templates/blog/backEnd/comment/comments.html:15
-msgid "Comments"
-msgstr "نظر ها"
-
-#: templates/blog/backEnd/base.html:32
-#: templates/blog/backEnd/article/article.html:27
-#: templates/blog/backEnd/category/categories.html:3
-#: templates/blog/backEnd/category/categories.html:17
-#: templates/blog/frontEnd/base.html:33
-#: templates/blog/frontEnd/category/categories.html:3
-#: templates/blog/frontEnd/category/categories.html:13
-msgid "Categories"
-msgstr "دسته ها"
 
 #: templates/blog/backEnd/base.html:33
 msgid "Profile"
@@ -285,18 +308,15 @@ msgstr "داشبورد"
 
 #: templates/blog/backEnd/djangoBlog/login.html:3
 #: templates/main/backEnd/main/login.html:3
-#, fuzzy
 msgid "Invalid username or password"
 msgstr "نام کاربری یا کلمه عبور اشتباه!"
 
 #: templates/blog/backEnd/djangoBlog/login.html:6
 #: templates/main/backEnd/main/login.html:6
-#, fuzzy
 msgid "Username"
 msgstr "نام کاربری"
 
 #: templates/blog/backEnd/djangoBlog/login.html:9
-#, fuzzy
 msgid "Password"
 msgstr "کلمه عبور"
 
@@ -311,19 +331,6 @@ msgstr "صفحه ادمین"
 #: templates/blog/frontEnd/article/article.html:38
 msgid "Please login first to leave a comment!"
 msgstr "برای نوشتن نظر ابتدا وارد شوید!"
-
-#: templates/main/backEnd/base.html:33 templates/main/backEnd/new/news.html:3
-#: templates/main/backEnd/new/news.html:15
-#: templates/main/frontEnd/base.html:31
-#: templates/main/frontEnd/new/news.html:4
-msgid "News"
-msgstr "اخبار"
-
-#: templates/main/backEnd/base.html:34
-#: templates/main/backEnd/blog/blogs.html:3
-#: templates/main/backEnd/blog/blogs.html:15
-msgid "Blogs"
-msgstr "بلاگ ها"
 
 #: templates/main/backEnd/base.html:35
 msgid "users"

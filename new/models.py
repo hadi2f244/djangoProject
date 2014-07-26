@@ -12,6 +12,7 @@ class New(models.Model):
     hide = models.BooleanField(verbose_name=_('Hide'))
     class Meta:
         verbose_name = _('New')
+        verbose_name_plural=_('News')
     def __unicode__(self):
         return self.title
 

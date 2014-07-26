@@ -8,3 +8,6 @@ class Blog(models.Model):
     name=models.CharField(verbose_name=_('name'),max_length=200)
     def __unicode__(self):              # __unicode__ on Python 2
         return self.domain
+    class Meta:
+        verbose_name=_('Blog')
+        verbose_name_plural=_('Blogs')

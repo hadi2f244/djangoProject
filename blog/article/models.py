@@ -24,7 +24,9 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return reverse('article.views.article', args=[str(self.id)])
-
+    class Meta:
+        verbose_name=_('Article')
+        verbose_name_plural=_('Articles')
 
 ############################################################################################
 
@@ -40,6 +42,8 @@ class Comment(models.Model):
         return self.writer
 
     class Meta:
+        verbose_name=_('Comment')
+        verbose_name_plural=_('Comments')
         ordering = ('date',)
 
 
