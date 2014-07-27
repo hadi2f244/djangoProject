@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-26 18:45+0430\n"
+"POT-Creation-Date: 2014-07-26 21:07+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -435,6 +435,15 @@ msgstr ""
 msgid "You are now registered. Activation email sent."
 msgstr ""
 
+#: user/admin.py:67
+#, fuzzy
+msgid "Personal info"
+msgstr "اطلاعات شخصی"
+
+#: user/admin.py:68
+msgid "Permissions"
+msgstr "دسترسی"
+
 #: user/models.py:20
 msgid "user must have an email address"
 msgstr "کاربر باید یک ایمیل داشته باشد"
@@ -452,22 +461,22 @@ msgstr "کاربر"
 msgid "MyUsers"
 msgstr "کاربرها"
 
-#: user/models.py:65
+#: user/models.py:64
 msgid "Email Address"
 msgstr "آدرس ایمیل"
 
-#: user/models.py:70
+#: user/models.py:69
 msgid "about me"
 msgstr "درباره من"
 
-#: user/models.py:75
+#: user/models.py:74
 msgid "activation key"
 msgstr "کد فعالسازی"
 
-#: user/models.py:82
+#: user/models.py:81
 msgid "is_active"
 msgstr "فعال"
 
-#: user/models.py:83
+#: user/models.py:82
 msgid "is_admin"
 msgstr "ادمین"

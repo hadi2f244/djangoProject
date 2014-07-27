@@ -41,7 +41,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'fa'
+LANGUAGE_CODE = 'fa_IR'
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -54,12 +54,13 @@ USE_L10N = True
 
 #LOCALE_PATHS =  ("/home/hadi2f244/codes/djangoMain2/locale",)
 _ = lambda s: s
+
 LANGUAGES = (
   ('fa', _('Persian')),
   ('en', _('English')),
 )
 
-ADMIN_LANGUAGE_CODE = 'fa-IR'
+ADMIN_LANGUAGE_CODE = 'fa_IR'
 
 #LOCALE_PATHS=( mainPath + 'locale',)
 LOCALE_PATHS = os.path.join(mainPath, "locale"),
@@ -242,7 +243,7 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, "blog/uploads")  #don't touch it is for uploading
+CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, "blog/uploads")  # don't touch it is for uploading :)
 CKEDITOR_RESTRICT_BY_USER = True
 
 CKEDITOR_CONFIGS = {
@@ -285,5 +286,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'hadi2f2@gmail.com'
-EMAIL_HOST_PASSWORD = 'ihnd2f2gmail'
+EMAIL_HOST_PASSWORD = ''
 ACCOUNT_ACTIVATION_DAYS = 7

@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 from user.models import MyUser
-
+from django.utils.translation import ugettext_lazy as _
 
 class UserCreationForm(forms.ModelForm):
     """A form for creating new user. Includes all the required
@@ -64,8 +64,8 @@ class MyUserAdmin(UserAdmin):
     list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
-        ('Personal info', {'fields': ('email', 'aboutme', 'activation_key')}),
-        ('Permissions', {'fields': ('is_admin', 'is_active')}),
+        (_('Personal info'), {'fields': ('email', 'aboutme', 'activation_key')}),
+        (_('Permissions'), {'fields': ('is_admin', 'is_active')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
