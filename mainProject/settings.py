@@ -143,6 +143,13 @@ MIDDLEWARE_CLASSES = (
 
 
 )
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': 'test1.com:8000',
+    }
+}
+
 
 X_FRAME_OPTIONS='DENY' #config of clickjacking middleware
 

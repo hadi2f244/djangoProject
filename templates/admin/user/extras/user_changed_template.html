@@ -46,7 +46,11 @@
 {% endif %}
 {% block field_sets %}
 {% for fieldset in adminform %}
-  {% include "admin/includes/fieldset.html" %}
+    {% include "admin/includes/fieldset.html" %}
+    {% ifequal fieldset.name 'External Links' %}
+        <a href=http://{{ siteName }}/admin/blog/blog/{{ blogId }}>{% trans 'go to superuser blog admin' %}</a>
+    {% endifequal %}
+
 {% endfor %}
 {% endblock %}
 
@@ -58,11 +62,6 @@
     {% include inline_admin_formset.opts.template %}
 {% endfor %}
 {% endblock %}
-
-<div>
-<h3>accessing to superuser admin blog page</h3>
-<a href=http://{{ siteName }}/admin/blog/blog/{{ blogId }}>{% trans 'go to superuser blog admin' %}</a>
-</div>
 {% block after_related_objects %}{% endblock %}
 
 {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}

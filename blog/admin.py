@@ -36,6 +36,7 @@ class blogAdmin(ModelAdmin):
 
     fieldsets = (
         (None, {'fields': ('user', 'domain', 'name',)}),
+        (_('External Links'), {'fields' : ()}),
         #('Data', {'fields': ('domain', 'name')}),
     )
 
