@@ -60,8 +60,8 @@
 {% endblock %}
 
 <div>
-<h3>accessing to blogs</h3>
-<a href=http://{{ adminform.form.instance.domain }}.{{ sitename }}/administrator/>{% trans 'this user admin page' %}</a>
+<h1>accessing to blogs test</h1>
+<a href=http://{{ adminform.form.instance.domain }}.{{ sitename }}/administrator/>{% trans 'this user blog administrator' %}</a>
 </div>
 {% block after_related_objects %}{% endblock %}
 

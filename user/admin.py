@@ -5,7 +5,9 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.utils.translation import ugettext_lazy as _
 from user.models import MyUser
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from blog.models import Blog
 
 class UserCreationForm(forms.ModelForm):
     """A form for creating new user. Includes all the required
@@ -56,6 +58,7 @@ class MyUserAdmin(UserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm
     add_form = UserCreationForm
+    change_form_template = 'admin/user/extras/user_changed_template.html'
 
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
@@ -78,6 +81,14 @@ class MyUserAdmin(UserAdmin):
     search_fields = ('email', 'username')
     ordering = ('email', 'username')
     filter_horizontal = ()
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        user = MyUser.objects.get(id = object_id)
+        blog = Blog.objects.get(user=user)
+        extra_context['blogId'] = blog.id
+        extra_context['siteName'] = settings.SITE_NAME
+        return super(MyUserAdmin, self).change_view(request, object_id,
+            form_url, extra_context=extra_context)
 
 # Now register the new UserAdmin...
 admin.site.register(MyUser, MyUserAdmin)
