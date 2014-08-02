@@ -60,11 +60,6 @@ LANGUAGES = (
   ('en', _('English')),
 )
 
-<<<<<<< HEAD
-=======
-ADMIN_LANGUAGE_CODE = 'fa_IR'
->>>>>>> 3a3ec1e31d1f05e4ade2aaeaa84b97abc51e14c6
-
 
 #LOCALE_PATHS=( mainPath + 'locale',)
 LOCALE_PATHS = (
