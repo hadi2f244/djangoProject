@@ -6,8 +6,8 @@
 {% block sidebar %}
     <ul>
 	    <hr width = 75%>
-	    <li><a href="/administrator/blogs/edit/{{blog.user_id}}">{% trans "Edit" %}</a></li>
-        <li><a href="/administrator/blogs/del/{{blog.user_id}}">{% trans "Delete" %}</a></li> {% comment %}maybe this process have security bug must be ajax {% endcomment %}
+	    <li><a href="/administrator/blogs/edit/{{blog.id}}">{% trans "Edit" %}</a></li>
+        <li><a href="/administrator/blogs/del/{{blog.id}}">{% trans "Delete" %}</a></li> {% comment %}maybe this process have security bug must be ajax {% endcomment %}
     </ul>
 {% endblock %}
 {% block content %}

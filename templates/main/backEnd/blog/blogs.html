@@ -15,7 +15,7 @@
         <h1> {% trans "Blogs" %} : </h1>
         {% for blog in blogs %}
             <div>
-                <h2><a href="/administrator/blogs/get/{{blog.user_id}}/">{{blog.domain}}</a></h2>
+                <h2><a href="/administrator/blogs/get/{{blog.id}}/">{{blog.domain}}</a></h2>
             </div>
             <hr width="60%">
         {% endfor %}

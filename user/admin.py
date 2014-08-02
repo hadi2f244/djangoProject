@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
+from django.utils.translation import ugettext_lazy as _
 from user.models import MyUser
 from django.utils.translation import ugettext_lazy as _
 
@@ -39,7 +39,7 @@ class UserChangeForm(forms.ModelForm):
     the user, but replaces the password field with admin's
     password hash display field.
     """
-    password = ReadOnlyPasswordHashField()
+    password = ReadOnlyPasswordHashField(label=_('password'))
 
     class Meta:
         model = MyUser

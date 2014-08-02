@@ -7,3 +7,4 @@
 7-read chapter 12 of djangoBook when you want to pulish your site
 8-Give comfortable permission to files
 9-search ### in all of project
+http://www.slideshare.net/lincolnloop/customizing-the-django-admin

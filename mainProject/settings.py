@@ -19,7 +19,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(mainPath, "mainProject.db"),                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(mainPath, "mainProject.db"),# Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -60,11 +60,18 @@ LANGUAGES = (
   ('en', _('English')),
 )
 
+<<<<<<< HEAD
+=======
 ADMIN_LANGUAGE_CODE = 'fa_IR'
+>>>>>>> 3a3ec1e31d1f05e4ade2aaeaa84b97abc51e14c6
+
 
 #LOCALE_PATHS=( mainPath + 'locale',)
-LOCALE_PATHS = os.path.join(mainPath, "locale"),
-
+LOCALE_PATHS = (
+    os.path.join(mainPath, "locale"),
+    "/usr/local/lib/python2.7/dist-packages/django/contrib/auth/locale",
+)
+ADMIN_LANGUAGE_CODE = 'fa-IR'
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 

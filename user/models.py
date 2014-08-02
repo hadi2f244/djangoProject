@@ -60,6 +60,7 @@ class MyUser(AbstractBaseUser):
         unique=True,
     )
 
+
     email = models.EmailField(
         verbose_name=_('Email Address'),
         max_length=255,

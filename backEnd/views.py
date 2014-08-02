@@ -67,13 +67,13 @@ def blogs(request,context):
 #################################################################################################
 @backEnd
 def blog(request,context,blog_id):
-    context['blog'] = Blog.objects.get(user_id=blog_id)
+    context['blog'] = Blog.objects.get(id=blog_id)
     context['blogAdminUrl'] = "http://"+ context['blog'].domain +"."+ settings.SITE_NAME +"/administrator/dashBoard"
     return render(request,"main/backEnd/blog/blog.html",context)
 ################################################################################################
 @backEnd
 def blogDel(request,context,blog_id):
-    Blog.objects.get(user_id=blog_id).delete()
+    Blog.objects.get(id=blog_id).delete()
     return HttpResponseRedirect("/administrator/blogs/all")
 ################################################################################################
 
@@ -81,7 +81,7 @@ def blogDel(request,context,blog_id):
 def blogEdit(request,context,blog_id):
     #if blog with this blo_id doesn't exist ####
 
-    lastBlog=Blog.objects.get(user_id=blog_id)#So we dont need to send blog.id to BlogForm that did in blogCreate views
+    lastBlog=Blog.objects.get(id=blog_id)#So we dont need to send blog.id to BlogForm that did in blogCreate views
     if lastBlog is None: # Is there any blog to edit!
         return HttpResponseRedirect("/administrator/blogs/all")
 
@@ -92,7 +92,7 @@ def blogEdit(request,context,blog_id):
             new_blog=blogForm.save()
             print "ohhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
             print new_blog
-            return HttpResponseRedirect("/administrator/blogs/get/"+new_blog.user_id)
+            return HttpResponseRedirect("/administrator/blogs/get/"+new_blog.id)
     else:# if user enter for first time So needed to show blog informations
         blogForm=BlogForm(instance=lastBlog)
     context['method']='blogEdit'
@@ -106,7 +106,7 @@ def blogCreate(request,context):
     if 'submitBlog' in request.POST: #means you click on submit button named createArticle in submit_article.html
         blogForm = BlogForm(request.POST)
         if blogForm.is_valid():
-            return HttpResponseRedirect("/administrator/blogs/get/"+ str(blogForm.save().user_id))
+            return HttpResponseRedirect("/administrator/blogs/get/"+ str(blogForm.save().id))
     else:
         blogForm = BlogForm()#create a simple ArticleForm
     context['method']='blogCreate'

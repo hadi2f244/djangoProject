@@ -8,7 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
+"POT-Creation-Date: 2014-07-28 19:11+0430\n"
+=======
 "POT-Creation-Date: 2014-07-26 21:07+0430\n"
+>>>>>>> 3a3ec1e31d1f05e4ade2aaeaa84b97abc51e14c6
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,6 +157,30 @@ msgstr "خبر"
 msgid "News"
 msgstr "اخبار"
 
+#: templates/admin/base.html:28
+msgid "Welcome,"
+msgstr ""
+
+#: templates/admin/base.html:33
+msgid "Documentation"
+msgstr ""
+
+#: templates/admin/base.html:36
+msgid "Change password"
+msgstr "کلمه عبور"
+
+#: templates/admin/base.html:38
+msgid "Log out"
+msgstr "ورود"
+
+#: templates/admin/base.html:47 templates/blog/frontEnd/base.html:31
+msgid "Home"
+msgstr "صفحه ی اصلی"
+
+#: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
+msgid "Administration"
+msgstr "صفحه ادمین"
+
 #: templates/blog/backEnd/base.html:20
 #: templates/blog/frontEnd/djangoBlog/home.html:6
 #: templates/main/backEnd/base.html:23
@@ -230,7 +258,6 @@ msgstr "انصراف"
 #: templates/blog/backEnd/article/submit_article.html:25
 #: templates/blog/backEnd/category/submit_category.html:21
 #: templates/blog/backEnd/comment/submit_comment.html:23
-#: templates/blog/backEnd/djangoBlog/login.html:12
 #: templates/blog/frontEnd/article/article.html:35
 #: templates/main/backEnd/blog/submit_blog.html:25
 #: templates/main/backEnd/main/login.html:12
@@ -312,9 +339,10 @@ msgstr "نام کاربری"
 msgid "Password"
 msgstr "کلمه عبور"
 
-#: templates/blog/frontEnd/base.html:31
-msgid "Home"
-msgstr "صفحه ی اصلی"
+#: templates/blog/backEnd/djangoBlog/login.html:12
+#: templates/main/frontEnd/base.html:32
+msgid "Login"
+msgstr "ورود"
 
 #: templates/blog/frontEnd/base.html:34
 msgid "Administrator page"
@@ -342,7 +370,7 @@ msgstr "ساخت بلاگ جدید"
 msgid "No blog"
 msgstr "هیچ بلاگی موجود نیست!"
 
-#: templates/main/backEnd/main/login.html:9
+#: templates/main/backEnd/main/login.html:9 user/admin.py:42
 msgid "password"
 msgstr "کلمه عبور"
 
@@ -355,14 +383,14 @@ msgstr "ساخت خبر جدید"
 msgid "No new"
 msgstr "هیچ خبری موجود نیست!"
 
-#: templates/main/frontEnd/base.html:32
-msgid "Login"
-msgstr "ورود"
-
 #: templates/main/frontEnd/base.html:33
 #: templates/main/frontEnd/user/login.html:14
 msgid "Register"
 msgstr "ثبت نام"
+
+#: templates/main/frontEnd/base.html:39
+msgid "Change language"
+msgstr ""
 
 #: templates/main/frontEnd/user/activate.html:6
 msgid "Account activation failed"
@@ -442,7 +470,11 @@ msgstr "اطلاعات شخصی"
 
 #: user/admin.py:68
 msgid "Permissions"
+<<<<<<< HEAD
+msgstr "دسترسی ها"
+=======
 msgstr "دسترسی"
+>>>>>>> 3a3ec1e31d1f05e4ade2aaeaa84b97abc51e14c6
 
 #: user/models.py:20
 msgid "user must have an email address"

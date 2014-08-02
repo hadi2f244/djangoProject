@@ -14,7 +14,7 @@ def articles(request,context):
         language = request.COOKIES['lang']
     if 'lang' in request.session:
         session_language = request.session['lang']
-    context['articles'] = Article.objects.filter(blog_id=request.blog.user_id)
+    context['articles'] = Article.objects.filter(blog_id=request.blog.id)
     #context['articles'] = Article.objects.get(hide=True)
     context['language'] = language
     context['session_language'] = session_language
@@ -25,8 +25,8 @@ def articles(request,context):
 @frontEnd
 def article(request,context,article_id):
 
-    context['article'] = Article.objects.get(id=article_id,blog_id=request.blog.user_id)
-    context['commnets'] = Comment.objects.filter(article = article_id,blog_id=request.blog.user_id)#article_id)
+    context['article'] = Article.objects.get(id=article_id,blog_id=request.blog.id)
+    context['commnets'] = Comment.objects.filter(article = article_id,blog_id=request.blog.id)#article_id)
     if True :#context['userAuthenticated']:#see frontEnd decorator
         #################################
         #check commment create:
@@ -35,7 +35,7 @@ def article(request,context,article_id):
             if comment_form.is_valid():
                 writer=request.POST['writer']
                 body=request.POST['body']
-                Comment.objects.create(writer=writer,body=body,article=context['article'],blog_id=request.blog.user_id)
+                Comment.objects.create(writer=writer,body=body,article=context['article'],blog_id=request.blog.id)
                 return HttpResponseRedirect('') #just for reload the page and cleaning the fields
         else:
             comment_form=CommentForm() #create a simple CommentForm
