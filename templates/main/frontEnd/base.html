@@ -27,23 +27,14 @@
     <div id="sidebar"> 
       <ul>
       	<li><a href="/news/all">{% trans "News" %}</a></li>
-        <li><a href="/user/login">{% trans "Login" %}</a></li>
-        <li><a href="/user/register">{% trans "Register" %}</a></li>
+        <li><a href="/accounts/login">{% trans "Login" %}</a></li>
+        <li><a href="/accounts/register">{% trans "Register" %}</a></li>
 		<li><a href="/search">{% trans "Search" %}</a></li>
       </ul>
       {% block sidebar%}
       {% endblock %}
     </div>
-    {% trans 'Change language' %}
-    <form action="/i18n/setlang/" method="post" style="display: inline;">{% csrf_token %}
-      <div style="display: inline;">
-        <select name="language" onchange="javascript:form.submit()">
-          {% for lang in LANGUAGES %}
-            <option value="{{ lang.0 }}"{% ifequal LANGUAGE_CODE lang.0 %} selected="selected"{% endifequal %}>{{ lang.1 }}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </form>
+
     <div id="content">
 
       <h1>{{ log }}</h1>

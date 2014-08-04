@@ -3,13 +3,14 @@ import datetime
 from django.core.urlresolvers import reverse
 from blog.category.models import Category
 from blog.models import Blog
+from django_bleach.models import BleachField
 from django.utils.translation import ugettext_lazy as _
 ############################################################################################
 
 # Create your models here.
 class Article(models.Model):
     title = models.CharField(verbose_name=_('title'),max_length=200)
-    body = models.TextField(verbose_name=_('body'))
+    body = BleachField(verbose_name=_('Body'))
     pub_date = models.DateTimeField(verbose_name=_('Published date'),default=datetime.datetime.now)
     #likes = models.IntegerField(default = 0)
     hide = models.BooleanField(verbose_name=_('hide'))
