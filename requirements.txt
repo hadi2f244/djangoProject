@@ -1,0 +1,9 @@
+django==1.5.5
+django-dajax
+django-dajaxice
+django-haystack
+django-ckeditor
+django-bleach
+South
+
+
