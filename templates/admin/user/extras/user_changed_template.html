@@ -47,11 +47,20 @@
 {% block field_sets %}
 {% for fieldset in adminform %}
     {% include "admin/includes/fieldset.html" %}
-    {% ifequal fieldset.name 'External Links' %}
-        <a href=http://{{ siteName }}/admin/blog/blog/{{ blogId }}>{% trans 'go to superuser blog admin' %}</a>
-    {% endifequal %}
-
 {% endfor %}
+
+    {% comment %}{% ifequal fieldset.name 'External Links' %} {% endifequal %}{% endcomment %}
+<fieldset class="module aligned ">
+    <h2>{% trans 'External Links' %}</h2>
+    <div class="form-row field-blog">
+        {% if blogId %}
+            <div><a href=http://{{ siteName }}/admin/blog/blog/{{ blogId }}>{% trans "User's blog" %}</a></div>
+        {% else %}
+            <div>No blog</div>
+        {% endif %}
+    </div>
+</fieldset>
+
 {% endblock %}
 
 {% block after_field_sets %}

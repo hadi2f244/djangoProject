@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^$', include('new.urls')),
     url(r'^news/', include('new.urls')),
     url(r'^accounts/', include('user.urls')),
-    url(r'^administrator/', include('backEnd.urls')),
+    #url(r'^administrator/', include('backEnd.urls')),
     # Examples:
     # url(r'^$', 'mainProject.views.home', name='home'),
     # url(r'^mainProject/', include('mainProject.foo.urls')),

@@ -8,11 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2014-07-28 19:11+0430\n"
-=======
-"POT-Creation-Date: 2014-07-26 21:07+0430\n"
->>>>>>> 3a3ec1e31d1f05e4ade2aaeaa84b97abc51e14c6
+"POT-Creation-Date: 2014-08-05 05:03+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,41 +18,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: blog/forms.py:10 blog/models.py:6
+#: blog/forms.py:10 blog/models.py:7
 msgid "user"
 msgstr "کاربر"
 
-#: blog/models.py:7 templates/main/backEnd/blog/blog.html:15
+#: blog/models.py:8 templates/main/backEnd/blog/blog.html:15
 msgid "domain"
 msgstr "دامنه"
 
-#: blog/models.py:8 templates/main/backEnd/blog/blog.html:16
+#: blog/models.py:9 templates/main/backEnd/blog/blog.html:16
 msgid "name"
 msgstr "نام"
 
-#: blog/models.py:12 blog/article/models.py:17 blog/article/models.py:39
+#: blog/models.py:15 blog/article/models.py:18 blog/article/models.py:40
 #: blog/category/models.py:7
 msgid "blog"
 msgstr "بلاگ"
 
-#: blog/models.py:13
+#: blog/models.py:16
 msgid "blogs"
 msgstr "بلاگ ها"
 
-#: blog/article/forms.py:16 blog/article/forms.py:28 blog/article/models.py:16
+#: blog/article/forms.py:16 blog/article/forms.py:28 blog/article/models.py:17
 #: blog/category/models.py:12
 msgid "Category"
 msgstr "دسته"
 
-#: blog/article/models.py:11 blog/category/models.py:6
+#: blog/article/models.py:12 blog/category/models.py:6
 msgid "title"
 msgstr "عنوان"
 
-#: blog/article/models.py:12 blog/article/models.py:35
-msgid "body"
+#: blog/article/models.py:13 new/models.py:11
+msgid "Body"
 msgstr "متن"
 
-#: blog/article/models.py:13 new/models.py:11
+#: blog/article/models.py:14 new/models.py:12
 #: templates/blog/backEnd/article/article.html:19
 #: templates/blog/backEnd/comment/cArticle.html:18
 #: templates/blog/backEnd/comment/comment.html:18
@@ -66,17 +62,17 @@ msgstr "متن"
 msgid "Published date"
 msgstr "تاریخ انتشار"
 
-#: blog/article/models.py:15
+#: blog/article/models.py:16
 msgid "hide"
 msgstr "پنهان کردن"
 
-#: blog/article/models.py:28 blog/article/models.py:37
+#: blog/article/models.py:29 blog/article/models.py:38
 #: templates/blog/backEnd/comment/comment.html:20
 #: templates/blog/backEnd/comment/comments.html:19
 msgid "Article"
 msgstr "مقاله"
 
-#: blog/article/models.py:29 templates/blog/backEnd/base.html:30
+#: blog/article/models.py:30 templates/blog/backEnd/base.html:30
 #: templates/blog/backEnd/article/articles.html:3
 #: templates/blog/backEnd/article/articles.html:15
 #: templates/blog/backEnd/category/category.html:20
@@ -88,27 +84,31 @@ msgstr "مقاله"
 msgid "Articles"
 msgstr "مقاله ها"
 
-#: blog/article/models.py:34 templates/blog/backEnd/comment/cArticle.html:26
+#: blog/article/models.py:35 templates/blog/backEnd/comment/cArticle.html:26
 #: templates/blog/backEnd/comment/comment.html:19
 #: templates/blog/backEnd/comment/comments.html:20
 #: templates/blog/frontEnd/article/article.html:24
 msgid "writer"
 msgstr "نویسنده"
 
-#: blog/article/models.py:36 templates/blog/backEnd/comment/cArticle.html:28
+#: blog/article/models.py:36
+msgid "body"
+msgstr "متن"
+
+#: blog/article/models.py:37 templates/blog/backEnd/comment/cArticle.html:28
 #: templates/blog/frontEnd/article/article.html:26
 msgid "date"
 msgstr "تاریخ"
 
-#: blog/article/models.py:38
+#: blog/article/models.py:39
 msgid "seen"
 msgstr "دیده شده"
 
-#: blog/article/models.py:45
+#: blog/article/models.py:46
 msgid "Comment"
 msgstr "نظر"
 
-#: blog/article/models.py:46 templates/blog/backEnd/base.html:31
+#: blog/article/models.py:47 templates/blog/backEnd/base.html:31
 #: templates/blog/backEnd/comment/comments.html:3
 #: templates/blog/backEnd/comment/comments.html:15
 msgid "Comments"
@@ -124,32 +124,28 @@ msgstr "نظر ها"
 msgid "Categories"
 msgstr "دسته ها"
 
-#: mainProject/settings.py:58
+#: mainProject/settings.py:59
 msgid "Persian"
 msgstr "فارسی"
 
-#: mainProject/settings.py:59
+#: mainProject/settings.py:60
 msgid "English"
 msgstr "انگلیسی"
 
-#: new/models.py:9
+#: new/models.py:10
 msgid "Title"
 msgstr "عنوان"
 
-#: new/models.py:10
-msgid "Body"
-msgstr "متن"
-
-#: new/models.py:12 templates/blog/backEnd/article/articles.html:25
+#: new/models.py:13 templates/blog/backEnd/article/articles.html:25
 #: templates/main/backEnd/new/news.html:25
 msgid "Hide"
 msgstr "پنهان کردن"
 
-#: new/models.py:14
+#: new/models.py:15
 msgid "New"
 msgstr "خبر"
 
-#: new/models.py:15 templates/main/backEnd/base.html:33
+#: new/models.py:16 templates/main/backEnd/base.html:33
 #: templates/main/backEnd/new/news.html:3
 #: templates/main/backEnd/new/news.html:15
 #: templates/main/frontEnd/base.html:31
@@ -173,13 +169,50 @@ msgstr "کلمه عبور"
 msgid "Log out"
 msgstr "ورود"
 
-#: templates/admin/base.html:47 templates/blog/frontEnd/base.html:31
+#: templates/admin/base.html:47
+#: templates/admin/blog/extras/blog_changed_template.html:18
+#: templates/admin/user/extras/user_changed_template.html:18
+#: templates/blog/frontEnd/base.html:31
 msgid "Home"
 msgstr "صفحه ی اصلی"
 
 #: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
 msgid "Administration"
 msgstr "صفحه ادمین"
+
+#: templates/admin/blog/extras/blog_changed_template.html:21
+#: templates/admin/user/extras/user_changed_template.html:21
+msgid "Add"
+msgstr ""
+
+#: templates/admin/blog/extras/blog_changed_template.html:31
+#: templates/admin/user/extras/user_changed_template.html:31
+msgid "History"
+msgstr ""
+
+#: templates/admin/blog/extras/blog_changed_template.html:32
+#: templates/admin/user/extras/user_changed_template.html:32
+msgid "View on site"
+msgstr ""
+
+#: templates/admin/blog/extras/blog_changed_template.html:43
+#: templates/admin/user/extras/user_changed_template.html:43
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+
+#: templates/admin/blog/extras/blog_changed_template.html:60
+#: templates/admin/user/extras/user_changed_template.html:55
+msgid "External Links"
+msgstr "لینک های خارجی"
+
+#: templates/admin/blog/extras/blog_changed_template.html:62
+msgid "Blog administrator page"
+msgstr "صفحه ادمین بلاگ"
+
+#: templates/admin/user/extras/user_changed_template.html:58
+msgid "User's blog"
+msgstr "بلاگ این کاربر"
 
 #: templates/blog/backEnd/base.html:20
 #: templates/blog/frontEnd/djangoBlog/home.html:6
@@ -232,7 +265,7 @@ msgstr "هیچ دسته ای موجود نیست!"
 
 #: templates/blog/backEnd/article/articles.html:9
 msgid "Create new article"
-msgstr "ساخت بلاگ جدید"
+msgstr "ساخت مقاله جدید"
 
 #: templates/blog/backEnd/article/articles.html:28
 #: templates/blog/backEnd/category/category.html:27
@@ -370,7 +403,7 @@ msgstr "ساخت بلاگ جدید"
 msgid "No blog"
 msgstr "هیچ بلاگی موجود نیست!"
 
-#: templates/main/backEnd/main/login.html:9 user/admin.py:42
+#: templates/main/backEnd/main/login.html:9 user/admin.py:45
 msgid "password"
 msgstr "کلمه عبور"
 
@@ -387,10 +420,6 @@ msgstr "هیچ خبری موجود نیست!"
 #: templates/main/frontEnd/user/login.html:14
 msgid "Register"
 msgstr "ثبت نام"
-
-#: templates/main/frontEnd/base.html:39
-msgid "Change language"
-msgstr ""
 
 #: templates/main/frontEnd/user/activate.html:6
 msgid "Account activation failed"
@@ -463,18 +492,14 @@ msgstr ""
 msgid "You are now registered. Activation email sent."
 msgstr ""
 
-#: user/admin.py:67
+#: user/admin.py:71
 #, fuzzy
 msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
-#: user/admin.py:68
+#: user/admin.py:72
 msgid "Permissions"
-<<<<<<< HEAD
 msgstr "دسترسی ها"
-=======
-msgstr "دسترسی"
->>>>>>> 3a3ec1e31d1f05e4ade2aaeaa84b97abc51e14c6
 
 #: user/models.py:20
 msgid "user must have an email address"
@@ -493,22 +518,22 @@ msgstr "کاربر"
 msgid "MyUsers"
 msgstr "کاربرها"
 
-#: user/models.py:64
+#: user/models.py:65
 msgid "Email Address"
 msgstr "آدرس ایمیل"
 
-#: user/models.py:69
+#: user/models.py:70
 msgid "about me"
 msgstr "درباره من"
 
-#: user/models.py:74
+#: user/models.py:75
 msgid "activation key"
 msgstr "کد فعالسازی"
 
-#: user/models.py:81
+#: user/models.py:82
 msgid "is_active"
 msgstr "فعال"
 
-#: user/models.py:82
+#: user/models.py:83
 msgid "is_admin"
 msgstr "ادمین"

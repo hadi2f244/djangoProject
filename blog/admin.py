@@ -15,18 +15,9 @@ class BlogChangeForm(forms.ModelForm):
     class Meta:
         model = Blog
 
-    def clean_password(self):
-        # Regardless of what the user provides, return the initial value.
-        # This is done here, rather than on the field, because the
-        # field does not have access to the initial value
-        return self.initial["password"]
-
-
 class blogAdmin(ModelAdmin):
-
     change_form_template = 'admin/blog/extras/blog_changed_template.html'
     form = BlogChangeForm
-
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
         extra_context['sitename'] = settings.SITE_NAME
@@ -34,11 +25,11 @@ class blogAdmin(ModelAdmin):
             form_url, extra_context=extra_context)
 
 
-    fieldsets = (
-        (None, {'fields': ('user', 'domain', 'name',)}),
-        (_('External Links'), {'fields' : ()}),
-        #('Data', {'fields': ('domain', 'name')}),
-    )
+#    fieldsets = (
+#        (None, {'fields': ('user', 'domain', 'name',)}),
+#        (_('External Links'), {'fields' : ()}),
+#        #('Data', {'fields': ('domain', 'name')}),
+#    )
 
     '''
     def get_form(self, request, obj=None, **kwargs):

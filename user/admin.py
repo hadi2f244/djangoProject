@@ -8,6 +8,7 @@ from user.models import MyUser
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from blog.models import Blog
+from django.core.exceptions import ObjectDoesNotExist
 
 class UserCreationForm(forms.ModelForm):
     """A form for creating new user. Includes all the required
@@ -69,7 +70,7 @@ class MyUserAdmin(UserAdmin):
         (None, {'fields': ('username', 'password')}),
         (_('Personal info'), {'fields': ('email', 'aboutme', 'activation_key')}),
         (_('Permissions'), {'fields': ('is_admin', 'is_active')}),
-        (_('External Links'), {'fields' : ()}),
+        #(_('External Links'), {'fields' : ()}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -85,8 +86,12 @@ class MyUserAdmin(UserAdmin):
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
         user = MyUser.objects.get(id = object_id)
-        blog = Blog.objects.get(user=user)
-        extra_context['blogId'] = blog.id
+        try:
+            blog = Blog.objects.get(user=user)
+            extra_context['blogId'] = blog.id
+        except ObjectDoesNotExist:
+            extra_context['blogId'] = None
+
         extra_context['siteName'] = settings.SITE_NAME
         return super(MyUserAdmin, self).change_view(request, object_id,
             form_url, extra_context=extra_context)
