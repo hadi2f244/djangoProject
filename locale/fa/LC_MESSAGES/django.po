@@ -225,7 +225,7 @@ msgstr "جستجو"
 
 #: templates/blog/backEnd/base.html:31 templates/main/backEnd/base.html:37
 msgid "frontEnd"
-msgstr "نمایش سایت"
+msgstr "نمایش بلاگ"
 
 #: templates/blog/backEnd/base.html:36 templates/main/backEnd/base.html:24
 msgid "Logout"
