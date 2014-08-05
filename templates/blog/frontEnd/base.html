@@ -5,43 +5,49 @@
 <html>
 {% language 'fa' %}
 <head>
-
   <title>
     {% block title %}Base template !{% endblock %}
   </title>
 
-  <link rel="stylesheet" type="text/css" href="{% static "blogStatic/css/frontEnd/base.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+  <link href="{% static "blogStatic/css/frontEnd/blog.css" %}" rel="stylesheet">
   <script src="{% static "blogStatic/js/frontEnd/base.js" %}"></script>
   {% block script %}
   {% endblock %}
-  
+
  {% comment %} {% dajaxice_js_import %}{% endcomment %}
 	
 </head>  
 <body>
-  <div id="page">
-  <div id="toparea">
-    <!--<img src="{% static "assets/images/test.png" %}" id="logo" >-->
-    {% block toparea%}{% endblock %}
-   </div> 
-    <div id="sidebar"> 
-      <ul>
-      	<li><a href="/home">{% trans "Home" %}</a></li>
-        <li><a href="/articles/all">{% trans "Articles" %}</a></li>
-        <li><a href="/categories/all">{% trans "Categories" %}</a></li>
-		<li><a href="/administrator">{% trans "Administrator page" %}</a></li>
-		<li><a href="/search">{% trans "Search" %}</a></li>
-      </ul>
+    <div class="container">
+        <div class="blog-header">
+            <h1 class="blog-title">{{ log }}</h1>
+           <!--<img src="{% static "assets/images/test.png" %}" id="logo" >-->
+            {% block toparea%}{% endblock %}
+        </div>
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <div class="list-group">
+                <a class="list-group-item" href="/home">{% trans "Home" %}</a>
+                <a class="list-group-item" href="/articles/all">{% trans "Articles" %}</a>
+                <a class="list-group-item" href="/categories/all">{% trans "Categories" %}</a>
+                <a class="list-group-item" href="/administrator">{% trans "Administrator page" %}</a>
+                <a class="list-group-item" href="/search">{% trans "Search" %}</a>
+            </div>
+        </div>
+
       {% block sidebar%}
       {% endblock %}
-    </div>
-    
-    <div id="content">
-      <h1>{{ log }}</h1>
+
+    <div class="col-sm-8 blog-main">
+
       {% block content %}{% endblock %}
+    <hr>
     </div>
-    
-  </div>
+    </div>
+
+
+
 </body>
 {% endlanguage %}
 </html>
