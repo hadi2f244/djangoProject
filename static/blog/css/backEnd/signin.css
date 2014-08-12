@@ -11,11 +11,9 @@ body {
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
-  float: right;
   margin-bottom: 10px;
 }
 .form-signin .checkbox {
-   float: right;
   font-weight: normal;
 }
 .form-signin .form-control {
@@ -31,13 +29,11 @@ body {
   z-index: 2;
 }
 .form-signin input[type="username"] {
-     float: right;
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 .form-signin input[type="password"] {
-     float: right;
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;

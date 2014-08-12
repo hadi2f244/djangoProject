@@ -6,6 +6,6 @@
     {{ notifications }}
     <form method="post">{% csrf_token %}
         {{ passForm.as_p }}
-    <input type="submit" value="submit" name="submitButton">
+    <input type="submit" value="{% trans "submit" %}" name="submitButton">
     </form>
 {% endblock %}

@@ -22,11 +22,11 @@
                     {% if c_a.0.seen %}
                         <h6>{% trans "It's seen" %}. </h6>
                     {% else %}
-                        <input type="button" value={% trans "see" %} >
+                        <input type="button" value="{% trans "see" %}" >
                     {% endif %}-
                 </div>
                 <hr width="60%">
             {% endfor %}
-            <div id="submit"><input type="submit" value={% trans "Delete" %}  name="deleteButton"></div>
+            <div id="submit"><input type="submit" value="{% trans "Delete" %}"  name="deleteButton"></div>
         </form>
 {% endblock %}

@@ -32,7 +32,7 @@
 	<div id="cform">
         {{comment_form.as_p}}
     </div>
-    <div id="submit"><input type="submit" value={% trans "Submit" %} name="commentButton"></div>
+    <div id="submit"><input type="submit" value="{% trans "Submit" %}" name="commentButton"></div>
 </form>
 {% else %}
    	<a href="/accounts/login?next=/articles/get/{{article.id}}/">{% trans "Please login first to leave a comment!" %}</a>

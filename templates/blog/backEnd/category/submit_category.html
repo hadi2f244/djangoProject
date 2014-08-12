@@ -17,6 +17,6 @@
 
 <form method="POST">{% csrf_token %}
 	Title: <input type="text" name="categoryName" value="{{ category_title }}" />
-	<div id="submit"><input type="submit" value={% trans "Submit" %} name="submitCategory"></div>
+	<div id="submit"><input type="submit" value="{% trans "Submit" %}" name="submitCategory"></div>
 </form>
 {% endblock %}
