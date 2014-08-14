@@ -258,7 +258,34 @@ CKEDITOR_RESTRICT_BY_USER = True
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Full',
+        #'toolbar': 'Full',
+        'toolbar': [
+            [      'Undo', 'Redo',
+              '-', 'Bold', 'Italic', 'Underline',
+              '-', 'Link', 'Unlink', 'Anchor',
+              '-', 'Styles', 'Format', 'Font', 'FontSize',
+              '-', 'SpellChecker', 'Scayt', 'Find', 'Replace',
+              '-', 'SelectAll',
+              '-', 'Maximize', 'ShowBlocks' ,
+            ],
+            [
+                   'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ,
+              '-', 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField',
+            ],
+
+            [
+               'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+            ],
+
+            [      'HorizontalRule',
+              '-', 'Table',
+              '-', 'BulletedList', 'NumberedList',
+              '-', 'Cut','Copy','Paste','PasteText','PasteFromWord',
+              '-', 'SpecialChar',
+              '-', 'Source',
+              '-', 'About',
+            ]
+        ],
         'height': 300,
         'width': 500,
     },
@@ -266,7 +293,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Basic',
         'height': 300,
         'width': 500,
-},
+                } ,
 
 }
 

@@ -4,6 +4,7 @@ from django.shortcuts import render
 from blog.models import Blog
 from user.models import MyUser
 from mainProject.views import frontEnd
+from django.template.loader import render_to_string
 
 
 
@@ -21,7 +22,7 @@ def register(request,context):
             test = form1.cleaned_data
             myblog = Blog.objects.create(user = myuser , domain = test["domain"] , name = test["name"])
             myblog.save()
-            send_user_mail(myuser)
+            #send_user_mail(myuser)
             return render(request,'main/frontEnd/user/registration_complete.html',context)
     else:
         context['form'] = registerForm()
