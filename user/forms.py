@@ -21,3 +21,14 @@ class RegBlog(ModelForm):
     class Meta :
         model = Blog
         fields = ["domain", "name"]
+
+
+class loginForm(ModelForm):
+    class Meta:
+        model = MyUser
+        fields = ['username', 'password']
+
+class resetForm(ModelForm):
+    class Meta:
+        model = MyUser
+        fields = ['email']

@@ -1,5 +1,5 @@
-from user.forms import registerForm, RegBlog
-from django.http import HttpResponseRedirect
+from user.forms import registerForm, RegBlog, loginForm, resetForm
+from django.http import HttpResponseRedirect,HttpResponse
 from django.shortcuts import render
 from blog.models import Blog
 from user.models import MyUser
@@ -38,7 +38,25 @@ def activition_complete(request,context, uidb36, token):
         return render(request, "main/frontEnd/user/activation_complete.html",context)
     else :
         return HttpResponse("information is invalid please register correctlly")
-        
+
+@frontEnd
+def reset_password(request, context):
+    if request.method == 'POST':
+        form = resetForm(request.POST)
+        if form.is_valid():
+            # generating new password.
+            # send new password to email.
+            return render(request, "main/frontEnd/user/password_reset_email.html", context)
+    context['form'] = resetForm()
+    return render(request, "main/frontEnd/user/password_reset_form.html", context)
+
+
+def login(request):
+    form = loginForm()
+    return render(request, "main/frontEnd/user/login.html", {'form':form})
+
+
+
 def send_user_mail(user):
     ctx_dict = {'activation_key': user.activation_key,
                     'expiration_days': 7,#settings.ACCOUNT_ACTIVATION_DAYS,
