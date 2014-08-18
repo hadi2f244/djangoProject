@@ -14,6 +14,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 @frontEnd
 def register(request,context):
+    '''signing up'''
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         form1 = RegBlog(request.POST)
@@ -35,6 +36,7 @@ def register(request,context):
 
 @frontEnd
 def activition_complete(request,context, uidb36, token):
+    '''compeleting your registration'''
     myuser = MyUser.objects.get(username = token)
     if myuser.activation_key == uidb36 :
         myuser.is_active = True
@@ -45,6 +47,10 @@ def activition_complete(request,context, uidb36, token):
 
 @frontEnd
 def set_new_password(request, context, key, email):
+    '''
+    after sending email which contains a url that route you to this function in order to
+    change password
+    '''
     if request.method == 'POST':
         form = reset_password_form(request.POST)
         if form.is_valid():
@@ -72,6 +78,10 @@ def set_new_password(request, context, key, email):
 
 @frontEnd
 def reset_password(request, context):
+    '''
+    simple form that you enter your email in it and it will send you an email
+    '''
+
     if request.method == 'POST':
         form = resetForm(request.POST)
         if form.is_valid():
@@ -89,11 +99,13 @@ def login(request):
     return render(request, "main/frontEnd/user/login.html", {'form':form})
 
 def send_reset_password_email(email, key):
+    '''sending email to users'''
     send_mail('reset_email', 'http://test1.com:8000/accounts/'+key+'-'+email+'/setpassword/', 'sarsanaee@gmail.com',
         [email], fail_silently=False)
 
 
 def send_user_mail(user):
+    '''sending activation email to users'''
     ctx_dict = {'activation_key': user.activation_key,
                     'expiration_days': 7,#settings.ACCOUNT_ACTIVATION_DAYS,
                     'site': "mysite.com",
