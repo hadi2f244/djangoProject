@@ -3,7 +3,6 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.utils.translation import ugettext_lazy as _
 from user.models import MyUser
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _

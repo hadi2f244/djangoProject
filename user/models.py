@@ -64,6 +64,7 @@ class MyUser(AbstractBaseUser):
     email = models.EmailField(
         verbose_name=_('Email Address'),
         max_length=255,
+        unique=True,
     )
 
     aboutme = models.CharField(
@@ -81,6 +82,7 @@ class MyUser(AbstractBaseUser):
 
     is_active = models.BooleanField(verbose_name=_('is_active'),default=True)
     is_admin = models.BooleanField(verbose_name=_('is_admin'),default=False)
+    #resetpass = models.CharField(max_length=100, verbose_name=_('resetPassKey'), default=None)
 
     objects = MyUserManager()
 
@@ -120,6 +122,10 @@ class MyUser(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
+
+class reset_pass_user(models.Model):
+    email = models.CharField(max_length=30, verbose_name=_("username"))
+    reset_key = models.CharField(max_length=80, verbose_name=_("reset_key"))
 
 '''
 def gen():

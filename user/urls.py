@@ -6,10 +6,13 @@ from django.views.generic import TemplateView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = patterns('',
-                       url(r'^register/$', 'user.views.register', name = 'account_register'),
-                       url(r'^(?P<uidb36>\b[0-9a-f]{5,40}\b)-(?P<token>\w{0,50})/activating/$', 'user.views.activition_complete'),
-                       url(r'^reset/$', 'user.views.reset_password', name = 'reset_password'),
-                       url(r'^login/$', 'user.views.login'),
+    url(r'^register/$', 'user.views.register', name = 'account_register'),
+    url(r'^(?P<uidb36>\b[0-9a-f]{5,40}\b)-(?P<token>\w{0,50})/activating/$', 'user.views.activition_complete'),
+    url(r'^reset/$', 'user.views.reset_password', name = 'reset_password'),
+    url(r'^login/$', 'user.views.login', name='login'),
+    url(r'^(?P<key>\b[0-9a-f]{5,40}\b)-(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/setpassword/$', 'user.views.set_new_password'),
+
+
 
 )
 
