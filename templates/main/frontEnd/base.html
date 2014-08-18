@@ -22,6 +22,16 @@
   <div id="page">
   <div id="toparea">
     <!--<img src="{% static "assets/images/test.png" %}" id="logo" >-->
+
+
+    {% if user.is_authenticated %}
+        <p>Welcome {{ user.username }}</p>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <p>Please log in</p>
+        <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+    {% endif %}
+
     {% block toparea%}{% endblock %}
    </div> 
     <div id="sidebar"> 

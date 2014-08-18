@@ -7,8 +7,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 admin.autodiscover()
 urlpatterns = patterns('',
-	#url(r'blog$',include('blog.urls')),
-    url(r'^$', include('new.urls')),
+    #url(r'blog$',include('blog.urls')),
+    url(r'^$', include('new.urls'), name='home'),
     url(r'^news/', include('new.urls')),
     url(r'^accounts/', include('user.urls')),
     #url(r'^administrator/', include('backEnd.urls')),
@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     #url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+
 )
 urlpatterns += staticfiles_urlpatterns()
 

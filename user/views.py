@@ -1,5 +1,6 @@
-from user.forms import UserCreationForm, RegBlog, loginForm, resetForm, reset_password_form
-from django.http import HttpResponse
+from user.forms import UserCreationForm, RegBlog, loginForm,\
+    resetForm, reset_password_form, profile_form
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from blog.models import Blog
 from user.models import MyUser, reset_pass_user
@@ -8,9 +9,10 @@ from django.template.loader import render_to_string
 import random, hashlib
 from django.core.mail import send_mail
 from django.core.exceptions import ObjectDoesNotExist
-
-
-
+from django.contrib import auth
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 @frontEnd
 def register(request,context):
@@ -57,21 +59,14 @@ def set_new_password(request, context, key, email):
             try:
                 simple_user = reset_pass_user.objects.get(email=email, reset_key=key)
                 big_user = MyUser.objects.get(email=email)
-                big_user.password = form.cleaned_data["password1"]
+                #big_user.password = form.cleaned_data["password1"]
+                big_user.set_password(form.cleaned_data["password1"])
                 big_user.save()
                 simple_user.delete()
                 return render(request, "main/frontEnd/user/password_reset_complete.html")
             except ObjectDoesNotExist:
                 HttpResponse("sql injection")
 
-            '''
-            simple_user = reset_pass_user.objects.get(email=email, reset_key=key)
-            big_user = MyUser.objects.get(email=email)
-            big_user.password = form.cleaned_data["password1"]
-            big_user.save()
-            simple_user.delete()
-            return render(request, "main/frontEnd/user/password_reset_complete.html")
-            '''
     context['form'] = reset_password_form()
     return render(request, "main/frontEnd/user/password_change_form.html", context)
 
@@ -94,9 +89,43 @@ def reset_password(request, context):
     return render(request, "main/frontEnd/user/password_reset_form.html", context)
 
 
-def login(request):
-    form = loginForm()
-    return render(request, "main/frontEnd/user/login.html", {'form':form})
+#def login(request):
+
+
+#    form = loginForm()
+#    return render(request, "main/frontEnd/user/login.html", {'form':form})
+
+def login_func(request):
+    if request.method == 'POST' :
+        form = loginForm(request.POST)
+        if form.is_valid :
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect(request.REQUEST.get('next', ''))
+                    #return redirect('accounts/login/?next=%s' % request.path)
+                else:
+                    return HttpResponse("Your must active your account !! :)")
+            else:
+                return HttpResponse("username and password didn't match :(")
+    else :
+        form = loginForm()
+        return render(request, "main/frontEnd/user/login.html", {'form':form})
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+@login_required(login_url='/accounts/login/', redirect_field_name="request.POST.get('next')")
+def profile(request):
+    form = UserCreationForm()
+    form1 = RegBlog()
+    return render(request,
+                  "main/frontEnd/user/profile.html",
+                  {"form" : form, 'form1': form1},
+    )
 
 def send_reset_password_email(email, key):
     '''sending email to users'''

@@ -59,3 +59,8 @@ class reset_password_form(forms.Form):
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError("Passwords don't match")
         return password2
+
+
+class profile_form(UserCreationForm,RegBlog):
+    class Meta:
+        fields = ('username', 'email', 'aboutme', 'password' , 'domain', 'name')
