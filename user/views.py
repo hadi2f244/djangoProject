@@ -1,5 +1,5 @@
 from user.forms import UserCreationForm, RegBlog, loginForm, resetForm, reset_password_form
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 from blog.models import Blog
 from user.models import MyUser, reset_pass_user
