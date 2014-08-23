@@ -61,6 +61,10 @@ class reset_password_form(forms.Form):
         return password2
 
 
-class profile_form(UserCreationForm,RegBlog):
+class profile_form(forms.ModelForm):
+    """A form for creating new user. Includes all the required
+    fields, plus a repeated password."""
     class Meta:
-        fields = ('username', 'email', 'aboutme', 'password' , 'domain', 'name')
+        model = MyUser
+        fields = ('username', 'email', 'aboutme')
+

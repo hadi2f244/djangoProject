@@ -2,7 +2,19 @@
 {% load i18n %}
 
 {% block content %}
-
+{% if mylog %}
+    {{ mylog }}
+{% endif %}
 <p>{% trans "your profile" %} </p>
+<form method="post" action=".">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {{ form1.as_p }}
+
+  <input type="submit" value="{% trans 'Submit' %}"  />
+  <input type="submit" name="cancel" value="{% trans 'Cancel' %}" />
+</form>
+
+<p><a href="{% url 'changepass' %}">{% trans "change my password" %}</a></p>
 
 {% endblock %}

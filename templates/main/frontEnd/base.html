@@ -25,7 +25,7 @@
 
 
     {% if user.is_authenticated %}
-        <p>Welcome {{ user.username }}</p>
+        <p>{{ user.username|safe }} is logged in</p>
         <a href="{% url 'logout' %}">Logout</a>
     {% else %}
         <p>Please log in</p>
@@ -40,6 +40,7 @@
         <li><a href="/accounts/login">{% trans "Login" %}</a></li>
         <li><a href="/accounts/register">{% trans "Register" %}</a></li>
 		<li><a href="/search">{% trans "Search" %}</a></li>
+        <li><a href="/accounts/profile">{% trans "profile" %}</a></li>
       </ul>
       {% block sidebar%}
       {% endblock %}

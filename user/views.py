@@ -118,14 +118,36 @@ def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-@login_required(login_url='/accounts/login/', redirect_field_name="request.POST.get('next')")
-def profile(request):
-    form = UserCreationForm()
-    form1 = RegBlog()
-    return render(request,
+@login_required(login_url='/accounts/login/')
+def profile(request):#, username):
+    if request.method == 'POST' :
+        if request.POST.get('cancel'):
+            return HttpResponseRedirect('/')
+        #form = profile_form(request.POST)
+        form = profile_form(data=request.POST, instance=request.user)
+        form1 = RegBlog(request.POST, instance=request.user)
+        if form.is_valid :#and form1.is_valid :
+            form.save()#'form1': form1,
+            form1.save()
+            return render(request,
                   "main/frontEnd/user/profile.html",
-                  {"form" : form, 'form1': form1},
-    )
+                  {"form" : form, 'form1': form1,  'mylog' : 'your account updated'},
+        )
+    else:
+        #user = MyUser.objects.get(username = username)
+        bloger = Blog.objects.get(user = request.user)
+        form = profile_form(initial={'username' : request.user.username, 'aboutme' : request.user.aboutme,
+                                'email' : request.user.email})
+        form1 = RegBlog(initial={'domain' : bloger.domain, 'name': bloger.name})
+        return render(request,
+                  "main/frontEnd/user/profile.html",
+                  {"form" : form,'form1': form1},
+        )
+
+@login_required(login_url='/accounts/login/')
+def changepass(request):
+    return HttpResponse("This page is under development :) ")
+
 
 def send_reset_password_email(email, key):
     '''sending email to users'''

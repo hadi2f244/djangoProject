@@ -13,7 +13,9 @@ urlpatterns = patterns('',
     url(r'^login/$', 'user.views.login_func', name='login'),
     url(r'^(?P<key>\b[0-9a-f]{5,40}\b)-(?P<email>[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4})/setpassword/$', 'user.views.set_new_password'),
     url(r'^profile/$', 'user.views.profile', name='profile'),
+    url(r'^profile/passchange$', 'user.views.changepass', name='changepass'),
     url(r'^logout/$', 'user.views.logout_view', name='logout'),
+
 
 
 
