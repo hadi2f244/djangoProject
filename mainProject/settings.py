@@ -209,12 +209,18 @@ INSTALLED_APPS = (
     'south',
     'django_bleach',
     'new',
+    'analytical',
 
 )
 ACCOUNT_ACTIVATION_DAYS = 7
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 AUTH_USER_MODEL= 'user.MyUser'
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-54136830-1'
+GOOGLE_ANALYTICS_DISPLAY_ADVERTISING = True
+GOOGLE_ANALYTICS_SITE_SPEED = True
+GOOGLE_ANALYTICS_ANONYMIZE_IP = True
+
 
 
 
