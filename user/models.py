@@ -58,6 +58,7 @@ class MyUser(AbstractBaseUser):
         verbose_name=_("Username"),
         max_length=255,
         unique=True,
+        null=False,
     )
 
 
@@ -65,11 +66,13 @@ class MyUser(AbstractBaseUser):
         verbose_name=_('Email Address'),
         max_length=255,
         unique=True,
+        null=False,
     )
 
     aboutme = models.CharField(
         verbose_name=_("about me"),
         max_length=255,
+        null=True,
     )
 
     activation_key = models.CharField(

@@ -9,10 +9,8 @@ from django.template.loader import render_to_string
 import random, hashlib
 from django.core.mail import send_mail
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib import auth
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
 
 @frontEnd
 def register(request,context):
@@ -31,9 +29,13 @@ def register(request,context):
             myblog.save()
             #send_user_mail(myuser)
             return render(request,'main/frontEnd/user/registration_complete.html',context)
-    else:
-        context['form'] = UserCreationForm()
-        context['form1'] = RegBlog()
+        else:
+            context['form'] = form
+            context['form1'] = form1
+            return render(request, "main/frontEnd/user/registration_form.html",context)
+
+    context['form'] = UserCreationForm()
+    context['form1'] = RegBlog()
     return render(request, "main/frontEnd/user/registration_form.html",context)
 
 @frontEnd
@@ -59,7 +61,6 @@ def set_new_password(request, context, key, email):
             try:
                 simple_user = reset_pass_user.objects.get(email=email, reset_key=key)
                 big_user = MyUser.objects.get(email=email)
-                #big_user.password = form.cleaned_data["password1"]
                 big_user.set_password(form.cleaned_data["password1"])
                 big_user.save()
                 simple_user.delete()
@@ -89,52 +90,46 @@ def reset_password(request, context):
     return render(request, "main/frontEnd/user/password_reset_form.html", context)
 
 
-#def login(request):
-
-
-#    form = loginForm()
-#    return render(request, "main/frontEnd/user/login.html", {'form':form})
-
 def login_func(request):
-    if request.method == 'POST' :
+    if request.method == 'POST':
         form = loginForm(request.POST)
-        if form.is_valid :
+        if form.is_valid:
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect(request.REQUEST.get('next', ''))
-                    #return redirect('accounts/login/?next=%s' % request.path)
+                    return HttpResponseRedirect('/')
                 else:
                     return HttpResponse("Your must active your account !! :)")
             else:
-                return HttpResponse("username and password didn't match :(")
-    else :
+                match = "Username and Password Did not match ?!!!!! :("
+                return render(request, "main/frontEnd/user/login.html", {'form':form, 'match':match})
+    else:
         form = loginForm()
         return render(request, "main/frontEnd/user/login.html", {'form':form})
+
+
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
 
 @login_required(login_url='/accounts/login/')
-def profile(request):#, username):
+def profile(request):
     if request.method == 'POST' :
         if request.POST.get('cancel'):
             return HttpResponseRedirect('/')
-        #form = profile_form(request.POST)
         form = profile_form(data=request.POST, instance=request.user)
         form1 = RegBlog(request.POST, instance=request.user)
-        if form.is_valid :#and form1.is_valid :
-            form.save()#'form1': form1,
+        if form.is_valid:  # and form1.is_valid :
+            form.save()  # 'form1': form1,
             form1.save()
             return render(request,
                   "main/frontEnd/user/profile.html",
                   {"form" : form, 'form1': form1,  'mylog' : 'your account updated'},
         )
     else:
-        #user = MyUser.objects.get(username = username)
         bloger = Blog.objects.get(user = request.user)
         form = profile_form(initial={'username' : request.user.username, 'aboutme' : request.user.aboutme,
                                 'email' : request.user.email})
@@ -158,21 +153,20 @@ def send_reset_password_email(email, key):
 def send_user_mail(user):
     '''sending activation email to users'''
     ctx_dict = {'activation_key': user.activation_key,
-                    'expiration_days': 7,#settings.ACCOUNT_ACTIVATION_DAYS,
+                    'expiration_days': 7,  # settings.ACCOUNT_ACTIVATION_DAYS,
                     'site': "mysite.com",
                     'username': user.username }
 
     subject = render_to_string('main/frontEnd/user/activation_email_subject.txt',
                                    ctx_dict)
-    # Email subject *must not* contain newlines
     subject = ''.join(subject.splitlines())
 
     message = render_to_string('main/frontEnd/user/activation_email.txt',
                             ctx_dict)
 
-    #ser.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
     send_mail(subject, message, 'sarsanaee@gmail.com',
         [user.email], fail_silently=False)
+
 
 def gen():
     salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
