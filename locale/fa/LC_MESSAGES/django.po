@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-05 17:29+0430\n"
+"POT-Creation-Date: 2014-08-25 16:26+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,10 +23,12 @@ msgid "user"
 msgstr "کاربر"
 
 #: blog/models.py:8 templates/main/backEnd/blog/blog.html:15
+#: templates/main/frontEnd/main/blogs.html:17
 msgid "domain"
 msgstr "دامنه"
 
 #: blog/models.py:9 templates/main/backEnd/blog/blog.html:16
+#: templates/main/frontEnd/main/blogs.html:18
 msgid "name"
 msgstr "نام"
 
@@ -35,7 +37,11 @@ msgstr "نام"
 msgid "blog"
 msgstr "بلاگ"
 
-#: blog/models.py:16
+#: blog/models.py:16 templates/main/frontEnd/base.html:114
+#: templates/main/frontEnd/base.html:116 templates/main/frontEnd/base.html:117
+#: templates/main/frontEnd/main/home.html:225
+#: templates/main/frontEnd/main/home.html:227
+#: templates/main/frontEnd/main/home.html:228
 msgid "blogs"
 msgstr "بلاگ ها"
 
@@ -58,6 +64,7 @@ msgstr "متن"
 #: templates/blog/backEnd/comment/comment.html:18
 #: templates/blog/frontEnd/article/article.html:16
 #: templates/main/backEnd/new/new.html:19
+#: templates/main/frontEnd/main/home.html:247
 #: templates/main/frontEnd/new/new.html:16
 msgid "Published date"
 msgstr "تاریخ انتشار"
@@ -72,12 +79,12 @@ msgstr "پنهان کردن"
 msgid "Article"
 msgstr "مطلب"
 
-#: blog/article/models.py:30 templates/blog/backEnd/base.html:26
+#: blog/article/models.py:30 templates/blog/backEnd/base.html:52
 #: templates/blog/backEnd/article/articles.html:3
 #: templates/blog/backEnd/article/articles.html:15
 #: templates/blog/backEnd/category/category.html:20
 #: templates/blog/backEnd/comment/cArticles.html:5
-#: templates/blog/frontEnd/base.html:34
+#: templates/blog/frontEnd/base.html:61
 #: templates/blog/frontEnd/article/articles.html:3
 #: templates/blog/frontEnd/article/articles.html:10
 #: templates/blog/frontEnd/category/category.html:14
@@ -108,17 +115,17 @@ msgstr "دیده شده"
 msgid "Comment"
 msgstr "نظر"
 
-#: blog/article/models.py:47 templates/blog/backEnd/base.html:27
+#: blog/article/models.py:47 templates/blog/backEnd/base.html:53
 #: templates/blog/backEnd/comment/comments.html:3
 #: templates/blog/backEnd/comment/comments.html:15
 msgid "Comments"
 msgstr "نظر ها"
 
-#: blog/category/models.py:13 templates/blog/backEnd/base.html:28
+#: blog/category/models.py:13 templates/blog/backEnd/base.html:54
 #: templates/blog/backEnd/article/article.html:27
 #: templates/blog/backEnd/category/categories.html:3
 #: templates/blog/backEnd/category/categories.html:17
-#: templates/blog/frontEnd/base.html:35
+#: templates/blog/frontEnd/base.html:62
 #: templates/blog/frontEnd/category/categories.html:3
 #: templates/blog/frontEnd/category/categories.html:13
 msgid "Categories"
@@ -145,34 +152,34 @@ msgstr "پنهان کردن"
 msgid "New"
 msgstr "خبر"
 
-#: new/models.py:16 templates/main/backEnd/base.html:33
+#: new/models.py:16 templates/main/backEnd/base.html:63
 #: templates/main/backEnd/new/news.html:3
 #: templates/main/backEnd/new/news.html:15
-#: templates/main/frontEnd/base.html:31
+#: templates/main/frontEnd/main/blogs.html:4
 #: templates/main/frontEnd/new/news.html:4
 msgid "News"
 msgstr "اخبار"
 
-#: templates/admin/base.html:28
+#: templates/admin/base.html:50
 msgid "Welcome,"
-msgstr ""
+msgstr "خوش آمدید"
 
-#: templates/admin/base.html:33
+#: templates/admin/base.html:55
 msgid "Documentation"
 msgstr ""
 
-#: templates/admin/base.html:36
+#: templates/admin/base.html:58
 msgid "Change password"
 msgstr "کلمه عبور"
 
-#: templates/admin/base.html:38
+#: templates/admin/base.html:60
 msgid "Log out"
 msgstr "ورود"
 
-#: templates/admin/base.html:47
+#: templates/admin/base.html:69
 #: templates/admin/blog/extras/blog_changed_template.html:18
 #: templates/admin/user/extras/user_changed_template.html:18
-#: templates/blog/frontEnd/base.html:33
+#: templates/blog/frontEnd/base.html:60
 msgid "Home"
 msgstr "صفحه ی اصلی"
 
@@ -183,7 +190,7 @@ msgstr "صفحه ادمین"
 #: templates/admin/blog/extras/blog_changed_template.html:21
 #: templates/admin/user/extras/user_changed_template.html:21
 msgid "Add"
-msgstr ""
+msgstr "اضافه کردن"
 
 #: templates/admin/blog/extras/blog_changed_template.html:31
 #: templates/admin/user/extras/user_changed_template.html:31
@@ -214,26 +221,31 @@ msgstr "صفحه ادمین بلاگ"
 msgid "User's blog"
 msgstr "بلاگ این کاربر"
 
-#: templates/blog/backEnd/base.html:29
+#: templates/blog/backEnd/base.html:55
 msgid "Profile"
 msgstr "پروفایل"
 
-#: templates/blog/backEnd/base.html:30 templates/blog/frontEnd/base.html:37
-#: templates/main/backEnd/base.html:36 templates/main/frontEnd/base.html:34
+#: templates/blog/backEnd/base.html:56 templates/blog/frontEnd/base.html:64
+#: templates/main/backEnd/base.html:66
 msgid "Search"
 msgstr "جستجو"
 
-#: templates/blog/backEnd/base.html:31 templates/main/backEnd/base.html:37
+#: templates/blog/backEnd/base.html:57 templates/main/backEnd/base.html:67
 msgid "frontEnd"
 msgstr "نمایش بلاگ"
 
-#: templates/blog/backEnd/base.html:36 templates/main/backEnd/base.html:24
+#: templates/blog/backEnd/base.html:62 templates/main/backEnd/base.html:54
+#: templates/main/frontEnd/base.html:89 templates/main/frontEnd/base.html:91
+#: templates/main/frontEnd/base.html:92
+#: templates/main/frontEnd/main/home.html:200
+#: templates/main/frontEnd/main/home.html:202
+#: templates/main/frontEnd/main/home.html:203
 msgid "Logout"
 msgstr "خروج"
 
-#: templates/blog/backEnd/base.html:37
+#: templates/blog/backEnd/base.html:63
 #: templates/blog/frontEnd/djangoBlog/home.html:6
-#: templates/main/backEnd/base.html:23
+#: templates/main/backEnd/base.html:53
 msgid "Hi"
 msgstr "سلام"
 
@@ -285,6 +297,7 @@ msgstr "هیچ مطلبی موجود نیست!"
 #: templates/main/backEnd/blog/submit_blog.html:11
 #: templates/main/backEnd/new/submit_new.html:10
 #: templates/main/backEnd/new/submit_new.html:12
+#: templates/main/frontEnd/user/profile.html:20
 msgid "Cancel"
 msgstr "انصراف"
 
@@ -295,11 +308,12 @@ msgstr "انصراف"
 #: templates/main/backEnd/blog/submit_blog.html:25
 #: templates/main/backEnd/main/login.html:12
 #: templates/main/backEnd/new/submit_new.html:26
-#: templates/main/frontEnd/user/password_change_form.html:9
-#: templates/main/frontEnd/user/password_reset_confirm.html:12
-#: templates/main/frontEnd/user/password_reset_form.html:9
-#: templates/main/frontEnd/user/registration_Blog.html:9
-#: templates/main/frontEnd/user/registration_form.html:10
+#: templates/main/frontEnd/user/password_change_form.html:11
+#: templates/main/frontEnd/user/password_reset_confirm.html:14
+#: templates/main/frontEnd/user/password_reset_form.html:12
+#: templates/main/frontEnd/user/profile.html:19
+#: templates/main/frontEnd/user/registration_Blog.html:12
+#: templates/main/frontEnd/user/registration_form.html:18
 msgid "Submit"
 msgstr "تایید"
 
@@ -328,7 +342,6 @@ msgstr "متن"
 #: templates/blog/backEnd/comment/cArticles.html:19
 msgid "Select the article to see the article and its comments"
 msgstr "مطلبی را انتخاب کنید تا نظرات مربوط به آن را مشاهده کنید"
-
 
 #: templates/blog/backEnd/comment/cArticles.html:24
 #, python-format
@@ -378,16 +391,25 @@ msgid "Username"
 msgstr "نام کاربری"
 
 #: templates/blog/backEnd/djangoBlog/login.html:19
-#: templates/main/backEnd/main/login.html:9 user/admin.py:45
+#: templates/main/backEnd/main/login.html:9 user/admin.py:44
 msgid "password"
 msgstr "کلمه عبور"
 
 #: templates/blog/backEnd/djangoBlog/login.html:20
-#: templates/main/frontEnd/base.html:32
+#: templates/main/frontEnd/base.html:95 templates/main/frontEnd/base.html:97
+#: templates/main/frontEnd/base.html:98
+#: templates/main/frontEnd/main/home.html:206
+#: templates/main/frontEnd/main/home.html:208
+#: templates/main/frontEnd/main/home.html:209
 msgid "Login"
 msgstr "ورود"
 
-#: templates/blog/frontEnd/base.html:36
+#: templates/blog/backEnd/profile/profile.html:9
+#, fuzzy
+msgid "submit"
+msgstr "تایید"
+
+#: templates/blog/frontEnd/base.html:63
 msgid "Administrator page"
 msgstr "صفحه ادمین"
 
@@ -395,13 +417,13 @@ msgstr "صفحه ادمین"
 msgid "Please login first to leave a comment!"
 msgstr "برای نوشتن نظر ابتدا وارد شوید!"
 
-#: templates/main/backEnd/base.html:34
+#: templates/main/backEnd/base.html:64
 #: templates/main/backEnd/blog/blogs.html:3
 #: templates/main/backEnd/blog/blogs.html:15
 msgid "Blogs"
 msgstr "بلاگ ها"
 
-#: templates/main/backEnd/base.html:35
+#: templates/main/backEnd/base.html:65
 msgid "users"
 msgstr "کاربران"
 
@@ -410,6 +432,7 @@ msgid "Create new blog"
 msgstr "ساخت بلاگ جدید"
 
 #: templates/main/backEnd/blog/blogs.html:23
+#: templates/main/frontEnd/main/blogs.html:25
 msgid "No blog"
 msgstr "هیچ بلاگی موجود نیست!"
 
@@ -418,14 +441,27 @@ msgid "Create new new"
 msgstr "ساخت خبر جدید"
 
 #: templates/main/backEnd/new/news.html:28
+#: templates/main/frontEnd/main/home.html:257
 #: templates/main/frontEnd/new/news.html:22
 msgid "No new"
 msgstr "هیچ خبری موجود نیست!"
 
-#: templates/main/frontEnd/base.html:33
-#: templates/main/frontEnd/user/login.html:14
-msgid "Register"
-msgstr "ثبت نام"
+#: templates/main/frontEnd/base.html:74 templates/main/frontEnd/base.html:77
+#: templates/main/frontEnd/base.html:78
+#: templates/main/frontEnd/main/home.html:185
+#: templates/main/frontEnd/main/home.html:188
+#: templates/main/frontEnd/main/home.html:189
+msgid "home"
+msgstr "خانه"
+
+#: templates/main/frontEnd/main/home.html:35
+#, fuzzy
+msgid "Homepage"
+msgstr "صفحه ی اصلی"
+
+#: templates/main/frontEnd/main/home.html:250
+msgid "More..."
+msgstr "ادامه مطلب"
 
 #: templates/main/frontEnd/user/activate.html:6
 msgid "Account activation failed"
@@ -448,22 +484,26 @@ msgstr ""
 msgid "Account activation on"
 msgstr ""
 
-#: templates/main/frontEnd/user/login.html:9
+#: templates/main/frontEnd/user/login.html:21
 #: templates/main/frontEnd/user/password_reset_complete.html:8
 msgid "Log in"
 msgstr "ورود"
 
-#: templates/main/frontEnd/user/login.html:13
+#: templates/main/frontEnd/user/login.html:25
 msgid "Forgot password"
 msgstr ""
 
-#: templates/main/frontEnd/user/login.html:13
+#: templates/main/frontEnd/user/login.html:25
 msgid "Reset it"
 msgstr ""
 
-#: templates/main/frontEnd/user/login.html:14
+#: templates/main/frontEnd/user/login.html:26
 msgid "Not member"
 msgstr ""
+
+#: templates/main/frontEnd/user/login.html:26
+msgid "Register"
+msgstr "ثبت نام"
 
 #: templates/main/frontEnd/user/logout.html:5
 msgid "Logged out"
@@ -477,7 +517,7 @@ msgstr ""
 msgid "Password reset successfully"
 msgstr ""
 
-#: templates/main/frontEnd/user/password_reset_confirm.html:17
+#: templates/main/frontEnd/user/password_reset_confirm.html:19
 msgid "Password reset failed"
 msgstr ""
 
@@ -485,10 +525,19 @@ msgstr ""
 msgid "Email with password reset instructions has been sent."
 msgstr ""
 
-#: templates/main/frontEnd/user/password_reset_email.html:2
-#, python-format
-msgid "Reset password at %(site_name)s"
+#: templates/main/frontEnd/user/password_reset_email.html:5
+msgid "Your new password has been sent to your email"
 msgstr ""
+
+#: templates/main/frontEnd/user/profile.html:8
+#, fuzzy
+msgid "your profile"
+msgstr "پروفایل"
+
+#: templates/main/frontEnd/user/profile.html:23
+#, fuzzy
+msgid "change my password"
+msgstr "کلمه عبور"
 
 #: templates/main/frontEnd/user/registration_closed.html:5
 msgid "Registration is currently closed."
@@ -498,13 +547,25 @@ msgstr ""
 msgid "You are now registered. Activation email sent."
 msgstr ""
 
-#: user/admin.py:71
+#: user/admin.py:70
 msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
-#: user/admin.py:72
+#: user/admin.py:71
 msgid "Permissions"
 msgstr "دسترسی ها"
+
+#: user/forms.py:39
+msgid "email"
+msgstr ""
+
+#: user/forms.py:44 user/forms.py:77
+msgid "Password"
+msgstr "کلمه عبور"
+
+#: user/forms.py:45 user/forms.py:78
+msgid "Password confirmation"
+msgstr ""
 
 #: user/models.py:20
 msgid "user must have an email address"
@@ -522,25 +583,31 @@ msgstr "کاربر"
 msgid "MyUsers"
 msgstr "کاربرها"
 
-#: user/models.py:65
+#: user/models.py:66
 msgid "Email Address"
 msgstr "آدرس ایمیل"
 
-#: user/models.py:70
+#: user/models.py:73
 msgid "about me"
 msgstr "درباره من"
 
-#: user/models.py:75
+#: user/models.py:79
 msgid "activation key"
 msgstr "کد فعالسازی"
 
-#: user/models.py:82
+#: user/models.py:86
 msgid "is_active"
 msgstr "فعال"
 
-#: user/models.py:83
+#: user/models.py:87
 msgid "is_admin"
 msgstr "ادمین"
 
-#~ msgid "Password"
-#~ msgstr "کلمه عبور"
+#: user/models.py:130
+#, fuzzy
+msgid "username"
+msgstr "نام کاربری"
+
+#: user/models.py:131
+msgid "reset_key"
+msgstr ""

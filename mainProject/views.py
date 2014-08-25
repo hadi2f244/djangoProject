@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from functools import wraps
-
-
-def home(request):
-    return render(request, "test.html")
-
+from new.models import New
+from blog.models import Blog
 
 def frontEnd(view):
     @wraps(view)
@@ -12,3 +9,14 @@ def frontEnd(view):
         context = {}  # context is data that will be replace with template variable
         return view(request, context, *args, **kwargs)
     return wrapper
+
+@frontEnd
+def home(request,context):
+    context['news'] = New.objects.all()
+    return render(request,'main/frontEnd/main/home.html',context)
+
+
+@frontEnd
+def showBlogs(request,context):
+    context['blogs']=Blog.objects.all()
+    return render(request,'main/frontEnd/main/blogs.html',context)
