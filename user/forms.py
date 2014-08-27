@@ -18,10 +18,9 @@ class loginForm(forms.Form):
     username = forms.CharField(max_length=50, required=True)
     password = forms.CharField(widget=forms.PasswordInput, required=True)
 
-
     def clean_username(self):
         message = self.cleaned_data['username']
-        num_words = len(message.split())
+        num_words = len(message)
         if num_words == 0:
             raise forms.ValidationError("Username couldn't be empty")
         if num_words > 50:
@@ -30,10 +29,11 @@ class loginForm(forms.Form):
 
     def clean_password(self):
         message = self.cleaned_data['password']
-        num_words = len(message.split())
+        num_words = len(message)
         if num_words == 0:
             raise forms.ValidationError("Password couldn't be empty")
         return message
+
 
 class resetForm(forms.Form):
     email = forms.EmailField(label=_('email'))

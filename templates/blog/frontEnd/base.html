@@ -1,8 +1,13 @@
 {% load analytical %}
 {% load i18n %}
 {% load static %}
-{% comment %}{% load dajaxice_templatetags %}{% endcomment %}
 
+{% comment %}{% load dajaxice_templatetags %}{% endcomment %}
+{% load request_tag %}
+{% active_users in 10 minutes as user_list %}
+{% for user in user_list %}
+    {{ user.username }}
+{% endfor %}
 <html>
 {% language 'fa' %}
 <head>

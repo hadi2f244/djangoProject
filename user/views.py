@@ -93,7 +93,7 @@ def reset_password(request, context):
 def login_func(request):
     if request.method == 'POST':
         form = loginForm(request.POST)
-        if form.is_valid:
+        if form.is_valid :
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
@@ -104,6 +104,7 @@ def login_func(request):
                 else:
                     return HttpResponse("Your must active your account !! :)")
             else:
+                print "alireza"
                 match = "Username and Password Did not match ?!!!!! :("
                 return render(request, "main/frontEnd/user/login.html", {'form':form, 'match':match})
     else:

@@ -106,7 +106,10 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #   'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'djangobower.finders.BowerFinder',
 )
+
+BOWER_COMPONENTS_ROOT = os.path.join(mainPath, 'components')
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'h$_h5gr5o8&w_$yt^1um3q-g=f%4!8y4%%j67ri^-i)@rgs^00'
@@ -140,6 +143,8 @@ MIDDLEWARE_CLASSES = (
     #Uncomment the next line for simple clickjacking protection:
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'mainProject.adminLocalMiddleware.AdminLocaleMiddleware',
+    'request.middleware.RequestMiddleware',
+    #"pageviews.middleware.PageViewsMiddleware",
 
 
 
@@ -210,6 +215,10 @@ INSTALLED_APPS = (
     'django_bleach',
     'new',
     'analytical',
+    'djangobower',
+    'request',
+
+
 
 )
 ACCOUNT_ACTIVATION_DAYS = 7
@@ -252,6 +261,8 @@ LOGGING = {
         },
     }
 }
+
+BOWER_PATH = '/usr/local/bin/bower'
 
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -331,3 +342,23 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sarsanaee@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 ACCOUNT_ACTIVATION_DAYS = 7
+
+BOWER_INSTALLED_APPS = (
+    #'jquery#1.9',
+    #'underscore',
+    'foundation#5',
+)
+
+REQUEST_IGNORE_PATHS = (
+    r'^admin/',
+)
+REQUEST_PLUGINS = (
+     'request.plugins.TrafficInformation',
+    'request.plugins.LatestRequests',
+    'request.plugins.TopPaths',
+    'request.plugins.TopErrorPaths',
+    'request.plugins.TopReferrers',
+    'request.plugins.TopSearchPhrases',
+    'request.plugins.TopBrowsers',
+    'request.plugins.ActiveUsers',
+)

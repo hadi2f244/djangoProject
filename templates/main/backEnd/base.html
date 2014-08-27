@@ -1,6 +1,11 @@
 {% load analytical %}
 {% load i18n %}
 {% load static %}
+{% load request_tag %}
+{% active_users in 10 minutes as user_list %}
+{% for user in user_list %}
+    {{ user.username }}
+{% endfor %}
 {% comment %}
 {% load dajaxice_templatetags %}
 {% endcomment %}
