@@ -30,7 +30,7 @@ DATABASES = {
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 #there is just a test
 #another test
 # Local time zone for this installation. Choices can be found here:
@@ -185,7 +185,7 @@ TEMPLATE_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'dajaxice.finders.DajaxiceFinder',
+    # 'dajaxice.finders.DajaxiceFinder',
 )
 
 INSTALLED_APPS = (
@@ -210,7 +210,7 @@ INSTALLED_APPS = (
     'blog.backEnd',
     'ckeditor',
     #'django_markdown',
-    'dajaxice',
+    # 'dajaxice',
     'south',
     'django_bleach',
     'new',

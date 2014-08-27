@@ -8,9 +8,10 @@ from django.conf.urls.static import static
 admin.autodiscover()
 urlpatterns = patterns('',
     #url(r'blog$',include('blog.urls')),
-    url(r'^$', include('new.urls'), name='home'),
+    url(r'^$', "mainProject.views.home"),
     url(r'^news/', include('new.urls')),
     url(r'^accounts/', include('user.urls')),
+    url(r'^showblogs$', "mainProject.views.showBlogs"),
     #url(r'^administrator/', include('backEnd.urls')),
     # Examples:
     # url(r'^$', 'mainProject.views.home', name='home'),

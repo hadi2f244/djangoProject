@@ -1,0 +1,27 @@
+{% extends "main/frontEnd/base.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans "News" %}
+{% endblock %}
+{% block toparea %}
+{% endblock %}
+{% block sidebar %}
+{% endblock %}
+{%block content%}
+    {% if blogs.count > 0 %}
+        {% for blog in blogs %}
+
+
+                <div >
+
+            <p><h2>{% trans "domain" %}: <a href=http://{{ blog.domain }}.{{ sitename }}/administrator/>{{blog.domain}}</a></h2>
+                {% trans "name" %}: {{ blog.name }}</p>
+                <hr >
+                </div>
+
+
+        {% endfor %}
+    {% else %}
+        <h1> {% trans "No blog" %} </h1>
+    {% endif%}
+{% endblock %}
