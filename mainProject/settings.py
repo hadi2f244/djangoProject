@@ -130,10 +130,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
+    #'django.core.context_processors.request',
 )
 
 MIDDLEWARE_CLASSES = (
-    'mainProject.middleware.SubdomainSet',
+    'blog.middleware.SubdomainSet',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -171,15 +172,20 @@ ROOT_URLCONFDICT ={
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'mainProject.wsgi.application'
 
+from blog import BlOG_MAIN_TEMPLATE_DIR
 
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     #os.path.join(mainPath,'blog', "templates"),
     os.path.join(mainPath, "templates"),
+    BlOG_MAIN_TEMPLATE_DIR ,
 
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+
+   # os.path.join(mainPath,genre,"templates"),
+   
 )
 
 STATICFILES_FINDERS = (
@@ -188,7 +194,9 @@ STATICFILES_FINDERS = (
     # 'dajaxice.finders.DajaxiceFinder',
 )
 
-INSTALLED_APPS = (
+from blog import BlOG_CORE_APPS
+
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -204,10 +212,9 @@ INSTALLED_APPS = (
     'user',
     'haystack',
     'backEnd',
-    'blog',
-    'blog.article',
-    'blog.category',
-    'blog.backEnd',
+   # 'blog',
+    #'blog.category',
+    #'blog.backEnd',
     'ckeditor',
     #'django_markdown',
     # 'dajaxice',
@@ -217,10 +224,9 @@ INSTALLED_APPS = (
     'analytical',
     'djangobower',
     'request',
+    'django_jalali',
+]+BlOG_CORE_APPS
 
-
-
-)
 ACCOUNT_ACTIVATION_DAYS = 7
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

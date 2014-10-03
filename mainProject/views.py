@@ -1,7 +1,10 @@
-from django.shortcuts import render
 from functools import wraps
+
+from django.shortcuts import render
+
 from new.models import New
-from blog.models import Blog
+from blog.apps.blog.models import Blog
+
 
 def frontEnd(view):
     @wraps(view)

@@ -1,12 +1,24 @@
-{% if invalid %}
-	<h2>Invalid username or password!</h2>
-{% endif %}	
-<form method="POST">{% csrf_token %}
-	<label for="username">Username:</lablel>
-	<input type="text" name="username" value="" id="username">
-	<br>
-	<label for="password">Password:</lablel>
-	<input type="text" name="password" value="" id="password">	
-	<br>
-	<input type="submit" value="login" />
-</form>
+{% load i18n %}
+{% load static %}
+<html xmlns="http://www.w3.org/1999/html">
+    <head>
+         <title>
+            {% block title %}Base {% trans "login page" %} {% endblock %}
+        </title>
+        <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+        <link href="{% static "css/backEnd/signin.css" %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            {% if invalid %}
+	        <h2>{% trans "Invalid username or password" %}!</h2>
+            {% endif %}
+            <form class="form-signin" method="POST">{% csrf_token %}
+                <h2 class="form-signin-heading">{% trans "Please sign in" %}</h2>
+                <input class="form-control" placeholder="{% trans "Username" %}" required="" type="username" autofocus="" name="username"  >
+                <input class="form-control" placeholder="{% trans "password" %}" required="" type="password" name="password">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Login" %}</button>
+            </form>
+        </div>>
+    </body>
+</html>

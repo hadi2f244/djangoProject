@@ -1,4 +1,5 @@
 {% extends "frontEnd/base.html" %}
+{% load i18n %}
 {% load static %}
 {% block title %}{{article.title}}{% endblock %}
 {% block script %}
@@ -11,18 +12,18 @@
 {% block content %}
 
 <h1>{{article.title}} </h1>
-<p> {{article.body}} </p>
-<h5> Published date: {{article.pub_date}} </h5>
-<p id="likesTag">{{article.likes}} poeple liked this article</p> 
+<p> {{article.body|safe}} </p>
+<h5> {% trans "Published date" %}: {{article.pub_date}} </h5>
 {% comment %}
+<p id="likesTag">{{article.likes}} poeple liked this article</p>
 <input type="button" onclick="Dajaxice.article.likeJax(my_callback, {'data1': {{article.id}} } )" value="LIKE!!">
 {% endcomment %}
 <hr size =10px >
-{% for commnet in commnets%}
+{% for commnet in commnets %}
 	
-	<p> writer : {{ commnet.writer }} </p>
-	<p> text : {{ commnet.body}} </p>
-	<p> date : {{ commnet.date }} </p>
+	<p> {% trans "writer" %} : {{ commnet.writer }} </p>
+	<p> {% trans "text" %} : {{ commnet.body}} </p>
+	<p> {% trans "date" %} : {{ commnet.date }} </p>
 	<hr width = 40%>
 {% endfor %}
 
@@ -31,10 +32,10 @@
 	<div id="cform">
         {{comment_form.as_p}}
     </div>
-    <div id="submit"><input type="submit" value="Submit" name="commentButton"></div>
+    <div id="submit"><input type="submit" value="{% trans "Submit" %}" name="commentButton"></div>
 </form>
 {% else %}
-   	<a href="/accounts/login?next=/articles/get/{{article.id}}/">Please login first to leave a comment!</a>
+   	<a href="/accounts/login?next=/articles/get/{{article.slug}}/">{% trans "Please login first to leave a comment!" %}</a>
 {% endif %}
 {% endblock %}
 

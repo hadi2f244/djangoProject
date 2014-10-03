@@ -1,20 +1,17 @@
 from django.shortcuts import render
-from blog.article.models import Article, Comment
-from blog.category.models import Category
-from blog.article.forms import ArticleForm,CommentFormEdit
+from blog.apps.article.models import Article
+from blog.apps.comment.models import Comment
+from blog.apps.category.models import Category
+from blog.apps.blog.models import Blog
+from blog.apps.article.forms import ArticleForm
+from blog.apps.comment.forms import CommentFormEdit
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect
 from functools import wraps
-from blog.backEnd.forms import  profileForm
-
-
-'''
-1.In this views file every view func work with blog so notice that all of query that create here contains (blog_id=request.blog.id)
-2.we use blog_id instead of blog becuase of blog_id is just an Int but blog is model!And models (like blog ) that are
-ForeingKey field in other models can work with id instead of a model ,too.
-'''
-
+from blog.backEnd.forms import profileForm
+from django.http import Http404
+from django.core.exceptions import ObjectDoesNotExist
 
 def backEnd(view):
     @wraps(view)
@@ -38,7 +35,7 @@ def login(request):
         return HttpResponseRedirect('/administrator/dashBoard')
 
     elif (request.method == "GET"): #if user not loggedin and  the first time that page loaded we create csrf num
-        return render(request,'blog/backEnd/djangoBlog/login.html', context)
+        return render(request,'backEnd/djangoBlog/login.html', context)
 
     else: # the POST with username and pass came :
         username=request.POST.get('username','')
@@ -50,7 +47,7 @@ def login(request):
 
         else : #if invalid username and pass entered we recreate a csrf num
             context['invalid']=True
-            return render(request,'blog/backEnd/djangoBlog/login.html',context)
+            return render(request,'backEnd/djangoBlog/login.html',context)
 
 #################################################################################################
 def logout(request):
@@ -61,7 +58,7 @@ def logout(request):
 #################################################################################################
 @backEnd
 def dashBoard(request,context):
-    return render(request,'blog/backEnd/djangoBlog/dashBoard.html',context)
+    return render(request,'backEnd/djangoBlog/dashBoard.html',context)
 
 #################################################################################################
 #################################################################################################
@@ -75,42 +72,44 @@ def articles(request,context):
         if not len(checked):
             return HttpResponseRedirect("")
         for articleID in checked:
-            Article.objects.get(id=articleID,blog_id=request.blog.id).delete() #we must check the delete process correction ####
+            request.blog.article_set.get(id=articleID).delete() #we must check the delete process correction ####
     elif 'HideButton' in request.POST: #Delete button clicked!
         checked=request.POST.getlist("articleIdCheckes")
         if not len(checked):
             return HttpResponseRedirect("")
         for articleID in checked:
-            ob = Article.objects.get(id=articleID,blog_id=request.blog.id)
+            ob = request.blog.article_set.get(id=articleID)
             ob.hide = True
             ob.save()
 
-    context['articles'] = Article.objects.filter(blog_id=request.blog.id)
-    return render(request,"blog/backEnd/article/articles.html",context)
+    context['articles'] = request.blog.article_set.all()
+    return render(request,"backEnd/article/articles.html",context)
 
 #################################################################################################
 @backEnd
-def article(request,context,article_id):#just show the article
+def article(request,context,article_slug):#just show the article
     #if article with this article_id doesn't exist ####
-    #
-    context['article'] = Article.objects.get(id=article_id,blog_id=request.blog.id)
-    context['categories'] = context['article'].category.filter(blog_id=request.blog.id)
+    try:
+        context['article'] = request.blog.article_set.get(slug=article_slug)
+    except ObjectDoesNotExist:
+        raise Http404
+    context['categories'] = context['article'].category.all()
 
-    return render(request,"blog/backEnd/article/article.html",context)
+    return render(request,"backEnd/article/article.html",context)
 #################################################################################################
 @backEnd
-def articleDel(request,context,article_id):
+def articleDel(request,context,article_slug):
     #if article with this article_id doesn't exist ####
-    Article.objects.get(id=article_id,blog_id=request.blog.id).delete() #we must check the delete process correction ####
+    request.blog.article_set.get(slug=article_slug).delete() #we must check the delete process correction ####
     # after deletation a box must show that ####
     return HttpResponseRedirect("/administrator/articles/all")
 ################################################################################################
 ####w
 @backEnd
-def articleEdit(request,context,article_id):
+def articleEdit(request,context,article_slug):
     #if article with this article_id doesn't exist ####
 
-    lastArticle=Article.objects.get(id=article_id,blog_id=request.blog.id)#So we dont need to send blog.id to ArticleForm that did in articleCreate views
+    lastArticle=request.blog.article_set.get(slug=article_slug)#So we dont need to send blog.id to ArticleForm that did in articleCreate views
     if lastArticle is None: # Is there any article to edit!
         return HttpResponseRedirect("/administrator/articles/all")
 
@@ -118,13 +117,13 @@ def articleEdit(request,context,article_id):
         articleForm = ArticleForm(request.blog.id,request.POST,instance=lastArticle) #to edit we set instance otherwise this create new article
         if articleForm.is_valid():
             articleForm.save()
-            return HttpResponseRedirect("/administrator/articles/get/"+article_id)
+            return HttpResponseRedirect("/administrator/articles/get/"+article_slug)
     else:# if user enter for first time So needed to show article informations
         articleForm=ArticleForm(blog_id=request.blog.id,instance=lastArticle)
     context['method']='articleEdit'
-    context['article_id']=article_id
+    context['article_slug']=article_slug
     context['form']=articleForm
-    return render(request,'blog/backEnd/article/submit_article.html',context)
+    return render(request,'backEnd/article/submit_article.html',context)
 
 ################################################################################################
 @backEnd
@@ -137,12 +136,12 @@ def articleCreate(request,context):
             article.blog_id=request.blog.id
             article.save()
             #print article.body
-            return HttpResponseRedirect("/administrator/articles/get/"+str(article.id))
+            return HttpResponseRedirect("/administrator/articles/get/"+str(article.slug))
     else:
         articleForm = ArticleForm(request.blog.id)#create a simple ArticleForm
     context['method']='articleCreate'
     context['form']=articleForm
-    return render(request,'blog/backEnd/article/submit_article.html',context)
+    return render(request,'backEnd/article/submit_article.html',context)
 #################################################################################################
 #################################################################################################
 #Category:
@@ -155,36 +154,36 @@ def categories(request,context):
         if not len(checked):
             return HttpResponseRedirect("")
         for categoryID in checked:
-            Category.objects.get(id=categoryID,blog_id=request.blog.id).delete() #we must check the delete process correction ####
-    context['categories'] = Category.objects.filter(blog_id=request.blog.id)
-    return render(request,"blog/backEnd/category/categories.html",context)
+            request.blog.category_set.get(id=categoryID).delete() #we must check the delete process correction ####
+    context['categories'] = request.blog.category_set.all()
+    return render(request,"backEnd/category/categories.html",context)
 
 ##################################################################################################
 @backEnd
 def categoryCreate(request,context):
 
     if 'submitCategory' in request.POST:#means you click on submit button named createCategory in submit_category.html
-        ctg=Category.objects.create(title=request.POST['categoryName'],blog_id=request.blog.id)
+        ctg=request.blog.category_set.create(title=request.POST['categoryName'])
         return HttpResponseRedirect("/administrator/categories/get/"+str(ctg.id))
     context['method']='categoryCreate'
-    return render(request,'blog/backEnd/category/submit_category.html',context)
+    return render(request,'backEnd/category/submit_category.html',context)
 
 ##################################################################################################
 @backEnd
 def category(request,context,category_id):
-    context['category']=Category.objects.get(id=category_id,blog_id=request.blog.id)
-    context['articles']=Article.objects.filter(category__id=category_id,blog_id=request.blog.id).distinct()
-    return render(request,"blog/backEnd/category/category.html",context)
+    context['category']=request.blog.category_set.get(id=category_id)
+    context['articles']=request.blog.article_set.filter(category__id=category_id).distinct()
+    return render(request,"backEnd/category/category.html",context)
 ###################################################################################################
 @backEnd
 def categoryDel(request,context,category_id):
-    Category.objects.get(id=category_id,blog_id=request.blog.id).delete() #we must check the delete process correction ####
+    request.blog.category_set.get(id=category_id).delete() #we must check the delete process correction ####
     return HttpResponseRedirect("/administrator/categories/all")
 ###################################################################################################
 @backEnd
 def categoryEdit(request,context,category_id):
 
-    lastCtg=Category.objects.get(id=category_id,blog_id=request.blog.id)
+    lastCtg=request.blog.category_set.get(id=category_id)
     if lastCtg is None:
         return HttpResponseRedirect("/administrator/categories/all")
     if 'submitCategory' in request.POST: #make sure that user click save button
@@ -195,7 +194,7 @@ def categoryEdit(request,context,category_id):
     context['method']='categoryEdit'
     context['category_id']=category_id
     context['category_title']=lastCtg.title
-    return render(request,'blog/backEnd/category/submit_category.html',context)
+    return render(request,'backEnd/category/submit_category.html',context)
 
 #################################################################################################
 #################################################################################################
@@ -209,55 +208,55 @@ def comments(request,context): #we want to show to all of comments ordering to d
         if not len(checked):
             return HttpResponseRedirect("")
         for commentID in checked:
-            Comment.objects.get(id=commentID,blog_id=request.blog.id).delete() #we must check the delete process correction ####
+            request.blog.comment_set.get(id=commentID).delete() #we must check the delete process correction ####
 
 
-    comments=Comment.objects.filter(blog_id=request.blog.id)
+    comments=request.blog.comment_set.all()
     com_art=[] # commment & article together
     for comment in comments:
-        com_art.append((comment,Article.objects.get(id=comment.article_id,blog_id=request.blog.id)))
+        com_art.append((comment,request.blog.article_set.get(id=comment.article_id)))
     context['com_art']=com_art
-    return render(request,'blog/backEnd/comment/comments.html',context)
+    return render(request,'backEnd/comment/comments.html',context)
 #must create a field named seen in comment model(default=False) that shows that admin saw that. migrate the comments
 
 ###################################################################################################
 @backEnd
 def cArticles(request,context):
-    articles=Article.objects.filter(blog_id=request.blog.id)
+    articles=request.blog.article_set.all()
     art_lComs=[]#article and length of comment set together
     for article in articles:
-        art_lComs.append((article,len(article.comment_set.filter(blog_id=request.blog.id))))
+        art_lComs.append((article,len(request.blog.comment_set.filter(article=article))))
     context['art_lComs']=art_lComs
-    return render(request,"blog/backEnd/comment/cArticles.html",context)
+    return render(request,"backEnd/comment/cArticles.html",context)
 ###################################################################################################
 
 @backEnd
-def cArticle(request,context,article_id):
-    context['article'] = Article.objects.get(id=article_id,blog_id=request.blog.id)
-    context['commnets'] = Comment.objects.filter(article = article_id,blog_id=request.blog.id)#article_id)
+def cArticle(request,context,article_slug):
+    context['article'] = request.blog.article_set.get(slug=article_slug)
+    context['commnets'] = request.blog.comment_set.filter(article = context['article'].id)
     for cmt in context['commnets']:
         cmt.seen=True
         cmt.save()
-    return render(request,'blog/backEnd/comment/cArticle.html',context)
+    return render(request,'backEnd/comment/cArticle.html',context)
 
 ###################################################################################################
 #coment: #### create a see method for comments
 @backEnd
 def comment(request,context,comment_id):#we show the comment details
-    context['comment']=Comment.objects.get(id=comment_id,blog_id=request.blog.id)
-    context['articleName']=Article.objects.get(id=context['comment'].article_id,blog_id=request.blog.id).title
-    return render(request,"blog/backEnd/comment/comment.html",context)
+    context['comment']=request.blog.comment_set.get(id=comment_id)
+    context['articleName']=request.blog.article_set.get(id=context['comment'].article_id).title
+    return render(request,"backEnd/comment/comment.html",context)
 
 ###################################################################################################
 @backEnd
 def commentDel(request,context,comment_id):
-    Comment.objects.get(id=comment_id,blog_id=request.blog.id).delete()#we must check the delete process correction ####
+    request.blog.comment_set.get(id=comment_id).delete()#we must check the delete process correction ####
     return  HttpResponseRedirect("/administrator/comments/all")
 ###################################################################################################
 @backEnd
 def commentEdit(request,context,comment_id):
 
-    lastCmt=Comment.objects.get(id=comment_id,blog_id=request.blog.id)
+    lastCmt=request.blog.comment_set.get(id=comment_id)
     if lastCmt is None:
         return HttpResponseRedirect("/administrator/comments/all")
     if 'submitComment' in request.POST: #make sure that user click save button
@@ -269,10 +268,10 @@ def commentEdit(request,context,comment_id):
         cmtForm=CommentFormEdit(instance=lastCmt)
 
 
-    context['method']='commentEdit'
+    context['method']='commentEdpiit'
     context['comment_id']=comment_id
     context['form']=cmtForm
-    return render(request,'blog/backEnd/comment/submit_comment.html',context)
+    return render(request,'backEnd/comment/submit_comment.html',context)
 ###################################################################################################
 ###################################################################################################
 #profile views:
@@ -288,8 +287,8 @@ def profile(request,context):
             passForm.save()
             context['notifications']= "Your password was changed , successfully!"#is in the base
             context['passForm']=passForm
-            return render(request,'blog/backEnd/profile/profile.html',context)
+            return render(request,'backEnd/profile/profile.html',context)
    # else:
        # context['passForm']=profileForm(user=request.user)
     context['passForm']=passForm
-    return render(request,'blog/backEnd/profile/profile.html',context)
+    return render(request,'backEnd/profile/profile.html',context)

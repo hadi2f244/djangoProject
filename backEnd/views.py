@@ -1,17 +1,17 @@
-from django.shortcuts import render,render
+'''
+from functools import wraps
+
+from django.shortcuts import render
+from django.contrib import auth
+from django.http import HttpResponseRedirect
+from django.conf import settings #we need SITE_NAME
+
 from blog.models import Blog
 from blog.forms import BlogForm
 from new.models import New
 from new.forms import NewForm
-from django.contrib import auth
-from django.core.context_processors import csrf
-from django.http import HttpResponseRedirect
-from django.core.exceptions import ObjectDoesNotExist
-from django.conf import settings #we need SITE_NAME
-from functools import wraps
-from django.utils.translation import ugettext as _
+
 #from django.contrib.auth.forms import PasswordChangeForm
-from blog.backEnd.forms import  profileForm
 
 def backEnd(view):
 	@wraps(view)
@@ -184,4 +184,5 @@ def newCreate(request,context):
     context['method']='newCreate'
     context['form']=NewForm
     return render(request,'main/backEnd/new/submit_new.html',context)
-#################################################################################################
+
+'''

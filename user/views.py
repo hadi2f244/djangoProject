@@ -1,16 +1,20 @@
-from user.forms import UserCreationForm, RegBlog, loginForm,\
-    resetForm, reset_password_form, profile_form
+import random
+import hashlib
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from blog.models import Blog
-from user.models import MyUser, reset_pass_user
-from mainProject.views import frontEnd
 from django.template.loader import render_to_string
-import random, hashlib
 from django.core.mail import send_mail
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+
+from user.forms import UserCreationForm, RegBlog, loginForm,\
+    resetForm, reset_password_form, profile_form
+from blog.apps.blog.models import Blog
+from user.models import MyUser, reset_pass_user
+from mainProject.views import frontEnd
+
 
 @frontEnd
 def register(request,context):

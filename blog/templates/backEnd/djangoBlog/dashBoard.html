@@ -1,6 +1,7 @@
 {% extends "backEnd/base.html" %}
-{% block title %} Admin page {% endblock %}
+{% load i18n %}
+{% block title %} {% trans "administrator page" %}  {% endblock %}
 
 {% block content %}
-<h1>DashBoard</h1>
+<h1>{% trans "Dashboard" %} </h1>
 {% endblock %}

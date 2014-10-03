@@ -1,0 +1,24 @@
+{% extends "frontEnd/base.html" %}
+{% load i18n %}
+{% block title %} {% trans "Articles" %} {% endblock %}
+{% block toparea %}
+{% endblock %}
+{% block sidebar %}
+{% endblock %}
+{%block content%}
+    <h1> {% trans "Archive for " %} {{ date }}: </h1>
+{% if articles.count > 0 %}
+{% for article in articles %}
+<div>
+   {% if not article.hide %}
+    <hr width = 60% >
+    <h2><a href="/articles/get/{{article.slug}}/">{{article.title}}</a></h2>
+    <p>{{ article.body|removetags:"b strong h1 h2 h3 h4"|truncatewords_html:3|safe }}</p> <!-- safe > for html render , truncatewords_html > convert to summary  -->
+   {% endif %}
+
+</div>
+{% endfor %}
+{% else %}
+<h1> {% trans "No articles" %} </h1>
+{% endif%}
+{% endblock %}

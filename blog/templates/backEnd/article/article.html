@@ -1,4 +1,5 @@
 {% extends "backEnd/base.html" %}
+{% load i18n %}
 {% load static %}
 {% block title %}{{article.title}}{% endblock %}
 {% block script %}
@@ -7,24 +8,26 @@
 {% block sidebar %}
     <ul>
 	    <hr width = 75%>
-	    <li><a href="/administrator/articles/edit/{{article.id}}">Edit</a></li>
-        <li><a href="/administrator/articles/del/{{article.id}}">Delete</a></li> {% comment %}maybe this process have security bug must be ajax {% endcomment %}
+	    <li><a href="/administrator/articles/edit/{{article.slug}}">{% trans "Edit" %}</a></li>
+        <li><a href="/administrator/articles/del/{{article.slug}}">{% trans "Delete" %}</a></li> {% comment %}maybe this process have security bug must be ajax {% endcomment %}
     </ul>
 {% endblock %}
 {% block content %}
     <h1>{{article.title}} </h1>
-    <p> {{article.body}} </p>
-    <h5> Published date: {{article.pub_date}} </h5>
+    <p> {{article.body|safe}} </p>
+    <h5> {% trans "Published date" %}: {{article.pub_date}} </h5>
+    {% comment %}
     <p id="likesTag">{{article.likes}} poeple liked this article</p>
+    {% endcomment %}
     <hr width = 75%>
     <div>
         {% if categories.count > 0 %}
-        <h4>categories:</h4>
+        <h4>{% trans "Categories" %}:</h4>
         {% for category in categories %}
             <p> {{ category.title }} </p>
         {% endfor %}
         {% else %}
-        <h4>No category!</h4>
+        <h4>{% trans "No categories" %}</h4>
     {% endif %}
     </div>
 {% endblock %}

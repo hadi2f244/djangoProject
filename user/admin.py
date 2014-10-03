@@ -3,11 +3,13 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from user.models import MyUser
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from blog.models import Blog
 from django.core.exceptions import ObjectDoesNotExist
+
+from user.models import MyUser
+from blog.apps.blog.models import Blog
+
 
 class UserCreationForm(forms.ModelForm):
     """A form for creating new user. Includes all the required
